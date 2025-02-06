@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: 558484391
     Data4: -1500206455
   Banks:
-  - {fileID: 8287414850260347668}
+  - {fileID: -7629852846434000045}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -27,6 +27,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 39374
+--- !u!114 &-7629852846434000045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: AudioFMOD/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638744558303591316
+  FileSizes:
+  - Name: Desktop
+    Value: 2155424
+  Exists: 1
 --- !u!114 &-1702537947819781018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,7 +66,7 @@ MonoBehaviour:
     Data3: 1139884430
     Data4: 679296398
   Banks:
-  - {fileID: 8287414850260347668}
+  - {fileID: -7629852846434000045}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -73,7 +93,7 @@ MonoBehaviour:
     Data3: 813646263
     Data4: 2138259291
   Banks:
-  - {fileID: 8287414850260347668}
+  - {fileID: -7629852846434000045}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -94,8 +114,8 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 2771268748083345732}
-  - {fileID: 8287414850260347668}
+  - {fileID: 4884912275085831277}
+  - {fileID: -7629852846434000045}
   EditorEvents:
   - {fileID: -9073374683621545383}
   - {fileID: -1702537947819781018}
@@ -105,31 +125,11 @@ MonoBehaviour:
   - {fileID: 8794912192739439924}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 8287414850260347668}
+  - {fileID: -7629852846434000045}
   StringsBanks:
-  - {fileID: 2771268748083345732}
-  cacheTime: 638743489899908246
+  - {fileID: 4884912275085831277}
+  cacheTime: 638744558303614355
   cacheVersion: 131622
---- !u!114 &2771268748083345732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../AudioHorrorFMOD/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638743489899908246
-  FileSizes:
-  - Name: Desktop
-    Value: 1004
-  Exists: 1
 --- !u!114 &3055016772799379783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
     Data3: -198085714
     Data4: 597136976
   Banks:
-  - {fileID: 8287414850260347668}
+  - {fileID: -7629852846434000045}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -157,6 +157,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 7500
+--- !u!114 &4884912275085831277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: AudioFMOD/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638744558303614355
+  FileSizes:
+  - Name: Desktop
+    Value: 1004
+  Exists: 1
 --- !u!114 &4908693753901476885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +196,7 @@ MonoBehaviour:
     Data3: -1147559500
     Data4: 2035638046
   Banks:
-  - {fileID: 8287414850260347668}
+  - {fileID: -7629852846434000045}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -184,26 +204,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1160
---- !u!114 &8287414850260347668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../AudioHorrorFMOD/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638743489899891613
-  FileSizes:
-  - Name: Desktop
-    Value: 2155424
-  Exists: 1
 --- !u!114 &8794912192739439924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
     Data3: 989854384
     Data4: -1938672743
   Banks:
-  - {fileID: 8287414850260347668}
+  - {fileID: -7629852846434000045}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
