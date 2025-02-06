@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{209362cc-ac2f-40cd-800a-9ccb26d67d17}">
+		<property name="assetPath">
+			<value>SFX/Pills.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>7.9412244897959186</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8ec404a-b788-4bc3-98f4-8c483e64d06c}</destination>
+		</relationship>
+	</object>
+</objects>

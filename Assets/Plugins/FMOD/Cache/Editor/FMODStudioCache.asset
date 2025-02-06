@@ -1,0 +1,233 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9073374683621545383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ArrivalAmbientRain
+  m_EditorClassIdentifier: 
+  Path: event:/ArrivalAmbientRain
+  Guid:
+    Data1: 1922054439
+    Data2: 1218576447
+    Data3: 558484391
+    Data4: -1500206455
+  Banks:
+  - {fileID: 8287414850260347668}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 39374
+--- !u!114 &-1702537947819781018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ArrivalAmbientRainMuted
+  m_EditorClassIdentifier: 
+  Path: event:/ArrivalAmbientRainMuted
+  Guid:
+    Data1: 613544971
+    Data2: 1328914545
+    Data3: 1139884430
+    Data4: 679296398
+  Banks:
+  - {fileID: 8287414850260347668}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 39374
+--- !u!114 &-1501770785976262304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UsingSanityPill
+  m_EditorClassIdentifier: 
+  Path: event:/UsingSanityPill
+  Guid:
+    Data1: -1269911571
+    Data2: 1202653326
+    Data3: 813646263
+    Data4: 2138259291
+  Banks:
+  - {fileID: 8287414850260347668}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1200
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 2771268748083345732}
+  - {fileID: 8287414850260347668}
+  EditorEvents:
+  - {fileID: -9073374683621545383}
+  - {fileID: -1702537947819781018}
+  - {fileID: 4908693753901476885}
+  - {fileID: 3055016772799379783}
+  - {fileID: -1501770785976262304}
+  - {fileID: 8794912192739439924}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 8287414850260347668}
+  StringsBanks:
+  - {fileID: 2771268748083345732}
+  cacheTime: 638743489899908246
+  cacheVersion: 131622
+--- !u!114 &2771268748083345732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../AudioHorrorFMOD/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638743489899908246
+  FileSizes:
+  - Name: Desktop
+    Value: 1004
+  Exists: 1
+--- !u!114 &3055016772799379783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorDrag
+  m_EditorClassIdentifier: 
+  Path: event:/DoorDrag
+  Guid:
+    Data1: 1869334750
+    Data2: 1138143472
+    Data3: -198085714
+    Data4: 597136976
+  Banks:
+  - {fileID: 8287414850260347668}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7500
+--- !u!114 &4908693753901476885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorIsClosed
+  m_EditorClassIdentifier: 
+  Path: event:/DoorIsClosed
+  Guid:
+    Data1: -2145619271
+    Data2: 1128979084
+    Data3: -1147559500
+    Data4: 2035638046
+  Banks:
+  - {fileID: 8287414850260347668}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1160
+--- !u!114 &8287414850260347668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../AudioHorrorFMOD/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638743489899891613
+  FileSizes:
+  - Name: Desktop
+    Value: 2155424
+  Exists: 1
+--- !u!114 &8794912192739439924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StairsBang
+  m_EditorClassIdentifier: 
+  Path: event:/StairsBang
+  Guid:
+    Data1: 1939396832
+    Data2: 1240022102
+    Data3: 989854384
+    Data4: -1938672743
+  Banks:
+  - {fileID: 8287414850260347668}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7740

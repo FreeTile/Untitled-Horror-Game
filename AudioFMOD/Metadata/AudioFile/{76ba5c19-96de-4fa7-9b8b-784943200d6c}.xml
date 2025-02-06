@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{76ba5c19-96de-4fa7-9b8b-784943200d6c}">
+		<property name="assetPath">
+			<value>Rain&amp;Thunder/mixkit-big-thunder-with-rain-1291.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>16.141473922902495</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8ec404a-b788-4bc3-98f4-8c483e64d06c}</destination>
+		</relationship>
+	</object>
+</objects>
