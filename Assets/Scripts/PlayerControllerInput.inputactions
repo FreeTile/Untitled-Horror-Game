@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Throw",
+                    "type": "Button",
+                    "id": "32ac0edd-f28e-403d-b16b-3640e1255fed",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Inventory",
                     "type": "Button",
                     "id": "a68fee17-7c8b-4a76-868b-9333cbe0ed97",
@@ -199,6 +208,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Journal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "216c8b64-568c-404d-afd0-f79274624fd7",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

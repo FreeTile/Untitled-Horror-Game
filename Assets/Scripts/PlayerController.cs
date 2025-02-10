@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    [SerializeField] private Camera MCamera;
+    [SerializeField] private Transform MCameraPivot;
     [SerializeField] private float MovementSpeed = 5f;
     [SerializeField] private float MouseSensitivity = 1f;
     [SerializeField] private float GravityMultiplier = 1f;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
     }
-
+    
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody hitRigidbody = hit.collider.attachedRigidbody;
@@ -64,23 +64,11 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 contactNormal = hit.normal;
             Vector3 pushDirection = (hit.transform.position - transform.position).normalized;
-            pushDirection.y = 0f;
             pushDirection.Normalize();
-
-            bool isTopCollision = contactNormal.y > 0.75f;
-
-            Vector3 forceDirection;
-            if (isTopCollision)
-            {
-                forceDirection = Vector3.down;
-            }
-            else
-            {
-                forceDirection = pushDirection;
-            }
-            hitRigidbody.AddForceAtPosition(forceDirection * pushForce, hit.point, ForceMode.Force);
+            hitRigidbody.AddForceAtPosition(pushDirection * pushForce, hit.point, ForceMode.Force);
         }
     }
+    
     
     private void RotateCamera()
     {
@@ -89,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
         verticalLookRotation -= mouseY;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
-        MCamera.transform.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
+        MCameraPivot.transform.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
 
         transform.Rotate(Vector3.up * mouseX);
     }
