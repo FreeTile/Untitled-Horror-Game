@@ -31,7 +31,6 @@ public class Interact : MonoBehaviour
     {
         if (input.InteractDown && interactedObject == null)
         {
-                // Если объект ещё не выбран, пытаемся его обнаружить лучом
                 RaycastHit hit;
                 if (Physics.Raycast(MCamera.transform.position, MCamera.transform.forward, out hit, interactDistance, mask))
                 {
@@ -141,7 +140,7 @@ public class Interact : MonoBehaviour
 
     private void PickUpItem(GameObject obj)
     {
-        //code for to pick up an item
+        //code to pick up an item
     }
 
     private void ReadNote(GameObject obj)

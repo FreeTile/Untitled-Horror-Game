@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform MCameraPivot;
     [SerializeField] private float MovementSpeed = 5f;
     [SerializeField] private float MouseSensitivity = 1f;
-    [SerializeField] private float GravityMultiplier = 1f;
 
     [SerializeField] private float pushForce = 5f;  
 
