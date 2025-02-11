@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "LightAngle",
+                    "type": "Value",
+                    "id": "5fc47ea4-4546-478f-9227-14b7faf0b071",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "6c01e45d-0264-4071-a777-34d93ecda133",
@@ -219,6 +228,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08b5925b-fb5f-4336-8a64-7e0c3b89be9e",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightAngle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

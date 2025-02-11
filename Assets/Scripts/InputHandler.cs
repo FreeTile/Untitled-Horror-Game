@@ -17,6 +17,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string inventory = "Inventory";
     [SerializeField] private string sprint = "Sprint";
     [SerializeField] private string journal = "Journal";
+    [SerializeField] private string lightangle = "LightAngle";
 
     private InputAction moveAction;
     private InputAction lookAction;
@@ -26,9 +27,11 @@ public class InputHandler : MonoBehaviour
     private InputAction inventoryAction;    
     private InputAction sprintAction;
     private InputAction journalAction;
+    private InputAction lightangleAction;
 
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
+    public float WheelInput { get; private set; }
     public bool FlashlightInput { get; private set; }
     public bool InventoryInput { get; private set; }
     public bool SprintInput { get; private set; }
@@ -37,6 +40,7 @@ public class InputHandler : MonoBehaviour
     public bool InteractHold { get; private set; }
     public bool ThrowDown { get; private set; }
     public static InputHandler Instance { get; private set; }
+
 
     private void Awake()
     {
@@ -58,7 +62,7 @@ public class InputHandler : MonoBehaviour
         inventoryAction = playerControls.FindActionMap(actionMapName).FindAction(inventory);
         sprintAction = playerControls.FindActionMap(actionMapName).FindAction(sprint);
         journalAction = playerControls.FindActionMap(actionMapName).FindAction(journal);
-
+        lightangleAction = playerControls.FindActionMap(actionMapName).FindAction(lightangle);
         RegisterInputActions();
     }
 
@@ -66,9 +70,11 @@ public class InputHandler : MonoBehaviour
     {
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
         lookAction.performed += context => LookInput = context.ReadValue<Vector2>();
+        lightangleAction.performed += context => WheelInput = context.ReadValue<float>();
 
         moveAction.canceled += context => MoveInput = Vector2.zero;
         lookAction.canceled += context => LookInput = Vector2.zero;
+        lightangleAction.canceled += context => WheelInput = 0f;
 
         flashlightAction.performed += context => FlashlightInput = true;
         inventoryAction.performed += context => InventoryInput = true;
@@ -80,7 +86,6 @@ public class InputHandler : MonoBehaviour
         };
         throwAction.performed += context => ThrowDown = true;
 
-        flashlightAction.canceled += context => FlashlightInput = false;
         interactAction.canceled += context => InteractHold = false;
         inventoryAction.canceled += context => InventoryInput = false;
         sprintAction.canceled += context => SprintInput = false;
@@ -99,7 +104,7 @@ public class InputHandler : MonoBehaviour
         inventoryAction.Enable();
         sprintAction.Enable();
         journalAction.Enable();
-
+        lightangleAction.Enable();
     }
 
     private void OnDisable()
@@ -112,12 +117,14 @@ public class InputHandler : MonoBehaviour
         inventoryAction.Disable();
         sprintAction.Disable();
         journalAction.Disable();
+        lightangleAction.Disable();
     }
 
     private void LateUpdate()
     {
         InteractDown = false;
         ThrowDown = false;
+        FlashlightInput = false;
     }
 
 }
