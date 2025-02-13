@@ -4,15 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Hide
   - floor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Character
   - Water
   - UI
-  - 
+  - Obstacles
   - 
   - 
   - 
