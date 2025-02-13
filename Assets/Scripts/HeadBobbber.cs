@@ -20,12 +20,12 @@ public class HeadBobbber : MonoBehaviour
     private Vector3 initialLocalPos;
     private float timer = 0f;
 
-    private InputHandler input;
+    private GameInputHandler input;
 
     void Start()
     {
         initialLocalPos = transform.localPosition;
-        input = InputHandler.Instance;
+        input = GameInputHandler.Instance;
     }
 
     void Update()

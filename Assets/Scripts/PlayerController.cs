@@ -13,15 +13,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 verticalVelocity = Vector3.zero;
     private float verticalLookRotation = 0f;
 
-    private InputHandler input;
+    private GameInputHandler input;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        input = InputHandler.Instance;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        input = GameInputHandler.Instance;
     }
 
     private void Update()
