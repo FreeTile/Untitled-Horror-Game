@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlashLight : MonoBehaviour
 {
-    private InputHandler input;
+    private GameInputHandler input;
     [SerializeField] private GameObject FLObject, FLModel;
     [SerializeField] private float autoAimMinDistance = 1f;
     [SerializeField] private float followDelay = 0.2f;
@@ -15,13 +15,13 @@ public class FlashLight : MonoBehaviour
     [SerializeField] private float MinAngle, MaxAngle;
     [SerializeField] private float maxIntensity = 6f;
     [SerializeField] private float minIntensity = 2f;
-    private float Charge = 120f;
+    private static float Charge = 120f;
     private Animator anim;
     private bool isOn = false;
     
     void Start()
     {
-        input = InputHandler.Instance;
+        input = GameInputHandler.Instance;
         float t = (lightSource.innerSpotAngle - MinAngle) / (MaxAngle - MinAngle);
         lightSource.intensity = Mathf.Lerp(maxIntensity, minIntensity, t);
         anim = FLObject.GetComponent<Animator>();
@@ -48,7 +48,7 @@ public class FlashLight : MonoBehaviour
     }
     private void TurnOnOffLight()
     {
-        if (input.FlashlightInput)
+        if (input.FlashlightDown)
         {
             if (!isOn && Charge > 0f)
             {
@@ -115,7 +115,7 @@ public class FlashLight : MonoBehaviour
         }
     }
 
-    public void IncreaseCharge(float value)
+    public static void IncreaseCharge(float value)
     {
         Charge += value;
     }
