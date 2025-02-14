@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8925204072731445310}
   - component: {fileID: 231333272729926238}
   - component: {fileID: 2714606952616786901}
+  - component: {fileID: 197265348606539947}
   m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -156,6 +157,20 @@ MonoBehaviour:
   sprintMultiplier: 1.5
   XAmplitude: 0.2
   YAmplitude: 0.05
+--- !u!114 &197265348606539947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655778639879242921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 5553044814881422271}
 --- !u!1 &3097688209784306724
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +407,7 @@ MonoBehaviour:
   MCamera: {fileID: 5055094015207146136}
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   breakDistance: 1
   ThrowForce: 20
 --- !u!114 &4380364831848576895
@@ -414,7 +429,7 @@ MonoBehaviour:
   MCamera: {fileID: 5055094015207146136}
   aimMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 4294967295
   lightSource: {fileID: 7617496588577255738}
   MinAngle: 20
   MaxAngle: 75
