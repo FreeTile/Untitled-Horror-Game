@@ -6,10 +6,12 @@ TagManager:
   tags:
   - Hide
   - floor
+  - Draggable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
+  - Interactable
   - Character
   - Water
   - UI
