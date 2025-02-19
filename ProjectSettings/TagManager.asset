@@ -8,11 +8,13 @@ TagManager:
   - floor
   - Grass
   - House
+  - Draggable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
   - Ground
+  - Interactable
   - Character
   - Water
   - UI

@@ -11,14 +11,14 @@ public class Interact : MonoBehaviour
     [SerializeField] private Camera MCamera;
     [SerializeField] private LayerMask mask;
 
-    private InputHandler input;
+    private GameInputHandler input;
 
     [SerializeField] private float breakDistance = 1f;
     [SerializeField] private float ThrowForce = 10f;
 
     private void Start()
     {
-        input = InputHandler.Instance;
+        input = GameInputHandler.Instance;
     }
 
     private void Update()
