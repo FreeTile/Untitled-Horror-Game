@@ -7,6 +7,7 @@ public class GameInputHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset playerControls;
 
+    //Names for action map and actions from the action asset
     [SerializeField] private string actionMapName = "PlayerGame";
 
     [SerializeField] private string movement = "Movement";
@@ -17,6 +18,7 @@ public class GameInputHandler : MonoBehaviour
     [SerializeField] private string sprint = "Sprint";
     [SerializeField] private string lightangle = "LightAngle";
 
+    //Variables for actions from action asset
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction flashlightAction;
@@ -25,6 +27,7 @@ public class GameInputHandler : MonoBehaviour
     private InputAction sprintAction;
     private InputAction lightangleAction;
 
+    //Setting up variables that are available in other scripts
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
     public float WheelInput { get; private set; }
@@ -48,6 +51,7 @@ public class GameInputHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //Setting up actions
         moveAction = playerControls.FindActionMap(actionMapName).FindAction(movement);
         lookAction = playerControls.FindActionMap(actionMapName).FindAction(look);
         flashlightAction = playerControls.FindActionMap(actionMapName).FindAction(flashlight);
@@ -58,6 +62,8 @@ public class GameInputHandler : MonoBehaviour
         RegisterInputActions();
     }
 
+    //Function for changing public variables depends on pressed keys
+    //.performed when key pressed, .canceled when key released
     void RegisterInputActions()
     {
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
@@ -89,6 +95,8 @@ public class GameInputHandler : MonoBehaviour
 
     }
 
+    // IMPORTANT 
+    //Enables input reading upon enabling component
     private void OnEnable()
     {
         moveAction.Enable();
@@ -100,6 +108,8 @@ public class GameInputHandler : MonoBehaviour
         lightangleAction.Enable();
     }
 
+    // IMPORTANT 
+    //Disables input reading upon enabling component
     private void OnDisable()
     {
         moveAction.Disable(); 

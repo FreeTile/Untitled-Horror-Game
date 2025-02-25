@@ -33,6 +33,7 @@ public class HeadBobbber : MonoBehaviour
         Breathe();
     }
 
+    //Function uses cos and sin from -1 to 1 to emulate breathing without animation
     private void Breathe()
     {
         bool isMoving = input.MoveInput.sqrMagnitude > 0.1f;
@@ -40,7 +41,7 @@ public class HeadBobbber : MonoBehaviour
 
         if (isMoving)
         {
-            frequency = walkingFrequency * (input.SprintInput ? sprintMultiplier : 1f);
+            frequency = walkingFrequency * (input.SprintInput ? sprintMultiplier : 1f); //The breathing rate depends on whether the player is running or not
         }
         else
         {
@@ -50,7 +51,7 @@ public class HeadBobbber : MonoBehaviour
         timer += Time.deltaTime * frequency;
         float bobOffsetY = Mathf.Sin(timer) * YAmplitude;
         float bobOffsetX = 0f;
-        if (input.MoveInput.y > 0f)
+        if (input.MoveInput.y > 0f) //Shakes head to the sides only if the player is moving forward
         {
             bobOffsetX = Mathf.Cos(timer/2) * XAmplitude;
         }

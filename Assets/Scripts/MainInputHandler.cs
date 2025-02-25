@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//Same as GameInputHandler class
+//Used to handle opening UI such as menu, inventory and journal.
 public class MainInputHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset playerControls;
