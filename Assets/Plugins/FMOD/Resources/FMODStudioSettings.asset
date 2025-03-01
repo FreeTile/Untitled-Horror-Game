@@ -524,10 +524,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
-  sourceProjectPath: ../AudioFMOD/AudioHorrorFMOD.fspro
-  sourceBankPath: ../AudioFMOD/Build
+  HasSourceProject: 0
+  HasPlatforms: 0
+  sourceProjectPath: ../../AudioFMOD/AudioHorrorFMOD.fspro
+  sourceBankPath: Assets/StreamingAssets
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -550,7 +550,9 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
-  Banks: []
+  Banks:
+  - Chapter1
+  - SFX
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

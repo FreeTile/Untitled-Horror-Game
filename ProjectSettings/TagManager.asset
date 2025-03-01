@@ -4,19 +4,21 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Hide
   - floor
+  - Grass
+  - House
   - Draggable
-  - monster
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - Intractable
-  - PostProcessing
   - 
+  - 
+  - Obstacles
   - 
   - 
   - 
