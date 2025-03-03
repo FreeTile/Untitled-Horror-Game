@@ -14,13 +14,11 @@ TagManager:
   - TransparentFX
   - Ignore Raycast
   - Ground
-  - Interactable
-  - Character
   - Water
   - UI
+  - 
+  - 
   - Obstacles
-  - 
-  - 
   - 
   - 
   - 

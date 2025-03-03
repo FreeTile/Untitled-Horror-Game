@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
+using FMOD.Studio;
 using UnityEngine;
 
 public class FlashLight : MonoBehaviour
@@ -18,13 +20,17 @@ public class FlashLight : MonoBehaviour
     private static float Charge = 120f;
     private Animator anim;
     private bool isOn = false;
-    
+
+    [Header("(FMOD) path Settings")]
+    public FMODUnity.EventReference m_EventPath;
+
     void Start()
     {
         input = GameInputHandler.Instance;
         float t = (lightSource.innerSpotAngle - MinAngle) / (MaxAngle - MinAngle);
         lightSource.intensity = Mathf.Lerp(maxIntensity, minIntensity, t);
         anim = FLObject.GetComponent<Animator>();
+        
     }
 
     void Update()
@@ -64,6 +70,7 @@ public class FlashLight : MonoBehaviour
                 anim.SetBool("IsOn", false);
                 isOn = false;
             }
+            PlaySound();
         }
     }
 
@@ -123,5 +130,13 @@ public class FlashLight : MonoBehaviour
     public static void IncreaseCharge(float value)
     {
         Charge += value;
+    }
+
+    //NEW: Plays the sound 
+    void PlaySound()
+    {
+        FMOD.Studio.EventInstance instance = FMODUnity.RuntimeManager.CreateInstance(m_EventPath);
+        instance.start();
+        instance.release();
     }
 }
