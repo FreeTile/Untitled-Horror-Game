@@ -49,6 +49,9 @@ public class Interact : MonoBehaviour
                         break;
                     case "Door": //Doors + drawers
                         interactedObject = hit.transform.gameObject;
+                        //Door door = interactedObject.GetComponent<Door>();
+                        //door.isHeld = true;
+                        //door.Open();
                         AttachDoorJoint(interactedObject, hit.point);
                         break;
                     case "Pickable": //Batteries + pills
@@ -62,6 +65,7 @@ public class Interact : MonoBehaviour
         }
         else if (interactedObject != null) //throw an object
         {
+
             if (input.ThrowDown)
             {
                 ThrowObject();
@@ -77,14 +81,27 @@ public class Interact : MonoBehaviour
     }
 
     //If the distance between the holding position and the object is too large, we break up the connection -> throws the object
-    private void CheckDistance() 
+    private void CheckDistance()
     {
-        if (interactedObject != null && currentÑJoint != null)
+        if (interactedObject != null)
         {
-            float distance = Vector3.Distance(interactedObject.transform.position, holdPosition.position);
-            if (distance > breakDistance)
+            if (currentDoorSpringJoint != null)
             {
-                BreakJoint();
+                Vector3 doorAnchor= interactedObject.transform.TransformPoint(currentDoorSpringJoint.anchor);
+                Vector3 holdAnchor = holdPosition.transform.TransformPoint(currentDoorSpringJoint.connectedAnchor);
+                float distance = Vector3.Distance(doorAnchor, holdAnchor);
+                if (distance > breakDistance)
+                {
+                    BreakDoorJoint();
+                }
+            }
+            else if (currentÑJoint != null)
+            {
+                float distance = Vector3.Distance(interactedObject.transform.position, holdPosition.position);
+                if (distance > breakDistance)
+                {
+                    BreakJoint();
+                }
             }
         }
     }
@@ -165,8 +182,8 @@ public class Interact : MonoBehaviour
         currentDoorSpringJoint.anchor = localHitPoint;
         currentDoorSpringJoint.connectedAnchor = Vector3.zero;
 
-        currentDoorSpringJoint.spring = 50f;
-        currentDoorSpringJoint.damper = 25f;
+        currentDoorSpringJoint.spring = 100f;
+        currentDoorSpringJoint.damper = 50f;
         currentDoorSpringJoint.minDistance = 0f;
         currentDoorSpringJoint.maxDistance = 0f;
     }
@@ -174,6 +191,7 @@ public class Interact : MonoBehaviour
     //Breaking spring joint from the las held doorlike object
     private void BreakDoorJoint()
     {
+        //interactedObject.GetComponent<Door>().isHeld = false;
         if (currentDoorSpringJoint != null)
         {
             Destroy(currentDoorSpringJoint);

@@ -9,6 +9,7 @@ public class GameInputHandler : MonoBehaviour
 
     //Names for action map and actions from the action asset
     [SerializeField] private string actionMapName = "PlayerGame";
+    private InputActionMap ActionMap;
 
     [SerializeField] private string movement = "Movement";
     [SerializeField] private string look = "Look";
@@ -51,14 +52,16 @@ public class GameInputHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
+        ActionMap = playerControls.FindActionMap(actionMapName);
+
         //Setting up actions
-        moveAction = playerControls.FindActionMap(actionMapName).FindAction(movement);
-        lookAction = playerControls.FindActionMap(actionMapName).FindAction(look);
-        flashlightAction = playerControls.FindActionMap(actionMapName).FindAction(flashlight);
-        interactAction = playerControls.FindActionMap(actionMapName).FindAction(interact);
-        throwAction = playerControls.FindActionMap(actionMapName).FindAction(throwAct);
-        sprintAction = playerControls.FindActionMap(actionMapName).FindAction(sprint);
-        lightangleAction = playerControls.FindActionMap(actionMapName).FindAction(lightangle);
+        moveAction = ActionMap.FindAction(movement);
+        lookAction = ActionMap.FindAction(look);
+        flashlightAction = ActionMap.FindAction(flashlight);
+        interactAction = ActionMap.FindAction(interact);
+        throwAction = ActionMap.FindAction(throwAct);
+        sprintAction = ActionMap.FindAction(sprint);
+        lightangleAction = ActionMap.FindAction(lightangle);
         RegisterInputActions();
     }
 
