@@ -39,6 +39,8 @@ public class FlashLight : MonoBehaviour
         ConfigureRadius();
     }
 
+    //Decreasing the charge in the fixedupdate function
+    //so redusing speed is equal no matter how many frames per second the player has.
     private void FixedUpdate()
     {
         DecreaseCharge();
@@ -72,10 +74,11 @@ public class FlashLight : MonoBehaviour
         }
     }
 
+    //Aiming to the center of screen
     private void AutoAim()
     {
         Quaternion targetRotation;
-        RaycastHit hit;
+        RaycastHit hit; //Check if there is an object in a range in front of the player (default 1-20 meters)
         if (Physics.Raycast(MCamera.transform.position, MCamera.transform.forward, out hit, 20f, aimMask))
         {
             if (hit.distance > autoAimMinDistance)
@@ -96,6 +99,7 @@ public class FlashLight : MonoBehaviour
         FLModel.transform.rotation = Quaternion.Lerp(FLModel.transform.rotation, targetRotation, Time.deltaTime / followDelay);
     }
 
+    //Setting up angles when player uses mouse wheel
     private void ConfigureRadius()
     {
         float changeValue = input.WheelInput;
@@ -108,6 +112,7 @@ public class FlashLight : MonoBehaviour
         }
     }
 
+    //Calls every fixedUpdate, reduces flashlight charge, can be restored upon calling IncreaseCharge function
     private void DecreaseCharge()
     {
         if (Charge > 0)
