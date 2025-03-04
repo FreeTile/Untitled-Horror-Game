@@ -119,8 +119,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -157,6 +157,16 @@ MonoBehaviour:
   sprintMultiplier: 1.5
   XAmplitude: 0.2
   YAmplitude: 0.05
+  m_EventPath:
+    Guid:
+      Data1: -1143332660
+      Data2: 1108670995
+      Data3: 704088970
+      Data4: -197733492
+    Path: event:/Character/Footsteps
+  m_House: 0
+  m_Grass: 0
+  m_Debug: 0
 --- !u!114 &197265348606539947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +311,6 @@ GameObject:
   - component: {fileID: 5454642620106415970}
   - component: {fileID: 3719077927283379176}
   - component: {fileID: 4380364831848576895}
-  - component: {fileID: 2840870076725320605}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -436,29 +445,13 @@ MonoBehaviour:
   MaxAngle: 75
   maxIntensity: 10
   minIntensity: 1
---- !u!114 &2840870076725320605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5553044814881422271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c015cdfec6499e24882147e95ce4fb2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   m_EventPath:
     Guid:
-      Data1: -1143332660
-      Data2: 1108670995
-      Data3: 704088970
-      Data4: -197733492
-    Path: event:/Character/Footsteps
-  m_House: 0
-  m_Grass: 1
-  m_StepDistance: 1
-  m_Debug: 0
+      Data1: -791541322
+      Data2: 1204953022
+      Data3: -987525717
+      Data4: -488459263
+    Path: event:/Character/Flashlight
 --- !u!1 &6828550529530561852
 GameObject:
   m_ObjectHideFlags: 0

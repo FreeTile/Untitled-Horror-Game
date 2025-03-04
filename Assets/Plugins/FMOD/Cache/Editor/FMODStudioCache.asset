@@ -15,7 +15,8 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638756674983133991
+
+  lastModified: 638766466578961668
   FileSizes: []
   Exists: 1
 --- !u!114 &-8263333676494389189
@@ -138,7 +139,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638756674983165005
+  lastModified: 638766466579007319
   FileSizes: []
   Exists: 1
 --- !u!114 &-5597305992864285985
@@ -197,6 +198,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1200
+--- !u!114 &-4151097095514673549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Character/Flashlight
+  m_EditorClassIdentifier: 
+  Path: event:/Character/Flashlight
+  Guid:
+    Data1: -791541322
+    Data2: 1204953022
+    Data3: -987525717
+    Data4: -488459263
+  Banks:
+  - {fileID: -6004705288399813073}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 768
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,41 +251,14 @@ MonoBehaviour:
   - {fileID: -6859471699546021284}
   - {fileID: 6021602658336999393}
   - {fileID: -5597305992864285985}
-  - {fileID: 1654544922985554019}
+  - {fileID: -4151097095514673549}
   EditorParameters: []
   MasterBanks:
   - {fileID: -9040022392200688851}
   StringsBanks:
   - {fileID: 7849716473942333703}
-  cacheTime: 638756674983165005
+  cacheTime: 638766466579007319
   cacheVersion: 131622
---- !u!114 &1654544922985554019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience
-  m_EditorClassIdentifier: 
-  Path: event:/Ambience
-  Guid:
-    Data1: -665599641
-    Data2: 1140797877
-    Data3: 989103014
-    Data4: 1867361922
-  Banks:
-  - {fileID: 7704044193105843748}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 29998
 --- !u!114 &6021602658336999393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +379,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Chapter1.bank
   Name: Chapter1
   StudioPath: bank:/Chapter1
-  lastModified: 638756674982989281
+  lastModified: 638766466578829550
   FileSizes: []
   Exists: 1
 --- !u!114 &7849716473942333703
@@ -396,8 +397,8 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638756674983144429
+  lastModified: 638766466578977128
   FileSizes:
   - Name: 
-    Value: 1336
+    Value: 1338
   Exists: 1
