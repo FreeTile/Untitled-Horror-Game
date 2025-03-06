@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//Same as GameInputHandler class
+//Used to handle opening UI such as menu, inventory and journal.
 public class MainInputHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset playerControls;
 
     [SerializeField] private string actionMapName = "PlayerGame";
-
+    private InputActionMap ActionMap;
 
     [SerializeField] private string inventory = "Inventory";
     [SerializeField] private string journal = "Journal";
@@ -37,9 +39,11 @@ public class MainInputHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
-        inventoryAction = playerControls.FindActionMap(actionMapName).FindAction(inventory);
-        journalAction = playerControls.FindActionMap(actionMapName).FindAction(journal);
-        menuAction = playerControls.FindActionMap(actionMapName).FindAction(menu);
+        ActionMap = playerControls.FindActionMap(actionMapName);
+
+        inventoryAction = ActionMap.FindAction(inventory);
+        journalAction = ActionMap.FindAction(journal);
+        menuAction = ActionMap.FindAction(menu);
         RegisterInputActions();
     }
 
