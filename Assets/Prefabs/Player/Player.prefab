@@ -417,7 +417,7 @@ MonoBehaviour:
   MCamera: {fileID: 5055094015207146136}
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   breakDistance: 1
   ThrowForce: 20
 --- !u!114 &4380364831848576895
