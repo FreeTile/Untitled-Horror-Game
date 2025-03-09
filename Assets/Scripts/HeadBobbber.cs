@@ -33,6 +33,7 @@ public class HeadBobFootsteps : MonoBehaviour
     public bool m_Debug;
 
     private GameInputHandler input;
+    [SerializeField] private Animator animator;
 
     void Start()
     {
@@ -135,6 +136,7 @@ public class HeadBobFootsteps : MonoBehaviour
         if (isMoving && lastBobOffsetY < 0f && bobOffsetY >= 0f)
         {
             PlayFootstepSound();
+            animator.SetTrigger("Step");
         }
 
         lastBobOffsetY = bobOffsetY;
