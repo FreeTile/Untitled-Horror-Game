@@ -18,7 +18,7 @@ public class Drawer : MonoBehaviour
         MeshCollider meshCollider = GetComponent<MeshCollider>();
         if (meshCollider != null)
         {
-            //meshCollider.
+            //DestroyImmediate(meshCollider);
         }
 
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -27,6 +27,7 @@ public class Drawer : MonoBehaviour
             rb = gameObject.AddComponent<Rigidbody>();
         }
         rb.drag = 0.5f;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
 
         Rigidbody parentRb = transform.parent.GetComponent<Rigidbody>();
         if (parentRb == null)
@@ -34,6 +35,7 @@ public class Drawer : MonoBehaviour
             parentRb = transform.parent.AddComponent<Rigidbody>();
         }
         parentRb.isKinematic = true;
+        parentRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
         ConfigurableJoint joint = GetComponent<ConfigurableJoint>();
         if (joint == null)
@@ -50,6 +52,7 @@ public class Drawer : MonoBehaviour
         joint.angularXMotion = ConfigurableJointMotion.Locked;
         joint.angularYMotion = ConfigurableJointMotion.Locked;
         joint.angularZMotion = ConfigurableJointMotion.Locked;
+        joint.enableCollision = true;
         joint.axis = new Vector3(0, 0, 1);
 
         NonConvexMeshCollider nonConvexMeshCollider = GetComponent<NonConvexMeshCollider>();

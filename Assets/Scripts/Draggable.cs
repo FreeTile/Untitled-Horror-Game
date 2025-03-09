@@ -25,6 +25,7 @@ public class Draggable : MonoBehaviour
             rb = gameObject.AddComponent<Rigidbody>();
         }
         rb.drag = 0.5f;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
         NonConvexMeshCollider nonConvexMeshCollider = GetComponent<NonConvexMeshCollider>();
         if (nonConvexMeshCollider == null)
@@ -33,6 +34,7 @@ public class Draggable : MonoBehaviour
         }
 
         nonConvexMeshCollider.createChildGameObject = true;
-        nonConvexMeshCollider.boxesPerEdge = 40;
+        nonConvexMeshCollider.avoidGapsInside = true;
+        nonConvexMeshCollider.boxesPerEdge = 20;
     }
 }
