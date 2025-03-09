@@ -445,6 +445,8 @@ MonoBehaviour:
   MaxAngle: 75
   maxIntensity: 10
   minIntensity: 1
+  batteryFillImage: {fileID: 0}
+  flashlightDeadPopupText: {fileID: 0}
   m_EventPath:
     Guid:
       Data1: -791541322

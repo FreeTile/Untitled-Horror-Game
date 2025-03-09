@@ -15,8 +15,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-
-  lastModified: 638766466578961668
+  lastModified: 638758367581002629
   FileSizes: []
   Exists: 1
 --- !u!114 &-8263333676494389189
@@ -139,7 +138,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638766466579007319
+  lastModified: 638768000080819880
   FileSizes: []
   Exists: 1
 --- !u!114 &-5597305992864285985
@@ -257,7 +256,7 @@ MonoBehaviour:
   - {fileID: -9040022392200688851}
   StringsBanks:
   - {fileID: 7849716473942333703}
-  cacheTime: 638766466579007319
+  cacheTime: 638768000080819880
   cacheVersion: 131622
 --- !u!114 &6021602658336999393
 MonoBehaviour:
@@ -379,7 +378,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Chapter1.bank
   Name: Chapter1
   StudioPath: bank:/Chapter1
-  lastModified: 638766466578829550
+  lastModified: 638768000080789907
   FileSizes: []
   Exists: 1
 --- !u!114 &7849716473942333703
@@ -397,7 +396,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638766466578977128
+  lastModified: 638768000080789907
   FileSizes:
   - Name: 
     Value: 1338

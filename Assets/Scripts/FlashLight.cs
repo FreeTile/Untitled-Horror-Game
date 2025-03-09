@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class FlashLight : MonoBehaviour
 {
@@ -17,9 +19,12 @@ public class FlashLight : MonoBehaviour
     [SerializeField] private float MinAngle, MaxAngle;
     [SerializeField] private float maxIntensity = 6f;
     [SerializeField] private float minIntensity = 2f;
-    private static float Charge = 120f;
+    [SerializeField] private Image batteryFillImage;
+    [SerializeField] private TMP_Text flashlightDeadPopupText;
+    private static float Charge = 30f; //120f was
     private Animator anim;
     private bool isOn = false;
+    private bool popupShown = false;
 
     [Header("(FMOD) path Settings")]
     public FMODUnity.EventReference m_EventPath;
@@ -30,7 +35,10 @@ public class FlashLight : MonoBehaviour
         float t = (lightSource.innerSpotAngle - MinAngle) / (MaxAngle - MinAngle);
         lightSource.intensity = Mathf.Lerp(maxIntensity, minIntensity, t);
         anim = FLObject.GetComponent<Animator>();
-        
+        if (flashlightDeadPopupText != null)
+        {
+            flashlightDeadPopupText.gameObject.SetActive(false);
+        }
     }
 
     void Update()
@@ -44,6 +52,7 @@ public class FlashLight : MonoBehaviour
     private void FixedUpdate()
     {
         DecreaseCharge();
+        if (batteryFillImage != null) batteryFillImage.fillAmount = Charge / 30f; //Flashlight max 
     }
 
     private void LateUpdate()
@@ -52,25 +61,35 @@ public class FlashLight : MonoBehaviour
         {
             AutoAim();
         }
-
     }
+
     private void TurnOnOffLight()
     {
         if (input.FlashlightDown)
         {
-            if (!isOn && Charge > 0f)
+            if (Charge > 0f)
             {
-                lightSource.enabled = true;
-                anim.SetBool("IsOn", true);
-                isOn = true;
+                if (!isOn)
+                {
+                    lightSource.enabled = true;
+                    anim.SetBool("IsOn", true);
+                    isOn = true;
+                    PlaySound();
+                }
+                else
+                {
+                    lightSource.enabled = false;
+                    anim.SetBool("IsOn", false);
+                    isOn = false;
+                    PlaySound();
+                }
             }
             else
-            {             
+            {
                 lightSource.enabled = false;
                 anim.SetBool("IsOn", false);
                 isOn = false;
             }
-            PlaySound();
         }
     }
 
@@ -112,18 +131,25 @@ public class FlashLight : MonoBehaviour
         }
     }
 
-    //Calls every fixedUpdate, reduces flashlight charge, can be restored upon calling IncreaseCharge function
+    //Calls every fixedUpdate, reduces flashlight charge (only when the flashlight is on),
+    //can be restored upon calling IncreaseCharge function
     private void DecreaseCharge()
     {
-        if (Charge > 0)
+        if (isOn && Charge > 0)
         {
             Charge -= Time.deltaTime;
-        }
-        else if (isOn)
-        {
-            lightSource.enabled = false;
-            anim.SetBool("IsOn", false);
-            isOn = false;
+            if (Charge <= 0)
+            {
+                Charge = 0;
+                lightSource.enabled = false;
+                anim.SetBool("IsOn", false);
+                isOn = false;
+                if (!popupShown && flashlightDeadPopupText != null)
+                {
+                    popupShown = true;
+                    StartCoroutine(ShowFlashlightDeadPopup());
+                }
+            }
         }
     }
 
@@ -135,8 +161,18 @@ public class FlashLight : MonoBehaviour
     //NEW: Plays the sound 
     void PlaySound()
     {
+        if (Charge <= 0) return;
         FMOD.Studio.EventInstance instance = FMODUnity.RuntimeManager.CreateInstance(m_EventPath);
         instance.start();
         instance.release();
+    }
+
+    // Coroutine to show the popup text for a few seconds
+    private IEnumerator ShowFlashlightDeadPopup()
+    {
+        flashlightDeadPopupText.text = "Flashlight is dead. Gotta find some batteries.";
+        flashlightDeadPopupText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        flashlightDeadPopupText.gameObject.SetActive(false);
     }
 }
