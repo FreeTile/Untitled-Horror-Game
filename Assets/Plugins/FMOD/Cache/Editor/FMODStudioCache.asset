@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638758367581002629
+  lastModified: 638771286605687036
   FileSizes: []
   Exists: 1
 --- !u!114 &-8263333676494389189
@@ -69,6 +69,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1400
+--- !u!114 &-6901073304226033504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SanityAmbient/SanityHigh
+  m_EditorClassIdentifier: 
+  Name: SanityHigh
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4227982854
+    data2: 1212289826
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-6859471699546021284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,33 +120,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 750
---- !u!114 &-6093557409566765232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ArrivalAmbientRain
-  m_EditorClassIdentifier: 
-  Path: event:/ArrivalAmbientRain
-  Guid:
-    Data1: 1922054439
-    Data2: 1218576447
-    Data3: 558484391
-    Data4: -1500206455
-  Banks:
-  - {fileID: -9040022392200688851}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 39374
 --- !u!114 &-6004705288399813073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +135,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638768000080819880
+  lastModified: 638771286605952109
   FileSizes: []
   Exists: 1
 --- !u!114 &-5597305992864285985
@@ -169,7 +166,31 @@ MonoBehaviour:
   - {fileID: 7250477822533051063}
   MinDistance: 1
   MaxDistance: 20
-  Length: 500
+  Length: 654
+--- !u!114 &-4363849271804971848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SanityAmbient/SanityMed
+  m_EditorClassIdentifier: 
+  Name: SanityMed
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3095222969
+    data2: 2778979694
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-4201562948536663929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +245,36 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 768
+--- !u!114 &-2104012961397498608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/SanityAmbient
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/SanityAmbient
+  Guid:
+    Data1: 1736189595
+    Data2: 1340418434
+    Data3: 2107077765
+    Data4: -232474937
+  Banks:
+  - {fileID: -9040022392200688851}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6901073304226033504}
+  - {fileID: 7273130495208829683}
+  - {fileID: -4363849271804971848}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 44000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,8 +293,6 @@ MonoBehaviour:
   - {fileID: -9040022392200688851}
   - {fileID: -6004705288399813073}
   EditorEvents:
-  - {fileID: 6274997792975758039}
-  - {fileID: -6093557409566765232}
   - {fileID: 6450140597540486720}
   - {fileID: -4201562948536663929}
   - {fileID: -7259831135003448172}
@@ -251,13 +300,98 @@ MonoBehaviour:
   - {fileID: 6021602658336999393}
   - {fileID: -5597305992864285985}
   - {fileID: -4151097095514673549}
+  - {fileID: 2591190403194957844}
+  - {fileID: 3168281933950303720}
+  - {fileID: -2104012961397498608}
+  - {fileID: 4806856161377918546}
   EditorParameters: []
   MasterBanks:
   - {fileID: -9040022392200688851}
   StringsBanks:
   - {fileID: 7849716473942333703}
-  cacheTime: 638768000080819880
+  cacheTime: 638771286605952109
   cacheVersion: 131622
+--- !u!114 &2591190403194957844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Environment/ArrivalAmbientRainMuted
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Environment/ArrivalAmbientRainMuted
+  Guid:
+    Data1: 613544971
+    Data2: 1328914545
+    Data3: 1139884430
+    Data4: 679296398
+  Banks:
+  - {fileID: -9040022392200688851}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 39374
+--- !u!114 &3168281933950303720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Environment/ArrivalAmbientRain
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Environment/ArrivalAmbientRain
+  Guid:
+    Data1: 1922054439
+    Data2: 1218576447
+    Data3: 558484391
+    Data4: -1500206455
+  Banks:
+  - {fileID: -9040022392200688851}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 39374
+--- !u!114 &4806856161377918546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambient/Environment/AfterJumpscare
+  m_EditorClassIdentifier: 
+  Path: event:/Ambient/Environment/AfterJumpscare
+  Guid:
+    Data1: -993492357
+    Data2: 1111728605
+    Data3: -1089661050
+    Data4: -1900627579
+  Banks:
+  - {fileID: 7704044193105843748}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11400
 --- !u!114 &6021602658336999393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,33 +419,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
---- !u!114 &6274997792975758039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ArrivalAmbientRainMuted
-  m_EditorClassIdentifier: 
-  Path: event:/ArrivalAmbientRainMuted
-  Guid:
-    Data1: 613544971
-    Data2: 1328914545
-    Data3: 1139884430
-    Data4: 679296398
-  Banks:
-  - {fileID: -9040022392200688851}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 39374
 --- !u!114 &6450140597540486720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +470,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &7273130495208829683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SanityAmbient/SanityLow
+  m_EditorClassIdentifier: 
+  Name: SanityLow
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2685649379
+    data2: 3385726980
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &7704044193105843748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +509,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Chapter1.bank
   Name: Chapter1
   StudioPath: bank:/Chapter1
-  lastModified: 638768000080789907
+  lastModified: 638771286605457875
   FileSizes: []
   Exists: 1
 --- !u!114 &7849716473942333703
@@ -396,8 +527,8 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638768000080789907
+  lastModified: 638771286605697032
   FileSizes:
   - Name: 
-    Value: 1338
+    Value: 1592
   Exists: 1
