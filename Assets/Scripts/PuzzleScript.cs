@@ -29,7 +29,8 @@ public class PuzzleScript : MonoBehaviour
         if(lockedDoor != null && unlockDoor == true)
         {
             Debug.Log("Locked Door is not null");
-            lockedDoor.gameObject.SetActive(false);
+            /*lockedDoor.gameObject.SetActive(false);
+            MARK - OPEN DOOR4_C1 (STORAGE DOOR)*/
         }
     }
 }
