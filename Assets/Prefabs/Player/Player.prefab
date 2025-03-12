@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 3719077927283379176}
   - component: {fileID: 4380364831848576895}
   - component: {fileID: 2840870076725320605}
+  - component: {fileID: 5108568947007874314}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -408,7 +409,7 @@ MonoBehaviour:
   MCamera: {fileID: 5055094015207146136}
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   breakDistance: 1
   ThrowForce: 20
 --- !u!114 &4380364831848576895
@@ -459,6 +460,19 @@ MonoBehaviour:
   m_Grass: 1
   m_StepDistance: 1
   m_Debug: 0
+--- !u!114 &5108568947007874314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5553044814881422271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0c0bdf36c0ff84890d2391b8771aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}
 --- !u!1 &6828550529530561852
 GameObject:
   m_ObjectHideFlags: 0

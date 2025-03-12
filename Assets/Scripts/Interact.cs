@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Interact : MonoBehaviour
 {
+    private ItemSO item;
+    private PlayerInventory inventory;
     private GameObject interactedObject = null;
     private ConfigurableJoint currentJoint = null;
     [SerializeField] private float interactDistance = 1.5f;
@@ -19,6 +21,7 @@ public class Interact : MonoBehaviour
     private void Start()
     {
         input = GameInputHandler.Instance;
+        inventory = GetComponent<PlayerInventory>();
     }
 
     private void Update()
@@ -140,7 +143,9 @@ public class Interact : MonoBehaviour
 
     private void PickUpItem(GameObject obj)
     {
-        //code to pick up an item
+        item = obj.GetComponent<ItemType>().ItemInfo;
+        inventory.AddToInventory(item);
+        Destroy(obj);
     }
 
     private void ReadNote(GameObject obj)

@@ -9,6 +9,7 @@ TagManager:
   - Grass
   - House
   - Draggable
+  - Pickable
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - Obstacles
   - 
-  - 
+  - Interactable
   - 
   - 
   - 
