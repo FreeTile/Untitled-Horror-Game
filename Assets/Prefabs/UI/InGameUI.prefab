@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 168703922575229287}
   - component: {fileID: 7871623820979013944}
   - component: {fileID: 7980472547694863673}
+  - component: {fileID: 8062864552782199975}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
@@ -507,6 +508,29 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8062864552782199975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413186769690267934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903afa87a3f5954419ac66d6006228e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryInfo: {fileID: 0}
+  ItemNodePrefab: {fileID: 4545063397382014458, guid: fd992efd99676ed43919662a025bec67, type: 3}
+  Items: []
+  _PillsCount: 0
+  _BatteryCount: 0
+  _HasKey1: 0
+  _HasKey2: 0
+  InventoryContainer: {fileID: 0}
+  ItemName: {fileID: 0}
+  ItemDescription: {fileID: 0}
+  ItemIcon: {fileID: 0}
 --- !u!1 &5297325467254956608
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +752,6 @@ GameObject:
   - component: {fileID: 4561365052809776592}
   - component: {fileID: 1639485569994685826}
   - component: {fileID: 6032602038913657149}
-  - component: {fileID: 6498573327031418257}
   m_Layer: 5
   m_Name: InventoryContainer
   m_TagString: Untagged
@@ -817,28 +840,6 @@ MonoBehaviour:
   m_Spacing: {x: 50, y: 50}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &6498573327031418257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6428728191806524805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 903afa87a3f5954419ac66d6006228e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventoryInfo: {fileID: 0}
-  Items: []
-  _PillsCount: 0
-  _BatteryCount: 0
-  _HasKey1: 0
-  _HasKey2: 0
-  Inventory: {fileID: 6428728191806524805}
-  ItemName: {fileID: 0}
-  ItemDescription: {fileID: 0}
-  ItemIcon: {fileID: 0}
 --- !u!1 &7390935355356008971
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +932,7 @@ GameObject:
   - component: {fileID: 6323936468696204447}
   - component: {fileID: 1362670028398945421}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

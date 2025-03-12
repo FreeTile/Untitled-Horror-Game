@@ -21,7 +21,7 @@ public class InventoryUI : MonoBehaviour
     public int _HasKey2;
 
     [Space] // UI
-    public GameObject Inventory;
+    public GameObject InventoryContainer;
     public TMP_Text ItemName;
     public TMP_Text ItemDescription;
     public Sprite ItemIcon;
@@ -41,6 +41,7 @@ public class InventoryUI : MonoBehaviour
         // todo 0 : move this to it's own function and call here ( and in the on click later)
         foreach (var item in Items)
         {
+            // var itemNode = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);   
             //TODo 1
             // instanriate new prefab instancwe
             // get the compooinenbt for nww itemnode script
