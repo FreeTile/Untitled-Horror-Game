@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,10 +8,14 @@ public class Interact : MonoBehaviour
     private ItemSO item;
     private PlayerInventory inventory;
     private GameObject interactedObject = null;
-    private ConfigurableJoint currentJoint = null;
+    private ConfigurableJoint currentÑJoint = null;
+    private SpringJoint currentDoorSpringJoint = null;
+    private Vector3 initialHoldPos;
     [SerializeField] private float interactDistance = 1.5f;
 
     [SerializeField] private Transform holdPosition;
+    GameObject dragPointGameobject;
+    private int leftDoor = 0;
     [SerializeField] private Camera MCamera;
     [SerializeField] private LayerMask mask;
 
@@ -17,14 +23,16 @@ public class Interact : MonoBehaviour
 
     [SerializeField] private float breakDistance = 1f;
     [SerializeField] private float ThrowForce = 10f;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
         input = GameInputHandler.Instance;
+        initialHoldPos = holdPosition.transform.localPosition;
         inventory = GetComponent<PlayerInventory>();
     }
 
-    private void Update()
+       private void Update()
     {
         HandleInteraction();
         CheckDistance();
@@ -32,109 +40,204 @@ public class Interact : MonoBehaviour
 
     private void HandleInteraction()
     {
-        if (input.InteractDown && interactedObject == null)
+        if (interactedObject == null) //LMB
         {
-                RaycastHit hit;
-                if (Physics.Raycast(MCamera.transform.position, MCamera.transform.forward, out hit, interactDistance, mask))
+            RaycastHit hit; //Casting a ray to check if there is an object in front of the camera
+            if (Physics.Raycast(MCamera.transform.position, MCamera.transform.forward, out hit, interactDistance, mask))
+            {
+                animator.SetBool("Holdable", true);
+                switch (hit.transform.tag)
                 {
-                    switch (hit.transform.tag)
-                    {
-                        case "Draggable":
-                                interactedObject = hit.transform.gameObject;
-                                AttachJoint(interactedObject);
-                            break;
-                        case "Pickable":
-                                PickUpItem(hit.transform.gameObject);
-                            break;
-                        case "Readable":
-                                ReadNote(hit.transform.gameObject);
-                            break;
-
-                    }
+                    case "Draggable": //All draggable objects
+                        if (input.InteractDown)
+                        {
+                            animator.SetBool("Holded", true);
+                            interactedObject = hit.transform.gameObject;
+                            AttachJoint(interactedObject);
+                        }
+                        break;
+                    case "Door": //Doors + drawers
+                        if (input.InteractDown)
+                        {
+                            animator.SetBool("Holded", true);
+                            interactedObject = hit.transform.gameObject;
+                            //Door door = interactedObject.GetComponent<Door>();
+                            //door.isHeld = true;
+                            //door.Open();
+                            AttachDoorJoint(interactedObject, hit.point);
+                        }
+                        break;
+                    case "Pickable": //Batteries + pills
+                        if (input.InteractDown)
+                        {
+                            animator.SetBool("Holded", true);
+                            PickUpItem(hit.transform.gameObject);
+                        }
+                        break;
+                    case "Readable": //Notes
+                        if (input.InteractDown)
+                        {
+                            animator.SetBool("Holded", true);
+                            ReadNote(hit.transform.gameObject);
+                        }
+                        break;
                 }
-
+            }
+            else
+            {
+                animator.SetBool("Holdable", false);
+            }
         }
-        else
+        else if (interactedObject != null) //throw an object
         {
-            if (input.ThrowDown && interactedObject != null) 
+
+            if (input.ThrowDown)
             {
                 ThrowObject();
+                animator.SetTrigger("Throw");
+                animator.SetBool("Holded", false);
             }
-            if (!input.InteractHold && interactedObject != null)
+            else if (!input.InteractHold)
             {
-                BreakJoint();
+                if (currentÑJoint != null)
+                    BreakJoint();
+                if (currentDoorSpringJoint != null)
+                    BreakDoorJoint();
+                animator.SetBool("Holded", false);
             }
         }
     }
 
+    //If the distance between the holding position and the object is too large, we break up the connection -> throws the object
     private void CheckDistance()
     {
-        if (interactedObject != null && currentJoint != null)
+        if (interactedObject != null)
         {
-            float distance = Vector3.Distance(interactedObject.transform.position, holdPosition.position);
-            if (distance > breakDistance)
+            if (currentDoorSpringJoint != null)
             {
-                BreakJoint();
+                Vector3 doorAnchor= interactedObject.transform.TransformPoint(currentDoorSpringJoint.anchor);
+                Vector3 holdAnchor = holdPosition.transform.TransformPoint(currentDoorSpringJoint.connectedAnchor);
+                float distance = Vector3.Distance(doorAnchor, holdAnchor);
+                if (distance > breakDistance)
+                {
+                    animator.SetBool("Holded", false);
+                    BreakDoorJoint();
+                }
+            }
+            else if (currentÑJoint != null)
+            {
+                float distance = Vector3.Distance(interactedObject.transform.position, holdPosition.position);
+                if (distance > breakDistance)
+                {
+                    animator.SetBool("Holded", false);
+                    BreakJoint();
+                }
             }
         }
     }
 
+    //Attaching and tuning a configurable joint for draggable objects (Check configurable joint as a component in Unity for more info)
     private void AttachJoint(GameObject obj)
     {
         Rigidbody objRb = obj.GetComponent<Rigidbody>();
         if (objRb == null) return;
 
-        currentJoint = obj.AddComponent<ConfigurableJoint>();
+        currentÑJoint = obj.AddComponent<ConfigurableJoint>();
 
-        currentJoint.connectedBody = holdPosition.GetComponent<Rigidbody>();
+        currentÑJoint.connectedBody = holdPosition.GetComponent<Rigidbody>();
 
-        currentJoint.autoConfigureConnectedAnchor = false;
-        currentJoint.axis = Vector3.zero;
-        currentJoint.anchor = Vector3.zero;
+        currentÑJoint.autoConfigureConnectedAnchor = false;
+        currentÑJoint.axis = Vector3.zero;
+        currentÑJoint.anchor = Vector3.zero;
 
-        currentJoint.connectedAnchor = Vector3.zero;
+        currentÑJoint.connectedAnchor = Vector3.zero;
 
-        currentJoint.angularXMotion = ConfigurableJointMotion.Locked;
-        currentJoint.angularYMotion = ConfigurableJointMotion.Locked;
-        currentJoint.angularZMotion = ConfigurableJointMotion.Locked;
+        currentÑJoint.angularXMotion = ConfigurableJointMotion.Locked;
+        currentÑJoint.angularYMotion = ConfigurableJointMotion.Locked;
+        currentÑJoint.angularZMotion = ConfigurableJointMotion.Locked;
 
-        currentJoint.xMotion = ConfigurableJointMotion.Free;
-        currentJoint.yMotion = ConfigurableJointMotion.Free;
-        currentJoint.zMotion = ConfigurableJointMotion.Free;
+        currentÑJoint.xMotion = ConfigurableJointMotion.Free;
+        currentÑJoint.yMotion = ConfigurableJointMotion.Free;
+        currentÑJoint.zMotion = ConfigurableJointMotion.Free;
 
         SoftJointLimit linearLimit = new SoftJointLimit();
         linearLimit.limit = 0.1f;
-        currentJoint.linearLimit = linearLimit;
+        currentÑJoint.linearLimit = linearLimit;
 
         JointDrive drive = new JointDrive();
         drive.positionSpring = 1000f;
         drive.positionDamper = 50f;
         drive.maximumForce = 1000f;
-        currentJoint.xDrive = drive;
-        currentJoint.yDrive = drive;
-        currentJoint.zDrive = drive;
+        currentÑJoint.xDrive = drive;
+        currentÑJoint.yDrive = drive;
+        currentÑJoint.zDrive = drive;
 
-        currentJoint.projectionMode = JointProjectionMode.PositionAndRotation;
-        currentJoint.projectionDistance = 0.1f;
-        currentJoint.projectionAngle = 1f;
+        currentÑJoint.projectionMode = JointProjectionMode.PositionAndRotation;
+        currentÑJoint.projectionDistance = 0.1f;
+        currentÑJoint.projectionAngle = 1f;
     }
 
+    //Deleting joint from the last held object
     private void BreakJoint()
     {
-        if (currentJoint != null)
+        if (currentÑJoint != null)
         {
-            Destroy(currentJoint);
-            currentJoint = null;
+            Destroy(currentÑJoint);
+            currentÑJoint = null;
         }
         interactedObject = null;
     }
 
+    //Attaching and tuning a spring joint for door like objects (Check spring joint as a component in Unity for more info)
+    //For doors we use a hinge joint in additional to a spring joint
+    //For drowers we use a configurable joint in additional to a spring joint
+    private void AttachDoorJoint(GameObject door, Vector3 hitPoint)
+    {
+        Rigidbody doorRb = door.GetComponent<Rigidbody>();
+        if (doorRb == null) return;
+
+        holdPosition.transform.position = hitPoint;
+
+        currentDoorSpringJoint = door.AddComponent<SpringJoint>();
+        currentDoorSpringJoint.autoConfigureConnectedAnchor = false;
+        Rigidbody holdRb = holdPosition.GetComponent<Rigidbody>();
+        if (holdRb == null)
+        {
+            holdRb = holdPosition.gameObject.AddComponent<Rigidbody>();
+            holdRb.isKinematic = true;
+        }
+        currentDoorSpringJoint.connectedBody = holdRb;
+
+        Vector3 localHitPoint = door.transform.InverseTransformPoint(hitPoint);
+        currentDoorSpringJoint.anchor = localHitPoint;
+        currentDoorSpringJoint.connectedAnchor = Vector3.zero;
+
+        currentDoorSpringJoint.spring = 100f;
+        currentDoorSpringJoint.damper = 50f;
+        currentDoorSpringJoint.minDistance = 0f;
+        currentDoorSpringJoint.maxDistance = 0f;
+    }
+
+    //Breaking spring joint from the las held doorlike object
+    private void BreakDoorJoint()
+    {
+        //interactedObject.GetComponent<Door>().isHeld = false;
+        if (currentDoorSpringJoint != null)
+        {
+            Destroy(currentDoorSpringJoint);
+            currentDoorSpringJoint = null;
+        }
+        interactedObject = null;
+        holdPosition.transform.localPosition = initialHoldPos;
+    }
+
+    //Throwing an object with force from the player
     private void ThrowObject()
     {
-        if (currentJoint != null)
+        if (currentÑJoint != null)
         {
-            Destroy(currentJoint);
-            currentJoint = null;
+            Destroy(currentÑJoint);
+            currentÑJoint = null;
         }
         Vector3 direction = (interactedObject.transform.position - MCamera.transform.position).normalized;
         interactedObject.GetComponent<Rigidbody>().AddForce(direction * ThrowForce, ForceMode.Impulse);
