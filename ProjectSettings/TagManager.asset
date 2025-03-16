@@ -9,7 +9,7 @@ TagManager:
   - Grass
   - House
   - Draggable
-  - Pickable
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -26,8 +26,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Player
+  - Trigger
   - 
   - 
   - 
