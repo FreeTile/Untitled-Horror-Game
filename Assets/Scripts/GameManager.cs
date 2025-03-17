@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GameInputHandler))]
+[RequireComponent(typeof(MainInputHandler))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    HealthManager healthManager;
-    SanityManager sanityManager;
     GameInputHandler inputHandler;
     [SerializeField] private GameObject InventoryUI;
 
-    public enum State
+    //Game states affect player's controls
+    public enum State 
     {
         Esc,
         Game,
@@ -22,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (Instance == null)
+        if (Instance == null) //Creating syngleton instance at the beginning 
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -31,13 +32,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        healthManager = GetComponent<HealthManager>();
-        sanityManager = GetComponent<SanityManager>();
+
         inputHandler = GetComponent<GameInputHandler>();
 
         GameStart();
     }
 
+    //Switching controls between UI and main game control systems
     public void switchControlSystem()
     {
         if (state != State.Game)
@@ -62,8 +63,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-
+        Time.timeScale = 0f;
+        Debug.Log("Game Over");
     }
+
 
     public void ProceedEsc()
     {
