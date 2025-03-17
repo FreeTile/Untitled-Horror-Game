@@ -27,10 +27,10 @@ MonoBehaviour:
     count your tools to unlock the door. IF you can remember how many you leave lying
     around!!
   mainTextAreaScale: {x: 495, y: 595}
-  mainTextSize: 25
+  mainTextSize: 45
   mainFontAsset: {fileID: 0}
   mainFontColor: {r: 0, g: 0, b: 0, a: 1}
-  enableOverlayText: 1
+  enableOverlayText: 0
   showOverlayOnOpen: 1
   overlayBGColor: {r: 1, g: 1, b: 1, a: 1}
   overlayTextAreaScale: {x: 1045, y: 550}
