@@ -11,7 +11,7 @@ public class TirggerActivator : MonoBehaviour
     private List<GameObject> disableGOs;
 
     [SerializeField]
-    string logMessage = "";
+    string debugLog = "";
 
     // Start is called before the first frame update
     private void OnTriggerEnter()
@@ -26,6 +26,6 @@ public class TirggerActivator : MonoBehaviour
             obj.SetActive(false);
         }
 
-        Debug.Log( this.name + " triggered: " + logMessage);
+        Debug.Log(debugLog);
     }
 }

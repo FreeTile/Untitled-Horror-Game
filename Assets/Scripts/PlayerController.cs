@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     [SerializeField] private Transform MCameraPivot;
     [SerializeField] private float MovementSpeed = 5f;
-    [SerializeField] private float MouseSensitivity = 1f;
+    [SerializeField] public float MouseSensitivity = 1f;
 
     [SerializeField] private float pushForce = 5f;  
 
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         float mouseX = input.LookInput.x * MouseSensitivity;
         float mouseY = input.LookInput.y * MouseSensitivity;
-
+        //Debug.Log("Delta: " + input.LookInput.magnitude * MouseSensitivity);
         verticalLookRotation -= mouseY;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
         MCameraPivot.transform.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);

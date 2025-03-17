@@ -2,22 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E2S1 : MonoBehaviour
+public class E2S1 : EventHandler
 {
-    Coroutine coroutine;
-    void OnBecameVisible()
-    {
-        if (coroutine == null)
-        {
-            coroutine = StartCoroutine(Event());
-        }
-    }
-
-    IEnumerator Event()
+    public override IEnumerator Event()
     {
         Debug.Log("Screamer");
-        yield return new WaitForSeconds(2);
-        this.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.25f);
+        //break the bulb in the room
         this.transform.parent.gameObject.SetActive(false);
     }
 }

@@ -403,6 +403,9 @@ MonoBehaviour:
   MCameraPivot: {fileID: 7059477008850834861}
   MovementSpeed: 1.5
   MouseSensitivity: 0.25
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
   pushForce: 25
 --- !u!114 &3719077927283379176
 MonoBehaviour:
@@ -488,6 +491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StageValue: 0
+  minDelta: 5
+  maxDelta: 15
+  measureDuration: 0.5
 --- !u!1 &6828550529530561852
 GameObject:
   m_ObjectHideFlags: 0
