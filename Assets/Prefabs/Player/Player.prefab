@@ -312,6 +312,8 @@ GameObject:
   - component: {fileID: 5454642620106415970}
   - component: {fileID: 3719077927283379176}
   - component: {fileID: 4380364831848576895}
+  - component: {fileID: 2840870076725320605}
+  - component: {fileID: 5108568947007874314}
   - component: {fileID: 3302248851378420455}
   - component: {fileID: 85704833937799715}
   m_Layer: 7
@@ -484,10 +486,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5553044814881422271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28665f45dbc9b2a44adf094b7c25025e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d0c0bdf36c0ff84890d2391b8771aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StageValue: 0
+  inventoryUI: {fileID: 0}
 --- !u!1 &6828550529530561852
 GameObject:
   m_ObjectHideFlags: 0

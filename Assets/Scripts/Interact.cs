@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Interact : MonoBehaviour
 {
+    private ItemSO item;
+    private PlayerInventory inventory;
     private GameObject interactedObject = null;
-    private ConfigurableJoint current—Joint = null;
+    private ConfigurableJoint current√ëJoint = null;
     private SpringJoint currentDoorSpringJoint = null;
     private Vector3 initialHoldPos;
     [SerializeField] private float interactDistance = 1.5f;
@@ -27,9 +29,11 @@ public class Interact : MonoBehaviour
     {
         input = GameInputHandler.Instance;
         initialHoldPos = holdPosition.transform.localPosition;
+        inventory = GetComponent<PlayerInventory>();
+        initialHoldPos = holdPosition.transform.localPosition;
     }
 
-    private void Update()
+       private void Update()
     {
         HandleInteraction();
         CheckDistance();
@@ -96,7 +100,7 @@ public class Interact : MonoBehaviour
             }
             else if (!input.InteractHold)
             {
-                if (current—Joint != null)
+                if (current√ëJoint != null)
                     BreakJoint();
                 if (currentDoorSpringJoint != null)
                     BreakDoorJoint();
@@ -121,7 +125,7 @@ public class Interact : MonoBehaviour
                     BreakDoorJoint();
                 }
             }
-            else if (current—Joint != null)
+            else if (current√ëJoint != null)
             {
                 float distance = Vector3.Distance(interactedObject.transform.position, holdPosition.position);
                 if (distance > breakDistance)
@@ -139,48 +143,48 @@ public class Interact : MonoBehaviour
         Rigidbody objRb = obj.GetComponent<Rigidbody>();
         if (objRb == null) return;
 
-        current—Joint = obj.AddComponent<ConfigurableJoint>();
+        current√ëJoint = obj.AddComponent<ConfigurableJoint>();
 
-        current—Joint.connectedBody = holdPosition.GetComponent<Rigidbody>();
+        current√ëJoint.connectedBody = holdPosition.GetComponent<Rigidbody>();
 
-        current—Joint.autoConfigureConnectedAnchor = false;
-        current—Joint.axis = Vector3.zero;
-        current—Joint.anchor = Vector3.zero;
+        current√ëJoint.autoConfigureConnectedAnchor = false;
+        current√ëJoint.axis = Vector3.zero;
+        current√ëJoint.anchor = Vector3.zero;
 
-        current—Joint.connectedAnchor = Vector3.zero;
+        current√ëJoint.connectedAnchor = Vector3.zero;
 
-        current—Joint.angularXMotion = ConfigurableJointMotion.Locked;
-        current—Joint.angularYMotion = ConfigurableJointMotion.Locked;
-        current—Joint.angularZMotion = ConfigurableJointMotion.Locked;
+        current√ëJoint.angularXMotion = ConfigurableJointMotion.Locked;
+        current√ëJoint.angularYMotion = ConfigurableJointMotion.Locked;
+        current√ëJoint.angularZMotion = ConfigurableJointMotion.Locked;
 
-        current—Joint.xMotion = ConfigurableJointMotion.Free;
-        current—Joint.yMotion = ConfigurableJointMotion.Free;
-        current—Joint.zMotion = ConfigurableJointMotion.Free;
+        current√ëJoint.xMotion = ConfigurableJointMotion.Free;
+        current√ëJoint.yMotion = ConfigurableJointMotion.Free;
+        current√ëJoint.zMotion = ConfigurableJointMotion.Free;
 
         SoftJointLimit linearLimit = new SoftJointLimit();
         linearLimit.limit = 0.1f;
-        current—Joint.linearLimit = linearLimit;
+        current√ëJoint.linearLimit = linearLimit;
 
         JointDrive drive = new JointDrive();
         drive.positionSpring = 1000f;
         drive.positionDamper = 50f;
         drive.maximumForce = 1000f;
-        current—Joint.xDrive = drive;
-        current—Joint.yDrive = drive;
-        current—Joint.zDrive = drive;
+        current√ëJoint.xDrive = drive;
+        current√ëJoint.yDrive = drive;
+        current√ëJoint.zDrive = drive;
 
-        current—Joint.projectionMode = JointProjectionMode.PositionAndRotation;
-        current—Joint.projectionDistance = 0.1f;
-        current—Joint.projectionAngle = 1f;
+        current√ëJoint.projectionMode = JointProjectionMode.PositionAndRotation;
+        current√ëJoint.projectionDistance = 0.1f;
+        current√ëJoint.projectionAngle = 1f;
     }
 
     //Deleting joint from the last held object
     private void BreakJoint()
     {
-        if (current—Joint != null)
+        if (current√ëJoint != null)
         {
-            Destroy(current—Joint);
-            current—Joint = null;
+            Destroy(current√ëJoint);
+            current√ëJoint = null;
         }
         interactedObject = null;
     }
@@ -231,10 +235,10 @@ public class Interact : MonoBehaviour
     //Throwing an object with force from the player
     private void ThrowObject()
     {
-        if (current—Joint != null)
+        if (current√ëJoint != null)
         {
-            Destroy(current—Joint);
-            current—Joint = null;
+            Destroy(current√ëJoint);
+            current√ëJoint = null;
         }
         Vector3 direction = (interactedObject.transform.position - MCamera.transform.position).normalized;
         interactedObject.GetComponent<Rigidbody>().AddForce(direction * ThrowForce, ForceMode.Impulse);
@@ -243,7 +247,9 @@ public class Interact : MonoBehaviour
 
     private void PickUpItem(GameObject obj)
     {
-        //code to pick up an item
+        item = obj.GetComponent<ItemType>().ItemInfo;
+        inventory.AddToInventory(item);
+        Destroy(obj);
     }
 
     private void ReadNote(GameObject obj)

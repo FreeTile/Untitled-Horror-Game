@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     GameInputHandler inputHandler;
+    [SerializeField] private GameObject InventoryUI;
 
     //Game states affect player's controls
     public enum State 
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
         else if(state != State.Esc)
         {
             state = State.Inventory;
-            //Turn on Inventory on canvas
+            InventoryUI.SetActive(true);
         }
         switchControlSystem();
     }
