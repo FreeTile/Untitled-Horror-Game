@@ -1,17 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    public Image fullHealthImage;
-    public Image mediumHealthImage;
-    public Image lowHealthImage;
+    public Image healthImage;
+
+    public Sprite fullHealthSprite;
+    public Sprite mediumHealthSprite;
+    public Sprite lowHealthSprite;
 
     private int health = 3;
 
     void Start()
     {
-        UpdateHealthImage();
+        UpdateHealthSprite();
         Time.timeScale = 1f;
     }
 
@@ -23,10 +25,10 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    void TakeDamage()
+    void TakeDamage() //Implemented TakeDamage() function, please use that to update the Heart on the HUD
     {
         health--;
-        UpdateHealthImage();
+        UpdateHealthSprite();
 
         if (health <= 0)
         {
@@ -34,11 +36,23 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    void UpdateHealthImage()
+    void UpdateHealthSprite()
     {
-        fullHealthImage.gameObject.SetActive(health == 3);
-        mediumHealthImage.gameObject.SetActive(health == 2);
-        lowHealthImage.gameObject.SetActive(health == 1);
+        switch (health)
+        {
+            case 3:
+                healthImage.sprite = fullHealthSprite;
+                break;
+            case 2:
+                healthImage.sprite = mediumHealthSprite;
+                break;
+            case 1:
+                healthImage.sprite = lowHealthSprite;
+                break;
+            default:
+                healthImage.sprite = null;
+                break;
+        }
     }
 
     void GameOver()

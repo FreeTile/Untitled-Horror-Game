@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(HealthManager))]
-[RequireComponent(typeof(SanityManager))]
 [RequireComponent(typeof(GameInputHandler))]
 [RequireComponent(typeof(MainInputHandler))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    HealthManager healthManager;
-    SanityManager sanityManager;
     GameInputHandler inputHandler;
 
     //Game states affect player's controls
@@ -35,8 +31,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        healthManager = GetComponent<HealthManager>();
-        sanityManager = GetComponent<SanityManager>();
+
         inputHandler = GetComponent<GameInputHandler>();
 
         GameStart();
@@ -67,8 +62,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //Game over code here
-        //Animation + end screen
+        Time.timeScale = 0f;
+        Debug.Log("Game Over");
     }
 
 

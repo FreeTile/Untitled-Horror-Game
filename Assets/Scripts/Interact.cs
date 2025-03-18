@@ -21,6 +21,7 @@ public class Interact : MonoBehaviour
 
     [SerializeField] private float breakDistance = 1f;
     [SerializeField] private float ThrowForce = 10f;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -36,31 +37,52 @@ public class Interact : MonoBehaviour
 
     private void HandleInteraction()
     {
-        if (input.InteractDown && interactedObject == null) //LMB
+        if (interactedObject == null) //LMB
         {
             RaycastHit hit; //Casting a ray to check if there is an object in front of the camera
             if (Physics.Raycast(MCamera.transform.position, MCamera.transform.forward, out hit, interactDistance, mask))
             {
+                animator.SetBool("Holdable", true);
                 switch (hit.transform.tag)
                 {
                     case "Draggable": //All draggable objects
-                        interactedObject = hit.transform.gameObject;
-                        AttachJoint(interactedObject);
+                        if (input.InteractDown)
+                        {
+                            animator.SetBool("Holded", true);
+                            interactedObject = hit.transform.gameObject;
+                            AttachJoint(interactedObject);
+                        }
                         break;
                     case "Door": //Doors + drawers
-                        interactedObject = hit.transform.gameObject;
-                        //Door door = interactedObject.GetComponent<Door>();
-                        //door.isHeld = true;
-                        //door.Open();
-                        AttachDoorJoint(interactedObject, hit.point);
+                        if (input.InteractDown)
+                        {
+                            animator.SetBool("Holded", true);
+                            interactedObject = hit.transform.gameObject;
+                            //Door door = interactedObject.GetComponent<Door>();
+                            //door.isHeld = true;
+                            //door.Open();
+                            AttachDoorJoint(interactedObject, hit.point);
+                        }
                         break;
                     case "Pickable": //Batteries + pills
-                        PickUpItem(hit.transform.gameObject);
+                        if (input.InteractDown)
+                        {
+                            animator.SetBool("Holded", true);
+                            PickUpItem(hit.transform.gameObject);
+                        }
                         break;
                     case "Readable": //Notes
-                        ReadNote(hit.transform.gameObject);
+                        if (input.InteractDown)
+                        {
+                            animator.SetBool("Holded", true);
+                            ReadNote(hit.transform.gameObject);
+                        }
                         break;
                 }
+            }
+            else
+            {
+                animator.SetBool("Holdable", false);
             }
         }
         else if (interactedObject != null) //throw an object
@@ -69,6 +91,8 @@ public class Interact : MonoBehaviour
             if (input.ThrowDown)
             {
                 ThrowObject();
+                animator.SetTrigger("Throw");
+                animator.SetBool("Holded", false);
             }
             else if (!input.InteractHold)
             {
@@ -76,6 +100,7 @@ public class Interact : MonoBehaviour
                     BreakJoint();
                 if (currentDoorSpringJoint != null)
                     BreakDoorJoint();
+                animator.SetBool("Holded", false);
             }
         }
     }
@@ -92,6 +117,7 @@ public class Interact : MonoBehaviour
                 float distance = Vector3.Distance(doorAnchor, holdAnchor);
                 if (distance > breakDistance)
                 {
+                    animator.SetBool("Holded", false);
                     BreakDoorJoint();
                 }
             }
@@ -100,6 +126,7 @@ public class Interact : MonoBehaviour
                 float distance = Vector3.Distance(interactedObject.transform.position, holdPosition.position);
                 if (distance > breakDistance)
                 {
+                    animator.SetBool("Holded", false);
                     BreakJoint();
                 }
             }

@@ -72,6 +72,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-
+Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
 fmod_editor.log
 Settings.json
