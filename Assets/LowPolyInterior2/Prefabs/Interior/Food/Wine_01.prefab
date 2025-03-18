@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7083502357288876090}
   - component: {fileID: 4473564235275791887}
   - component: {fileID: 6664580799390348016}
+  - component: {fileID: 5500823056201503925}
   m_Layer: 10
   m_Name: Wine_01
   m_TagString: Draggable
@@ -155,6 +156,18 @@ MonoBehaviour:
   boxesPerEdge: 20
   physicsMaterialForColliders: {fileID: 0}
 --- !u!114 &6664580799390348016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3034807377738002056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9bb94c97b2f8e4f963537e66c4b171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5500823056201503925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
