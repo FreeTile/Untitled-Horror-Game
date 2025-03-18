@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.Shapes;
 
 public class Interact : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class Interact : MonoBehaviour
                         {
                             animator.SetBool("Holded", true);
                             interactedObject = hit.transform.gameObject;
-                            AttachJoint(interactedObject);
+                            AttachJoint(interactedObject, hit.point);
                         }
                         break;
                     case "Door": //Doors + drawers
@@ -138,9 +139,10 @@ public class Interact : MonoBehaviour
     }
 
     //Attaching and tuning a configurable joint for draggable objects (Check configurable joint as a component in Unity for more info)
-    private void AttachJoint(GameObject obj)
+    private void AttachJoint(GameObject obj, Vector3 hitPoint)
     {
         Rigidbody objRb = obj.GetComponent<Rigidbody>();
+        holdPosition.position = hitPoint;
         if (objRb == null) return;
 
         currentÑJoint = obj.AddComponent<ConfigurableJoint>();
@@ -149,8 +151,8 @@ public class Interact : MonoBehaviour
 
         currentÑJoint.autoConfigureConnectedAnchor = false;
         currentÑJoint.axis = Vector3.zero;
-        currentÑJoint.anchor = Vector3.zero;
-
+        Vector3 localHitPoint = obj.transform.InverseTransformPoint(hitPoint);
+        currentÑJoint.anchor = localHitPoint;
         currentÑJoint.connectedAnchor = Vector3.zero;
 
         currentÑJoint.angularXMotion = ConfigurableJointMotion.Locked;
@@ -187,6 +189,7 @@ public class Interact : MonoBehaviour
             currentÑJoint = null;
         }
         interactedObject = null;
+        holdPosition.transform.localPosition = initialHoldPos;
     }
 
     //Attaching and tuning a spring joint for door like objects (Check spring joint as a component in Unity for more info)
@@ -240,9 +243,10 @@ public class Interact : MonoBehaviour
             Destroy(currentÑJoint);
             currentÑJoint = null;
         }
-        Vector3 direction = (interactedObject.transform.position - MCamera.transform.position).normalized;
+        Vector3 direction = MCamera.transform.forward;
         interactedObject.GetComponent<Rigidbody>().AddForce(direction * ThrowForce, ForceMode.Impulse);
         interactedObject = null;
+        holdPosition.transform.localPosition = initialHoldPos;
     }
 
     private void PickUpItem(GameObject obj)

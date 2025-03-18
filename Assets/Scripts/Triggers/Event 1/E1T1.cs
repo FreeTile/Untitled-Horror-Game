@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trigger1 : MonoBehaviour
+public class E1T1 : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter()
     {
         Debug.Log("Window knocks");
     }
