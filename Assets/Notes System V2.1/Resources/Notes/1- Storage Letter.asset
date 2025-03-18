@@ -17,7 +17,7 @@ MonoBehaviour:
   noteIcon: {fileID: 21300000, guid: e87ed72bc9e17874eb74d180dc8ef2ff, type: 3}
   addToInventory: 1
   pageImages:
-  - {fileID: 21300000, guid: 612aeba78f7f69c47bed560f988e191c, type: 3}
+  - {fileID: 21300000, guid: 817357d073873ea439bbfc8c54c3b3a1, type: 3}
   pageScale: {x: 900, y: 900}
   showTextOnMainPage: 1
   showNavigationButtons: 0

@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccb5a3fdb08bf584383ace6784368d93, type: 3}
-  m_Name: 2- Highschool Report
+  m_Name: 2- Living Room Note
   m_EditorClassIdentifier: 
   noteID: 2
-  noteName: Highschool Report
-  noteIcon: {fileID: 21300000, guid: aef2b132b828d764abacb89f696bf1e4, type: 3}
+  noteName: Living Room Note
+  noteIcon: {fileID: 21300000, guid: e87ed72bc9e17874eb74d180dc8ef2ff, type: 3}
   addToInventory: 1
   pageImages:
-  - {fileID: 21300000, guid: ce8cb8a1c37f83c448e757cdd6ed73a7, type: 3}
-  - {fileID: 21300000, guid: 827c65a5e20ae8f4881ef1dc150cb163, type: 3}
+  - {fileID: 21300000, guid: 0b237a76239a03d42b2fa931dab43c86, type: 3}
   pageScale: {x: 900, y: 900}
-  showTextOnMainPage: 0
-  showNavigationButtons: 1
+  showTextOnMainPage: 1
+  showNavigationButtons: 0
   pageText:
-  - Test
-  mainTextAreaScale: {x: 495, y: 795}
-  mainTextSize: 25
-  mainFontType: {fileID: 0}
-  mainFontStyle: 0
+  - "Oliver- your tools are one thing, but Jessie\u2019s toys are another. I came
+    down for water last night and nearly broke my neck trying to walk to the kitchen.
+    To incentivize you\u2026 I locked the door to the basement and stuffed the key
+    in that shape-hole toy. So, if you want to grab yourself a drink, you\u2019re
+    gonna have to earn it."
+  mainTextAreaScale: {x: 500, y: 700}
+  mainTextSize: 45
+  mainFontAsset: {fileID: 0}
   mainFontColor: {r: 0, g: 0, b: 0, a: 1}
   enableOverlayText: 0
   showOverlayOnOpen: 0
@@ -35,8 +37,7 @@ MonoBehaviour:
   overlayTextAreaScale: {x: 1045, y: 300}
   overlayTextBGScale: {x: 1160, y: 300}
   overlayTextSize: 25
-  overlayFontType: {fileID: 0}
-  overlayFontStyle: 0
+  overlayFontAsset: {fileID: 0}
   overlayFontColor: {r: 0, g: 0, b: 0, a: 1}
   allowAudioPlayback: 0
   showPlaybackButtons: 0
