@@ -8,7 +8,7 @@ public class Interact : MonoBehaviour
     private ItemSO item;
     private PlayerInventory inventory;
     private GameObject interactedObject = null;
-    private ConfigurableJoint current�Joint = null;
+    private ConfigurableJoint currentÑJoint = null;
     private SpringJoint currentDoorSpringJoint = null;
     private Vector3 initialHoldPos;
     [SerializeField] private float interactDistance = 1.5f;
@@ -99,7 +99,7 @@ public class Interact : MonoBehaviour
             }
             else if (!input.InteractHold)
             {
-                if (current�Joint != null)
+                if (currentÑJoint != null)
                     BreakJoint();
                 if (currentDoorSpringJoint != null)
                     BreakDoorJoint();
@@ -124,7 +124,7 @@ public class Interact : MonoBehaviour
                     BreakDoorJoint();
                 }
             }
-            else if (current�Joint != null)
+            else if (currentÑJoint != null)
             {
                 float distance = Vector3.Distance(interactedObject.transform.position, holdPosition.position);
                 if (distance > breakDistance)
@@ -142,48 +142,48 @@ public class Interact : MonoBehaviour
         Rigidbody objRb = obj.GetComponent<Rigidbody>();
         if (objRb == null) return;
 
-        current�Joint = obj.AddComponent<ConfigurableJoint>();
+        currentÑJoint = obj.AddComponent<ConfigurableJoint>();
 
-        current�Joint.connectedBody = holdPosition.GetComponent<Rigidbody>();
+        currentÑJoint.connectedBody = holdPosition.GetComponent<Rigidbody>();
 
-        current�Joint.autoConfigureConnectedAnchor = false;
-        current�Joint.axis = Vector3.zero;
-        current�Joint.anchor = Vector3.zero;
+        currentÑJoint.autoConfigureConnectedAnchor = false;
+        currentÑJoint.axis = Vector3.zero;
+        currentÑJoint.anchor = Vector3.zero;
 
-        current�Joint.connectedAnchor = Vector3.zero;
+        currentÑJoint.connectedAnchor = Vector3.zero;
 
-        current�Joint.angularXMotion = ConfigurableJointMotion.Locked;
-        current�Joint.angularYMotion = ConfigurableJointMotion.Locked;
-        current�Joint.angularZMotion = ConfigurableJointMotion.Locked;
+        currentÑJoint.angularXMotion = ConfigurableJointMotion.Locked;
+        currentÑJoint.angularYMotion = ConfigurableJointMotion.Locked;
+        currentÑJoint.angularZMotion = ConfigurableJointMotion.Locked;
 
-        current�Joint.xMotion = ConfigurableJointMotion.Free;
-        current�Joint.yMotion = ConfigurableJointMotion.Free;
-        current�Joint.zMotion = ConfigurableJointMotion.Free;
+        currentÑJoint.xMotion = ConfigurableJointMotion.Free;
+        currentÑJoint.yMotion = ConfigurableJointMotion.Free;
+        currentÑJoint.zMotion = ConfigurableJointMotion.Free;
 
         SoftJointLimit linearLimit = new SoftJointLimit();
         linearLimit.limit = 0.1f;
-        current�Joint.linearLimit = linearLimit;
+        currentÑJoint.linearLimit = linearLimit;
 
         JointDrive drive = new JointDrive();
         drive.positionSpring = 1000f;
         drive.positionDamper = 50f;
         drive.maximumForce = 1000f;
-        current�Joint.xDrive = drive;
-        current�Joint.yDrive = drive;
-        current�Joint.zDrive = drive;
+        currentÑJoint.xDrive = drive;
+        currentÑJoint.yDrive = drive;
+        currentÑJoint.zDrive = drive;
 
-        current�Joint.projectionMode = JointProjectionMode.PositionAndRotation;
-        current�Joint.projectionDistance = 0.1f;
-        current�Joint.projectionAngle = 1f;
+        currentÑJoint.projectionMode = JointProjectionMode.PositionAndRotation;
+        currentÑJoint.projectionDistance = 0.1f;
+        currentÑJoint.projectionAngle = 1f;
     }
 
     //Deleting joint from the last held object
     private void BreakJoint()
     {
-        if (current�Joint != null)
+        if (currentÑJoint != null)
         {
-            Destroy(current�Joint);
-            current�Joint = null;
+            Destroy(currentÑJoint);
+            currentÑJoint = null;
         }
         interactedObject = null;
     }
@@ -234,10 +234,10 @@ public class Interact : MonoBehaviour
     //Throwing an object with force from the player
     private void ThrowObject()
     {
-        if (current�Joint != null)
+        if (currentÑJoint != null)
         {
-            Destroy(current�Joint);
-            current�Joint = null;
+            Destroy(currentÑJoint);
+            currentÑJoint = null;
         }
         Vector3 direction = (interactedObject.transform.position - MCamera.transform.position).normalized;
         interactedObject.GetComponent<Rigidbody>().AddForce(direction * ThrowForce, ForceMode.Impulse);
