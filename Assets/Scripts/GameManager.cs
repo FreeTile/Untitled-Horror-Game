@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity; // Подключаем FMOD
 
 [RequireComponent(typeof(GameInputHandler))]
 [RequireComponent(typeof(MainInputHandler))]
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject InventoryUI;
 
     //Game states affect player's controls
-    public enum State 
+    public enum State
     {
         Esc,
         Game,
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (Instance == null) //Creating syngleton instance at the beginning 
+        if (Instance == null) //Creating singleton instance at the beginning 
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -67,11 +68,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
     }
 
-
     public void ProceedEsc()
     {
         Debug.Log("Proceeding Esc");
-        if(state == State.Game)
+        if (state == State.Game)
         {
             state = State.Esc;
             //Turn on Menu on canvas
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         {
             state = State.Game;
         }
-        else if(state != State.Esc)
+        else if (state != State.Esc)
         {
             state = State.Inventory;
             InventoryUI.SetActive(true);
@@ -109,5 +109,42 @@ public class GameManager : MonoBehaviour
             //Open the journal
         }
         switchControlSystem();
+    }
+
+    // Новый метод для джампскейра, который можно вызвать из триггера
+    public void TriggerJumpScare()
+    {
+        StartCoroutine(JumpScareRoutine());
+    }
+
+    // Корутина, отвечающая за эффект тряски камеры и проигрывание звука
+    private IEnumerator JumpScareRoutine()
+    {
+        // Проигрываем событие через FMOD (убедиcь, что событие настроено правильно в FMOD Studio)
+        RuntimeManager.PlayOneShot("event:/JumpScare");
+
+        // Получаем основную камеру
+        Camera cam = Camera.main;
+        if (cam == null)
+        {
+            Debug.LogWarning("Main Camera not found for JumpScare!");
+            yield break;
+        }
+
+        Vector3 originalPos = cam.transform.localPosition;
+        float elapsed = 0f;
+        float duration = 0.5f; // Продолжительность тряски
+        float magnitude = 0.2f; // Интенсивность тряски
+
+        while (elapsed < duration)
+        {
+            // Случайное смещение камеры вокруг исходного положения
+            cam.transform.localPosition = originalPos + Random.insideUnitSphere * magnitude;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Восстанавливаем положение камеры
+        cam.transform.localPosition = originalPos;
     }
 }
