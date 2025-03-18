@@ -28,11 +28,12 @@ public class Interact : MonoBehaviour
     private void Start()
     {
         input = GameInputHandler.Instance;
+        initialHoldPos = holdPosition.transform.localPosition;
         inventory = GetComponent<PlayerInventory>();
         initialHoldPos = holdPosition.transform.localPosition;
     }
 
-    private void Update()
+       private void Update()
     {
         HandleInteraction();
         CheckDistance();
