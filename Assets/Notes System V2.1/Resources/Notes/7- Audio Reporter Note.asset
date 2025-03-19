@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb5a3fdb08bf584383ace6784368d93, type: 3}
+  m_Name: 7- Audio Reporter Note
+  m_EditorClassIdentifier: 
+  noteID: 7
+  noteName: Reporter Note #1
+  noteIcon: {fileID: 21300000, guid: 612aeba78f7f69c47bed560f988e191c, type: 3}
+  addToInventory: 1
+  pageImages:
+  - {fileID: 21300000, guid: b8ab61eb8f91e1244a69071796f076dd, type: 3}
+  - {fileID: 21300000, guid: ad24ebe87cc9a0b4fb31fc29ecade5e0, type: 3}
+  pageScale: {x: 900, y: 900}
+  showTextOnMainPage: 0
+  showNavigationButtons: 1
+  pageText:
+  - Test Test Test 1
+  mainTextAreaScale: {x: 465, y: 700}
+  mainTextSize: 20
+  mainFontType: {fileID: 12800000, guid: 1940cced16ff1d44a8894ce25c5d87dc, type: 3}
+  mainFontStyle: 0
+  mainFontColor: {r: 0, g: 0, b: 0, a: 1}
+  enableOverlayText: 0
+  showOverlayOnOpen: 0
+  overlayBGColor: {r: 1, g: 1, b: 1, a: 1}
+  overlayTextAreaScale: {x: 1045, y: 300}
+  overlayTextBGScale: {x: 1160, y: 300}
+  overlayTextSize: 25
+  overlayFontType: {fileID: 12800000, guid: 1940cced16ff1d44a8894ce25c5d87dc, type: 3}
+  overlayFontStyle: 0
+  overlayFontColor: {r: 0, g: 0, b: 0, a: 1}
+  allowAudioPlayback: 1
+  showPlaybackButtons: 1
+  playOnOpen: 0
+  noteReadAudio: {fileID: 11400000, guid: 532e117076dbbab468c13db0d795e0a6, type: 2}
+  notePageAudio: {fileID: 11400000, guid: db2251db6638c1e478571aabc4317d5b, type: 2}
+  isNoteTrigger: 0

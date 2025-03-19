@@ -5,7 +5,9 @@ public class ButtonSwapTexture : MonoBehaviour
 {
     public new MeshRenderer renderer;
     public Material[] materials;
-    private int currentIndex = 0;
+    public int currentIndex = 0;
+
+    [SerializeField] private PuzzleScript puzzleScript;
 
     void Start()
     {
@@ -29,6 +31,12 @@ public class ButtonSwapTexture : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     CycleAndChange();
+
+                    if(puzzleScript != null)
+                    {
+                        Debug.Log("Puzzle Script is not null");
+                        puzzleScript.CheckCombination();
+                    }
                 }
             }
         }
@@ -42,5 +50,10 @@ public class ButtonSwapTexture : MonoBehaviour
             currentIndex = (currentIndex + 1) % materials.Length;
             renderer.material = materials[currentIndex];
         }
+    }
+
+    public int GetCurrentIndex()
+    {
+        return currentIndex;
     }
 }

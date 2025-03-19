@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb5a3fdb08bf584383ace6784368d93, type: 3}
+  m_Name: TutorialNote
+  m_EditorClassIdentifier: 
+  noteID: 17
+  noteName: Name Here
+  noteIcon: {fileID: 0}
+  addToInventory: 0
+  pageImages:
+  - {fileID: 0}
+  pageScale: {x: 900, y: 900}
+  showTextOnMainPage: 1
+  showNavigationButtons: 0
+  pageText:
+  - Text Here
+  mainTextAreaScale: {x: 495, y: 795}
+  mainTextSize: 25
+  mainFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  mainFontColor: {r: 0, g: 0, b: 0, a: 1}
+  enableOverlayText: 1
+  showOverlayOnOpen: 0
+  overlayBGColor: {r: 1, g: 1, b: 1, a: 1}
+  overlayTextAreaScale: {x: 1045, y: 300}
+  overlayTextBGScale: {x: 1160, y: 300}
+  overlayTextSize: 25
+  overlayFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  overlayFontColor: {r: 0, g: 0, b: 0, a: 1}
+  allowAudioPlayback: 1
+  showPlaybackButtons: 0
+  playOnOpen: 0
+  noteReadAudio: {fileID: 0}
+  notePageAudio: {fileID: 0}
+  isNoteTrigger: 0
