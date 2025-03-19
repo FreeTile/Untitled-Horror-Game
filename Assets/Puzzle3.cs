@@ -34,7 +34,7 @@ public class Puzzle3 : MonoBehaviour
         {
             if (selectedButton == button)
             {
-                selectedButton.GetComponent<Image>().color = Color.white;
+                selectedButton.GetComponent<Image>().color = Color.green;
                 selectedButton = null;
             }
             else
@@ -43,7 +43,7 @@ public class Puzzle3 : MonoBehaviour
                 {
                     SwapLetters(button, selectedButton);
                 }
-                selectedButton.GetComponent<Image>().color = Color.white;
+                selectedButton.GetComponent<Image>().color = Color.green;
                 selectedButton = null;
             }
         }
@@ -62,8 +62,6 @@ public class Puzzle3 : MonoBehaviour
         TextMeshProUGUI text1 = button1.GetComponentInChildren<TextMeshProUGUI>();
         TextMeshProUGUI text2 = button2.GetComponentInChildren<TextMeshProUGUI>();
 
-        string temp = text1.text;
-        text1.text = text2.text;
-        text2.text = temp;
+        (text2.text, text1.text) = (text1.text, text2.text);
     }
 }
