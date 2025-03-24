@@ -38647,6 +38647,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3796723867653293651, guid: 1672bc081506e0d44b96948fb1906833, type: 3}
+      propertyPath: ItemInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 33feee0d32d4bc04fbb5ff617cf1c786, type: 2}
     - target: {fileID: 4314563029838748093, guid: 1672bc081506e0d44b96948fb1906833, type: 3}
       propertyPath: m_Name
       value: Battery
@@ -60771,20 +60775,20 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64b21a86cc299474681a821c5c884b65, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 7739507888466553240}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64b21a86cc299474681a821c5c884b65, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 953139768798958343}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64b21a86cc299474681a821c5c884b65, type: 3}
-      insertIndex: 4
+      insertIndex: -1
       addedObject: {fileID: 628901787983490426}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64b21a86cc299474681a821c5c884b65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 953139768798958343}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64b21a86cc299474681a821c5c884b65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3388085839232827841}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64b21a86cc299474681a821c5c884b65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4167344550283880056}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64b21a86cc299474681a821c5c884b65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7739507888466553240}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64b21a86cc299474681a821c5c884b65, type: 3}
 --- !u!4 &6758381860280240317 stripped
