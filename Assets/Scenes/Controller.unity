@@ -728,8 +728,8 @@ HingeJoint:
   m_ExtendedLimits: 0
   m_UseAcceleration: 0
   m_Limits:
-    min: -135
-    max: 0
+    min: 0
+    max: 1
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -772,8 +772,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e2d16acb3e010458559c646a9be650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHeld: 0
+  doorOpenEvent:
+    Guid:
+      Data1: 1545841274
+      Data2: 1215337907
+      Data3: 1460305592
+      Data4: -1613733814
+    Path: event:/Doors/DoorOpen
+  doorCloseEvent:
+    Guid:
+      Data1: 631368678
+      Data2: 1253542407
+      Data3: 774004640
+      Data4: -1981817403
+    Path: event:/Doors/DoorClose
+  doorCreakLoopEvent:
+    Guid:
+      Data1: -328796335
+      Data2: 1270167618
+      Data3: 1254189492
+      Data4: -41098670
+    Path: event:/Doors/DoorCreak
   isLocked: 0
+  velocityThreshold: 0.1
+  stopDelayDuration: 0.5
+  initialAngle: 135
 --- !u!1 &313849224 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1355278927588797406, guid: c676ed7bfc1066847b9077d67152db1d, type: 3}

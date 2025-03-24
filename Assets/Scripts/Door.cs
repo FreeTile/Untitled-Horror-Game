@@ -11,14 +11,27 @@ public class Door : MonoBehaviour
     public EventReference doorCloseEvent;
     public EventReference doorCreakLoopEvent;
 
-    public bool isHeld = false;
+    private bool isHeld = false;
     public bool isLocked = false;
 
     private Coroutine playSoundCoroutine = null;
     private EventInstance doorCreakInstance;
 
+    private HingeJoint hinge;
+    private JointLimits limits;
+
     public float velocityThreshold = 0.1f;
-    public float stopDelayDuration = 0.5f;
+    public float stopDelayDuration = 2f;
+
+    [SerializeField]
+    private float initialAngle;
+
+    private void Start()
+    {
+        hinge = GetComponent<HingeJoint>();
+        hinge.useLimits = true;
+        limits = hinge.limits;
+    }
 
     void Update()
     {
@@ -30,37 +43,54 @@ public class Door : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Lock") && !isHeld)
-        {
-            HingeJoint hinge = GetComponent<HingeJoint>();
-            JointLimits limits = hinge.limits;
-            limits.min = -1;
-            hinge.limits = limits;
-        }
-        playSound();
+        ProcessMove();
     }
 
     public void Open()
     {
-        HingeJoint hinge = GetComponent<HingeJoint>();
-        JointLimits limits = hinge.limits;
-        limits.min = -135;
+        if (isLocked) return;
+        if (limits.max == 1)
+        {
+            RuntimeManager.PlayOneShot(doorOpenEvent, transform.position);
+        }
+        limits.min = 0;
+        limits.max = initialAngle;
         hinge.limits = limits;
-        // RuntimeManager.PlayOneShot(doorOpenEvent, transform.position);
     }
 
-    public void Unlock() { }
-    public void Lock() { }
+    public void Close()
+    {
+        limits.min = 0;
+        limits.max = 1;
+        hinge.limits = limits;
+        RuntimeManager.PlayOneShot(doorCloseEvent, transform.position);
+    }
 
-    public void playSound()
+    public void Unlock() { isLocked = false; }
+    public void Lock() { isLocked = true; }
+
+    public void grab()
+    {
+        if (isLocked) return;
+        isHeld = true;
+        Open();
+        ProcessMove();
+    }
+
+    public void drop()
+    {
+        isHeld = false;
+    }
+
+    public void ProcessMove()
     {
         if (playSoundCoroutine == null)
         {
-            playSoundCoroutine = StartCoroutine(Sound());
+            playSoundCoroutine = StartCoroutine(Move());
         }
     }
 
-    IEnumerator Sound()
+    IEnumerator Move()
     {
         Debug.Log("Coroutine Sound() Started.");
         doorCreakInstance = RuntimeManager.CreateInstance(doorCreakLoopEvent);
@@ -68,28 +98,33 @@ public class Door : MonoBehaviour
         doorCreakInstance.start();
 
         float stopDelay = stopDelayDuration;
-
         while (true)
         {
             float velocity = GetComponent<Rigidbody>().velocity.magnitude;
-            // Обновляем параметр "Speed", который может влиять, например, на pitch
-            doorCreakInstance.setParameterByName("Speed", velocity);
 
-            // Если скорость ниже порога, начинаем отсчет времени до остановки
-            if (velocity < velocityThreshold)
+            float angle = transform.localEulerAngles.y;
+
+            if (angle < 1f && !isHeld)
             {
+                Close();
+                break;
+            }
+
+            if (velocity >= velocityThreshold)
+            {
+                doorCreakInstance.setParameterByName("Speed", velocity);
+                stopDelay = stopDelayDuration;
+            }
+            else
+            {
+                doorCreakInstance.setParameterByName("Speed", 0f);
                 stopDelay -= Time.deltaTime;
                 if (stopDelay <= 0f)
                 {
                     break;
                 }
             }
-            else
-            {
-
-                stopDelay = stopDelayDuration;
-            }
-
+            hinge.limits = limits;
             yield return null;
         }
 
