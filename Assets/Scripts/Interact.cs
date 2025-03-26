@@ -26,6 +26,8 @@ public class Interact : MonoBehaviour
     [SerializeField] private float ThrowForce = 10f;
     [SerializeField] private Animator animator;
 
+    private Door door = null;
+
     private void Start()
     {
         input = GameInputHandler.Instance;
@@ -63,9 +65,8 @@ public class Interact : MonoBehaviour
                         {
                             animator.SetBool("Holded", true);
                             interactedObject = hit.transform.gameObject;
-                            //Door door = interactedObject.GetComponent<Door>();
-                            //door.isHeld = true;
-                            //door.Open();
+                            door = interactedObject.GetComponent<Door>();
+                            if(door != null) door.grab();
                             AttachDoorJoint(interactedObject, hit.point);
                         }
                         break;
@@ -225,7 +226,8 @@ public class Interact : MonoBehaviour
     //Breaking spring joint from the las held doorlike object
     private void BreakDoorJoint()
     {
-        //interactedObject.GetComponent<Door>().isHeld = false;
+        door = interactedObject.GetComponent<Door>();
+        if (door != null) door.drop();
         if (currentDoorSpringJoint != null)
         {
             Destroy(currentDoorSpringJoint);

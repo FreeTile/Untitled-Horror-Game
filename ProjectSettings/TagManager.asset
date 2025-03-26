@@ -11,6 +11,8 @@ TagManager:
   - Draggable
   - Door
   - Lock
+  - Pickable
+  - Lightswitch
   layers:
   - Default
   - TransparentFX

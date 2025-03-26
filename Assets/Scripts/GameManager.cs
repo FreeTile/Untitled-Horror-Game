@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity; // Подключаем FMOD
+using FMODUnity; 
 
 [RequireComponent(typeof(GameInputHandler))]
 [RequireComponent(typeof(MainInputHandler))]
@@ -111,19 +111,17 @@ public class GameManager : MonoBehaviour
         switchControlSystem();
     }
 
-    // Новый метод для джампскейра, который можно вызвать из триггера
+    //Jumpscare Trigger
     public void TriggerJumpScare()
     {
         StartCoroutine(JumpScareRoutine());
     }
 
-    // Корутина, отвечающая за эффект тряски камеры и проигрывание звука
     private IEnumerator JumpScareRoutine()
     {
-        // Проигрываем событие через FMOD (убедиcь, что событие настроено правильно в FMOD Studio)
+        //Sound
         RuntimeManager.PlayOneShot("event:/JumpScare");
 
-        // Получаем основную камеру
         Camera cam = Camera.main;
         if (cam == null)
         {
@@ -133,18 +131,17 @@ public class GameManager : MonoBehaviour
 
         Vector3 originalPos = cam.transform.localPosition;
         float elapsed = 0f;
-        float duration = 0.5f; // Продолжительность тряски
-        float magnitude = 0.2f; // Интенсивность тряски
+        float duration = 0.5f;
+        float magnitude = 0.2f;
 
+        //Camera shake
         while (elapsed < duration)
         {
-            // Случайное смещение камеры вокруг исходного положения
             cam.transform.localPosition = originalPos + Random.insideUnitSphere * magnitude;
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        // Восстанавливаем положение камеры
         cam.transform.localPosition = originalPos;
     }
 }
