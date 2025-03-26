@@ -17,7 +17,6 @@ public class PSX : ScriptableRendererFeature
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
-            // Получаем целевую текстуру в безопасном контексте
             RenderTargetIdentifier source = renderingData.cameraData.renderer.cameraColorTargetHandle;
             CommandBuffer cmd = CommandBufferPool.Get("PSX Effect");
 
