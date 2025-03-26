@@ -82,16 +82,13 @@ public class MonsterAI : MonoBehaviour
     //attack fucntion
     private void attackPlayer()
     {
-        if (atkColider.gameObject.tag == "Player")
-        {
-            //The attack that the monster does goes here
-        }
+       //Applicable for animations or states only
     }
 
     void Start()
     {
         lastPosition = new Vector3();
-        playerMask = LayerMask.GetMask("Character");
+        playerMask = LayerMask.GetMask("Player");
         obstaclesMask = LayerMask.GetMask("Obstacles");
         agent = this.GetComponent<NavMeshAgent>();
         StartCoroutine(FOVRoutine());
