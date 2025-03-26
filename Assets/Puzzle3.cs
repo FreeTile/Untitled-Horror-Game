@@ -3,16 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
+using UnityEngine.Rendering;
 
 public class Puzzle3 : MonoBehaviour
 {
+    [SerializeField]
     public Button[] oliverButtons;
+    [SerializeField]
     public Button[] wendyButtons;
+    [SerializeField]
+    public GameObject BasementDoor;
+
+    public string correctOliver = "OLIVER";
+    public string correctWendy = "WENDY";
 
     private Button selectedButton = null;
 
     private void Start()
     {
+        Debug.Log("Oliver Buttons Count: " + oliverButtons.Length);
+        Debug.Log("Wendy Buttons Count: " + wendyButtons.Length);
+
         foreach (Button button in oliverButtons)
         {
             button.onClick.AddListener(() => OnButtonClicked(button));
@@ -23,8 +35,34 @@ public class Puzzle3 : MonoBehaviour
         }
     }
 
-    private void OnButtonClicked(Button button)
+    private void Update()
     {
+        Debug.Log("Accessing Update");
+        var cameraRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width/2, Screen.height/2));
+        Debug.DrawRay(cameraRay.origin, cameraRay.direction * 10000, Color.magenta);
+
+        RaycastHit hit;
+        if (Physics.Raycast(cameraRay, out hit, 10000f))
+        {
+            Debug.Log("Raycast hit UI");
+            Debug.Log("Game Object hit: " + hit.transform.gameObject.name);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("GameObject clicked");
+                Button btn = hit.transform.gameObject.GetComponent<Button>();
+                if (btn != null)
+                {
+                    OnButtonClicked(btn);
+                }
+            }
+        }
+    }
+
+    public void OnButtonClicked(Button button)
+    {
+        Debug.Log($"Button clicked: {button.name}");
+
         if (selectedButton == null)
         {
             selectedButton = button;
@@ -34,7 +72,7 @@ public class Puzzle3 : MonoBehaviour
         {
             if (selectedButton == button)
             {
-                selectedButton.GetComponent<Image>().color = Color.green;
+                selectedButton.GetComponent<Image>().color = Color.white;
                 selectedButton = null;
             }
             else
@@ -42,19 +80,30 @@ public class Puzzle3 : MonoBehaviour
                 if (IsSameRow(button, selectedButton))
                 {
                     SwapLetters(button, selectedButton);
+                    CheckPuzzleSolved();
+                    selectedButton.GetComponent<Image>().color = Color.white;
+                    button.GetComponent<Image>().color = Color.white;
+                    selectedButton = null;
                 }
-                selectedButton.GetComponent<Image>().color = Color.green;
-                selectedButton = null;
+                else
+                {
+                    selectedButton.GetComponent<Image>().color = Color.green;
+                    selectedButton = button;
+                    button.GetComponent<Image>().color = Color.green;
+                }
             }
         }
     }
 
     private bool IsSameRow(Button button1, Button button2)
     {
-        bool inOliverRow = System.Array.Exists(oliverButtons, b => b == button1 || b == button2);
-        bool inWendyRow = System.Array.Exists(wendyButtons, b => b == button1 || b == button2);
+        bool button1InOliver = System.Array.Exists(oliverButtons, b => b == button1);
+        bool button2InOliver = System.Array.Exists(oliverButtons, b => b == button2);
 
-        return inOliverRow || inWendyRow;
+        bool button1InWendy = System.Array.Exists(wendyButtons, b => b == button1);
+        bool button2InWendy = System.Array.Exists(wendyButtons, b => b == button2);
+
+        return (button1InOliver && button2InOliver) || (button1InWendy && button2InWendy);
     }
 
     private void SwapLetters(Button button1, Button button2)
@@ -62,6 +111,65 @@ public class Puzzle3 : MonoBehaviour
         TextMeshProUGUI text1 = button1.GetComponentInChildren<TextMeshProUGUI>();
         TextMeshProUGUI text2 = button2.GetComponentInChildren<TextMeshProUGUI>();
 
-        (text2.text, text1.text) = (text1.text, text2.text);
+        if (text1 != null && text2 != null)
+        {
+            string temp = text1.text;
+            text1.text = text2.text;
+            text2.text = temp;
+
+            Debug.Log($"Swapped letters: {text1.text} with {text2.text}");
+        }
+        else
+        {
+            Debug.LogWarning("One or both buttons do not have TextMeshProUGUI components");
+        }
+    }
+
+    private string GetConcatenatedText(Button[] buttons)
+    {
+        var sortedButtons = buttons.OrderBy(b => b.GetComponent<RectTransform>().position.x).ToArray();
+
+        string result = "";
+        foreach(Button btn in sortedButtons)
+        {
+            TextMeshProUGUI textComp = btn.GetComponentInChildren<TextMeshProUGUI>();
+            if (textComp != null)
+            {
+                result += textComp.text;
+            }
+            else
+            {
+                Debug.LogWarning($"Button {btn.name} is missing a TextMeshProUGUI component");
+            }
+        }
+        return result;
+    }
+
+    private void CheckPuzzleSolved()
+    {
+        string currentOliver = GetConcatenatedText(oliverButtons);
+        string currentWendy = GetConcatenatedText(wendyButtons);
+
+        Debug.Log("Oliver Row: " + currentOliver);
+        Debug.Log("Wendy Row: " + currentWendy);
+
+        if (currentOliver == correctOliver && currentWendy == correctWendy)
+        {
+            Debug.Log("Puzzle Solved!");
+
+            Rigidbody rb = BasementDoor.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                if (rb.mass == 900)
+                {
+                    rb.mass = 1;
+                    Debug.Log("BasementDoor weight changed to 1.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("BasementDoor does not have a Rigidbody component.");
+            }
+        }
     }
 }
