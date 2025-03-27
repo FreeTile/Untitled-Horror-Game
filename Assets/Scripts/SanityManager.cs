@@ -40,6 +40,8 @@ public class SanityManager : MonoBehaviour
     void Start()
     {
         // Create and start the ambient event instance
+        FindObjectOfType<GlitchFeature>().glitchEnabled = false;
+        Debug.Log(FindObjectOfType<GlitchFeature>().glitchEnabled);
         ambientInstance = RuntimeManager.CreateInstance(ambientEvent);
         ambientInstance.start();
         UpdateSoundParameters();
@@ -51,7 +53,7 @@ public class SanityManager : MonoBehaviour
         Debug.Log("Current Sanity is: " + sanity);
         if (sanity <= 29)
         {
-            sanityBrain.sprite = lowSanitySprite;
+            //sanityBrain.sprite = lowSanitySprite;
             ambientInstance.setParameterByName(lowParameterName, 1.0f);
             ambientInstance.setParameterByName(mediumParameterName, 0.0f);
             ambientInstance.setParameterByName(highParameterName, 0.0f);
@@ -59,7 +61,7 @@ public class SanityManager : MonoBehaviour
         }
         else if (sanity <= 69)
         {
-            sanityBrain.sprite = mediumSanitySprite;
+            //sanityBrain.sprite = mediumSanitySprite;
             ambientInstance.setParameterByName(lowParameterName, 0.0f);
             ambientInstance.setParameterByName(mediumParameterName, 1.0f);
             ambientInstance.setParameterByName(highParameterName, 0.0f);
@@ -67,7 +69,7 @@ public class SanityManager : MonoBehaviour
         }
         else
         {
-            sanityBrain.sprite = highSanitySprite;
+            //sanityBrain.sprite = highSanitySprite;
             ambientInstance.setParameterByName(lowParameterName, 0.0f);
             ambientInstance.setParameterByName(mediumParameterName, 0.0f);
             ambientInstance.setParameterByName(highParameterName, 1.0f);

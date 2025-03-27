@@ -15,6 +15,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     glitchMaterial: {fileID: 2100000, guid: 56c86196ac3a73b4999d9ebfeb5669be, type: 2}
+  glitchEnabled: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

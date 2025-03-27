@@ -4,14 +4,18 @@ using UnityEngine.Rendering.Universal;
 
 public class GlitchFeature : ScriptableRendererFeature
 {
+
+    public static GlitchFeature Instance;
+
     [System.Serializable]
     public class GlitchSettings
     {
         public Material glitchMaterial;
-        // public float maxGlitchIntensity = 1f;
     }
 
     public GlitchSettings settings = new GlitchSettings();
+
+    public bool glitchEnabled = true;
 
     class GlitchPass : ScriptableRenderPass
     {
@@ -37,14 +41,13 @@ public class GlitchFeature : ScriptableRendererFeature
                 return;
             if (!renderingData.cameraData.camera.CompareTag("Glitch"))
                 return;
+
             CommandBuffer cmd = CommandBufferPool.Get("GlitchPass");
             RenderTextureDescriptor desc = renderingData.cameraData.cameraTargetDescriptor;
             desc.depthBufferBits = 0;
 
             cmd.GetTemporaryRT(tempTexture.id, desc);
-
             cmd.Blit(source, tempTexture.Identifier(), glitchMaterial);
-
             cmd.Blit(tempTexture.Identifier(), source);
 
             context.ExecuteCommandBuffer(cmd);
@@ -61,6 +64,7 @@ public class GlitchFeature : ScriptableRendererFeature
 
     public override void Create()
     {
+        Instance = this;
         glitchPass = new GlitchPass(settings.glitchMaterial)
         {
             renderPassEvent = RenderPassEvent.AfterRendering
@@ -69,6 +73,8 @@ public class GlitchFeature : ScriptableRendererFeature
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
     {
+        if (!glitchEnabled)
+            return;
         if (settings.glitchMaterial == null)
             return;
 
