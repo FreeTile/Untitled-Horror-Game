@@ -87,12 +87,12 @@ public class GameManager : MonoBehaviour
     {
         if (state == State.Inventory)
         {
-            state = State.Game;
+            state = State.Game;            
+            InventoryUI.SetActive(true);
         }
         else if (state != State.Esc)
         {
             state = State.Inventory;
-            InventoryUI.SetActive(true);
         }
         switchControlSystem();
     }

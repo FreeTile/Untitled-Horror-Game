@@ -10,6 +10,8 @@ using TMPro;
 using UnityEngine.Android;
 using UnityEngine.EventSystems;
 using System.Linq;
+using Krearthur.Utils;
+using Unity.VisualScripting;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -17,10 +19,12 @@ public class InventoryUI : MonoBehaviour
     public PlayerInventory InventoryInfo;
     public Button ItemNodePrefab;
     public List<ItemSO> Items;
-    private int _PillsCount;
-    private int _BatteryCount;
-    public int _HasKey1;
-    public int _HasKey2;
+    public Dictionary<ItemSO.Items, Itemnodescript> Nodes=  new Dictionary<ItemSO.Items, Itemnodescript>();
+    public int _PillsCount;
+    public int _BatteryCount;
+    public bool _HasKey1;
+    public bool _HasKey2;
+
 
     [Space] // UI
     public GameObject InventoryContainer;
@@ -31,7 +35,7 @@ public class InventoryUI : MonoBehaviour
     public void Add(ItemSO item)
     {
         Items.Add(item);
-        AddInventoryNodes();
+        Initialized(item);
     }
 
     public void Remove(ItemSO item)
@@ -39,79 +43,123 @@ public class InventoryUI : MonoBehaviour
         Items.Remove(item);
     }
 
-    public int GetNumConsumables(ItemSO.Items type )
-    {
+    public int GetNumConsumables()
+    {    
         int count = 0;
         foreach (var item in Items)
         {
-            if (item.Type == type)
-            {
-                count++;
-            }
+           count++;
         }
         return count;
     }
 
 
-    private void Initialized()
+    //Add note and add items to the Ui
+    private void Initialized(ItemSO item)
     {
-        foreach (var item in Items)
+        switch (item.Type)
         {
-            for (int i = 0; i < (int)ItemSO.Items.NUM_ITEMS; i++)
-            {
-                int amount = GetNumConsumables((ItemSO.Items)i);
-
-                if(amount > 0)
+            case ItemSO.Items.Pills:
+                if(Nodes.ContainsKey(item.Type) && item.Type == ItemSO.Items.Pills)
                 {
-                    if(item.Type == (ItemSO.Items)i)
+                    _PillsCount++;
+                    foreach (var node in Nodes)
                     {
-                        var itemNode = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
-                        itemNode.GetComponent<Itemnodescript>().Init(item, amount);
-
-
-
-                        //todo 4
-                        // ON CLICK()
-                        // inventorymNgwe.clickedbtn(sodata)
-
-                        break;
+                        if(node.Key == ItemSO.Items.Pills)  
+                        {
+                            node.Value.GetItemCount(_PillsCount);  
+                        }
                     }
-                
                 }
-
-            } 
+                else 
+                {
+                    _PillsCount++;
+                    var itemNode = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
+                    itemNode.GetComponent<Itemnodescript>().Init(item);
+                    itemNode.GetComponent<Itemnodescript>().GetItemCount(_PillsCount);
+                    Nodes.Add(item.Type, itemNode.GetComponent<Itemnodescript>());
+                }
+                break;
+            case ItemSO.Items.batteris:
+                if(Nodes.ContainsKey(item.Type) && item.Type == ItemSO.Items.batteris)
+                {
+                    _BatteryCount++;
+                    foreach (var node in Nodes)
+                    {
+                        if (node.Key == ItemSO.Items.batteris)
+                        {
+                            node.Value.GetItemCount(_BatteryCount); 
+                        }
+                    }
+                }
+                else
+                {
+                    _BatteryCount++;
+                    var itemNode = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
+                    itemNode.GetComponent<Itemnodescript>().Init(item);
+                    itemNode.GetComponent<Itemnodescript>().GetItemCount(_BatteryCount);
+                    Nodes.Add(item.Type, itemNode.GetComponent<Itemnodescript>());
+                }
+                break;
+            case ItemSO.Items.Chapter1Keys:
+                _HasKey1= true;
+                var keyNode1 = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
+                keyNode1.GetComponent<Itemnodescript>().Init(item);
+                break;
+            case ItemSO.Items.Chapter2Keys:
+                _HasKey2= true;
+                var keyNode2 = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
+                keyNode2.GetComponent<Itemnodescript>().Init(item);
+                break;
+            default:
+                break;
         }
 
     }
 
-
-    public void AddInventoryNodes()
+    //When player consume item removes items from list and updates the count 
+    public void ConsumeItem(ItemSO item)
     {
-        Initialized();
+        if (item.consumable == true)
+        {
+            switch (item.Type)
+            {
+                case ItemSO.Items.Pills:
+                    Remove(item);
+                    _PillsCount--;
+                    // Add sanity ++
+                    foreach (var node in Nodes)
+                    {
+                        if (node.Key == ItemSO.Items.Pills)
+                        {
+                            node.Value.GetItemCount(_PillsCount);
+                        }
+                    }
+                    break;
+                case ItemSO.Items.batteris:
+                    Remove(item);
+                    _BatteryCount--;
+                    //add charge to flashlight ++
+                    foreach (var node in Nodes)
+                    {
+                        if (node.Key == ItemSO.Items.batteris)
+                        {
+                            node.Value.GetItemCount(_BatteryCount);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+
+            }
+        }
     }
 
-    private void Onselect()
+    private void Start()
     {
-
-    }
-    //todo 2
-    // in this invewntory script crEATE A SEET SELECTED FUNCTION( INT ID)
-    // this will set an id of selected item, and also populate the data on the right with info from thw SOdaata.
-    // only show use btn if consumable
-
-    // todo 5
-    // we need an onclick for use.
-    // remove one from inventory count, update displayed list 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        foreach (var item in Items)
+        {
+            Initialized(item);
+        }
     }
 }
