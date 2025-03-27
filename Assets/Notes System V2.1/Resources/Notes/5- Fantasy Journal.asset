@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb5a3fdb08bf584383ace6784368d93, type: 3}
+  m_Name: 5- Fantasy Journal
+  m_EditorClassIdentifier: 
+  noteID: 5
+  noteName: Fantasy Journal
+  noteIcon: {fileID: 21300000, guid: 038d370f19a4d994185d8cc02f2b78e5, type: 3}
+  isReadable: 1
+  addToInventory: 1
+  pageImages:
+  - {fileID: 21300000, guid: 585b558d288b3444395caecef8a81043, type: 3}
+  - {fileID: 21300000, guid: b56ea103963fde9419b68c0927e17bdd, type: 3}
+  - {fileID: 21300000, guid: 3f24aa92e49979d4bb7f5ac8b0199b89, type: 3}
+  pageScale: {x: 900, y: 900}
+  showTextOnMainPage: 0
+  showNavigationButtons: 1
+  pageText:
+  - Page 1
+  - Page 2
+  - Page 3
+  mainTextAreaScale: {x: 495, y: 795}
+  mainTextSize: 25
+  mainFontType: {fileID: 12800000, guid: 1940cced16ff1d44a8894ce25c5d87dc, type: 3}
+  mainFontStyle: 0
+  mainFontColor: {r: 0, g: 0, b: 0, a: 1}
+  enableOverlayText: 0
+  showOverlayOnOpen: 0
+  overlayBGColor: {r: 1, g: 1, b: 1, a: 1}
+  overlayTextAreaScale: {x: 1045, y: 300}
+  overlayTextBGScale: {x: 1160, y: 300}
+  overlayTextSize: 25
+  overlayFontType: {fileID: 12800000, guid: 1940cced16ff1d44a8894ce25c5d87dc, type: 3}
+  overlayFontStyle: 0
+  overlayFontColor: {r: 0, g: 0, b: 0, a: 1}
+  allowAudioPlayback: 0
+  showPlaybackButtons: 1
+  playOnOpen: 0
+  noteReadAudio: {fileID: 11400000, guid: 532e117076dbbab468c13db0d795e0a6, type: 2}
+  notePageAudio: {fileID: 11400000, guid: db2251db6638c1e478571aabc4317d5b, type: 2}
+  isNoteTrigger: 0

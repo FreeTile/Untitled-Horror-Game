@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb5a3fdb08bf584383ace6784368d93, type: 3}
+  m_Name: 4- Picture Note 2 - Trigger Type
+  m_EditorClassIdentifier: 
+  noteID: 4
+  noteName: Fountain Picture
+  noteIcon: {fileID: 21300000, guid: d93f70bf9c6bc8b4d88e320fd881deef, type: 3}
+  addToInventory: 1
+  pageImages:
+  - {fileID: 21300000, guid: 2b35fa63f2c005443811b9cd553ef016, type: 3}
+  pageScale: {x: 900, y: 900}
+  showTextOnMainPage: 0
+  showNavigationButtons: 0
+  pageText:
+  - Null
+  mainTextAreaScale: {x: 0, y: 0}
+  mainTextSize: 0
+  mainFontAsset: {fileID: 0}
+  mainFontColor: {r: 0, g: 0, b: 0, a: 0}
+  enableOverlayText: 0
+  showOverlayOnOpen: 0
+  overlayBGColor: {r: 0, g: 0, b: 0, a: 0}
+  overlayTextAreaScale: {x: 0, y: 0}
+  overlayTextBGScale: {x: 0, y: 0}
+  overlayTextSize: 0
+  overlayFontAsset: {fileID: 0}
+  overlayFontColor: {r: 0, g: 0, b: 0, a: 0}
+  allowAudioPlayback: 0
+  showPlaybackButtons: 0
+  playOnOpen: 0
+  noteReadAudio: {fileID: 0}
+  notePageAudio: {fileID: 11400000, guid: db2251db6638c1e478571aabc4317d5b, type: 2}
+  isNoteTrigger: 1

@@ -7,16 +7,19 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class HealthManager : MonoBehaviour
 {
+
     public Image healthImage;
 
     public Sprite fullHealthSprite;
     public Sprite mediumHealthSprite;
     public Sprite lowHealthSprite;
 
-    public int health { get; private set; }
+    public int health { get; private set; } = 3;
+    
 
     public void DecreaseHealth()
     {
+        Debug.Log(health);
         health -= 1;
         if (health <= 0)
         {
