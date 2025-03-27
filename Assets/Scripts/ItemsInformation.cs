@@ -26,11 +26,3 @@ public class ItemSO : ScriptableObject
     public Items Type;
 }
 
-// class to keep track of inventory data
-
-// dictionRY of itewms, INT AMOUNT
- // removwe / ADD / FUNCTIONS
-
-// screen class
- // RESOURCES.LOAD("KEYDATA")
-

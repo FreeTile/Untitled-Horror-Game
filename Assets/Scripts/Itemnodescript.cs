@@ -12,17 +12,13 @@ using System.Linq.Expressions;
 public class Itemnodescript : Selectable 
 {
     [SerializeField] public TextMeshProUGUI countDisplay;
-    [SerializeField] private FlashLight Charge;
     public ItemSO itemInfo;
     public int ItemAmount;
 
-
-    // Start is called before the first frame update
     public void GetItemCount(int count)
-    {
-        countDisplay.text = count.ToString();
-        ItemAmount = count;        
-        Debug.Log(ItemAmount);
+    {        
+        ItemAmount = count;   
+        countDisplay.text = ItemAmount.ToString();
     }
 
     public void Init(ItemSO item)
@@ -43,7 +39,11 @@ public class Itemnodescript : Selectable
         if(itemInfo.consumable == true)
         {
             GetComponentInParent<InventoryUI>().ConsumeItem(itemInfo);
-            if (ItemAmount <= 0){ Destroy(gameObject); }
+            if (ItemAmount <= 0)
+            { 
+                Destroy(gameObject);
+                GetComponentInParent<InventoryUI>().Nodes.Remove(itemInfo.Type);
+            }
         }
     }
     // Update is called once per frame

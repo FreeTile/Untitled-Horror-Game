@@ -42,15 +42,17 @@ public class InventoryUI : MonoBehaviour
     {
         Items.Remove(item);
     }
-
-    public int GetNumConsumables()
-    {    
-        int count = 0;
-        foreach (var item in Items)
+    public void NodeInstantiate(ItemSO item, int amount)
+    {
+        var itemNode = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
+        itemNode.GetComponent<Itemnodescript>().Init(item);
+        
+        if(item.consumable == true)
         {
-           count++;
+            itemNode.GetComponent<Itemnodescript>().GetItemCount(amount);
         }
-        return count;
+
+        Nodes.Add(item.Type, itemNode.GetComponent<Itemnodescript>());
     }
 
 
@@ -74,10 +76,7 @@ public class InventoryUI : MonoBehaviour
                 else 
                 {
                     _PillsCount++;
-                    var itemNode = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
-                    itemNode.GetComponent<Itemnodescript>().Init(item);
-                    itemNode.GetComponent<Itemnodescript>().GetItemCount(_PillsCount);
-                    Nodes.Add(item.Type, itemNode.GetComponent<Itemnodescript>());
+                    NodeInstantiate(item, _PillsCount);
                 }
                 break;
             case ItemSO.Items.batteris:
@@ -95,19 +94,18 @@ public class InventoryUI : MonoBehaviour
                 else
                 {
                     _BatteryCount++;
-                    var itemNode = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
-                    itemNode.GetComponent<Itemnodescript>().Init(item);
-                    itemNode.GetComponent<Itemnodescript>().GetItemCount(_BatteryCount);
-                    Nodes.Add(item.Type, itemNode.GetComponent<Itemnodescript>());
+                    NodeInstantiate(item, _BatteryCount);
                 }
                 break;
             case ItemSO.Items.Chapter1Keys:
                 _HasKey1= true;
+
                 var keyNode1 = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
                 keyNode1.GetComponent<Itemnodescript>().Init(item);
                 break;
             case ItemSO.Items.Chapter2Keys:
                 _HasKey2= true;
+
                 var keyNode2 = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
                 keyNode2.GetComponent<Itemnodescript>().Init(item);
                 break;
@@ -139,7 +137,8 @@ public class InventoryUI : MonoBehaviour
                 case ItemSO.Items.batteris:
                     Remove(item);
                     _BatteryCount--;
-                    //add charge to flashlight ++
+                    FlashLight.IncreaseCharge(10);
+
                     foreach (var node in Nodes)
                     {
                         if (node.Key == ItemSO.Items.batteris)
@@ -155,8 +154,10 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
+        _BatteryCount = 0;
+        _PillsCount = 0;    
         foreach (var item in Items)
         {
             Initialized(item);
