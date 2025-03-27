@@ -1,90 +1,123 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
+using System.Collections;
+using FMODUnity;
+using FMOD.Studio;
+using UnityEngine.UI;
 
 public class SanityManager : MonoBehaviour
 {
+    [Header("Sanity Settings")]
+    [Range(0, 100)]
+    public int sanity = 70; // Initial sanity value
 
-    public static SanityManager Instance { get; private set; }
-    public Stage stage { get; private set; }
-    public float StageValue;
-    private float sanityValue;
-    private GameInputHandler input;
-    [SerializeField]
-    private float minDelta, maxDelta;
-    [SerializeField] 
-    private float measureDuration = 0.5f;
-    private float MouseSensitivity = 1f;
+    [Header("FMOD Ambient Event")]
+    [Tooltip("FMOD event path for the Ambient track")]
+    public string ambientEvent = "event:/Ambient/Ambient";
 
-    public enum Stage
-    {
-        Low,
-        Medium,
-        High
-    }
+    [Header("FMOD Parameter Names")]
+    [Tooltip("Parameter name for Low state")]
+    public string lowParameterName = "Low";
+    [Tooltip("Parameter name for Medium state")]
+    public string mediumParameterName = "Medium";
+    [Tooltip("Parameter name for High state")]
+    public string highParameterName = "High";
+
+    [Header("Screamer Settings")]
+    [Tooltip("Duration in seconds to measure mouse movement after a screamer trigger")]
+    public float screamerDuration = 0.5f;
+    [Tooltip("Multiplier for the impact of mouse movement on reducing sanity")]
+    public float screamerImpactMultiplier = 0.05f;
+
+    [Header("Sanity Brain DAMAGE")]
+    public Image sanityBrain;
+
+    public Sprite highSanitySprite;
+    public Sprite mediumSanitySprite;
+    public Sprite lowSanitySprite;
+
+    private EventInstance ambientInstance;
+
     void Start()
     {
-        if (Instance == null) //Creating syngleton instance at the beginning 
+        // Create and start the ambient event instance
+        ambientInstance = RuntimeManager.CreateInstance(ambientEvent);
+        ambientInstance.start();
+        UpdateSoundParameters();
+    }
+
+    // Update FMOD parameters based on current sanity value
+    void UpdateSoundParameters()
+    {
+        Debug.Log("Current Sanity is: " + sanity);
+        if (sanity <= 29)
         {
-            Instance = this;
+            sanityBrain.sprite = lowSanitySprite;
+            ambientInstance.setParameterByName(lowParameterName, 1.0f);
+            ambientInstance.setParameterByName(mediumParameterName, 0.0f);
+            ambientInstance.setParameterByName(highParameterName, 0.0f);
+            Debug.Log("State set to Low");
+        }
+        else if (sanity <= 69)
+        {
+            sanityBrain.sprite = mediumSanitySprite;
+            ambientInstance.setParameterByName(lowParameterName, 0.0f);
+            ambientInstance.setParameterByName(mediumParameterName, 1.0f);
+            ambientInstance.setParameterByName(highParameterName, 0.0f);
+            Debug.Log("State set to Medium");
         }
         else
         {
-            Destroy(gameObject);
-        }
-        stage = Stage.High;
-        StageValue = 100;
-        input = GameInputHandler.Instance;
-        MouseSensitivity = this.GetComponent<PlayerController>().MouseSensitivity;
-    }
-
-    public void DecreaseSanity(float Value)
-    {
-        StageValue -= Value;
-        if (StageValue <= 100 && stage != Stage.High)
-        {
-            stage--;
+            sanityBrain.sprite = highSanitySprite;
+            ambientInstance.setParameterByName(lowParameterName, 0.0f);
+            ambientInstance.setParameterByName(mediumParameterName, 0.0f);
+            ambientInstance.setParameterByName(highParameterName, 1.0f);
+            Debug.Log("State set to High");
         }
     }
 
-    public void IncreaseSanity(float Value)
+    // Method to trigger the screamer event
+    public void TriggerScreamer()
     {
-        sanityValue += Value;
-        if (StageValue >= 100 && stage != Stage.High)
-        {
-            stage++;
-        }
+        StartCoroutine(MeasureMouseJerk());
     }
 
-    public void CheckFearLevel(int minSanityLoss, int maxSanityLoss)
+    // Coroutine that measures total mouse movement during the screamer duration,
+    // calculates the reduction in sanity, and updates the FMOD parameters accordingly.
+    IEnumerator MeasureMouseJerk()
     {
-        StartCoroutine(MeasureMouseShake(minSanityLoss, maxSanityLoss));
-    }
-
-    private IEnumerator MeasureMouseShake(int minSanityLoss, int maxSanityLoss)
-    {
-
         float elapsed = 0f;
-        float Delta = 0f;
+        float totalMouseDelta = 0f;
+        Vector3 lastMousePosition = Input.mousePosition;
 
-        while (elapsed < measureDuration)
+        while (elapsed < screamerDuration)
         {
-            if (input.LookInput.magnitude * MouseSensitivity > Delta)
-            {
-                Delta = input.LookInput.magnitude * MouseSensitivity;
-            }
-
-            elapsed += Time.deltaTime;
             yield return null;
+            Vector3 currentMousePosition = Input.mousePosition;
+            totalMouseDelta += Vector3.Distance(currentMousePosition, lastMousePosition);
+            lastMousePosition = currentMousePosition;
+            elapsed += Time.deltaTime;
         }
 
-        float clampedDelta = Mathf.Clamp(Delta, minDelta, maxDelta);
+        int sanityReduction = Mathf.RoundToInt(totalMouseDelta * screamerImpactMultiplier);
+        sanity -= sanityReduction;
+        Debug.Log("Sanity reduction is: " + sanityReduction);
+        sanity = Mathf.Clamp(sanity, 0, 100);
 
-        float t = (clampedDelta - minDelta) / (maxDelta - minDelta);
+        UpdateSoundParameters();
+    }
 
-        float finalSanityLoss = Mathf.Lerp(minSanityLoss, maxSanityLoss, t);
+    // Method to decrease sanity by a given amount and update parameters accordingly
+    public void DecreaseSanity(int amount)
+    {
+        sanity -= amount;
+        sanity = Mathf.Clamp(sanity, 0, 100);
+        UpdateSoundParameters();
+    }
 
-        DecreaseSanity(finalSanityLoss);
+    // Stop and release the FMOD event instance when the object is destroyed
+    private void OnDestroy()
+    {
+        ambientInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        ambientInstance.release();
     }
 }

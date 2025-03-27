@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     GameInputHandler inputHandler;
     [SerializeField] private GameObject InventoryUI;
 
+    public SanityManager sanityManager;
+
     //Game states affect player's controls
     public enum State
     {

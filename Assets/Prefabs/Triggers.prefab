@@ -93,7 +93,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5299022086932453292}
   - {fileID: 669854128257783335}
   - {fileID: 885142022761887188}
   - {fileID: 2118849142750806425}
@@ -101,10 +100,10 @@ Transform:
   - {fileID: 3828701098676543720}
   - {fileID: 330713105403546974}
   - {fileID: 1693410565993948841}
+  - {fileID: 5299022086932453292}
   - {fileID: 233412004461789979}
   - {fileID: 4685844725287894227}
   - {fileID: 5280625933997522733}
-  - {fileID: 4209045317416723264}
   - {fileID: 5526322580850177262}
   - {fileID: 1562369741086919631}
   - {fileID: 3283817651656295418}
@@ -437,37 +436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4033b5f54c685074a8b44647ac8e79a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &3290026057183643444
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3018484244030279965}
-  m_Layer: 16
-  m_Name: AudioSource
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3018484244030279965
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3290026057183643444}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.75, y: 2, z: 8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 885142022761887188}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3307530605411200161
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,6 +556,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugLog: Something happened in the kitchen
+  explosionForce: 20
+  explosionRadius: 5
+  upwardModifier: 1
+  explosionCenter: {fileID: 0}
+  Trigger2: {fileID: 0}
+  plateDroppedSound: {fileID: 0}
+  kitchenProps: []
 --- !u!1 &3335322843383658090
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5299022086932453292}
   m_Layer: 16
-  m_Name: Event 1
+  m_Name: Event 67
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,7 +893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 885142022761887188}
   m_Layer: 16
-  m_Name: Event 3
+  m_Name: Event 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,7 +913,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3211864669150090549}
-  - {fileID: 3018484244030279965}
   m_Father: {fileID: 5760563421439369818}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4718431249842012040
@@ -1264,37 +1238,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugLog: Event 2 Screamer
---- !u!1 &6055644977839766368
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4209045317416723264}
-  m_Layer: 16
-  m_Name: AudioSource
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4209045317416723264
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6055644977839766368}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.75, y: 2, z: 8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5760563421439369818}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  lightBulb: {fileID: 0}
+  minSanityLoss: 50
+  maxSanityLoss: 80
 --- !u!1 &6420064529011725336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,7 +1251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 669854128257783335}
   m_Layer: 16
-  m_Name: Event 2
+  m_Name: Event 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1638,6 +1584,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugLog: Event 2 Screamer
+  lightBulb: {fileID: 0}
+  minSanityLoss: 50
+  maxSanityLoss: 80
 --- !u!1 &9007702379764318755
 GameObject:
   m_ObjectHideFlags: 0
