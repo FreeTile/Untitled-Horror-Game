@@ -1773,7 +1773,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2890,7 +2890,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &1256264534
 GameObject:
   m_ObjectHideFlags: 0
@@ -4679,6 +4679,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 913108874944949264, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3567533389289644251, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.15804759
