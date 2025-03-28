@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1587da29573449d42a584c9d61cf5e24, type: 3}
   m_Name: Pills
   m_EditorClassIdentifier: 
-  type: 0
   itemName: Pills
-  description: 
-  icon: {fileID: 0}
+  description: Some old sanity pill, it'll keep me going for now if i take them.
+  icon: {fileID: 21300000, guid: 2b7099adb54a70b438e92d98d04107cf, type: 3}
   consumable: 1
+  Type: 0

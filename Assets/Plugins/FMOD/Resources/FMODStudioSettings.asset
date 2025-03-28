@@ -549,10 +549,11 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
-  - Master
+  - MasterBank
   Banks:
-  - Chapter1
-  - SFX
+  - CharacterBank
+  - MusicBank
+  - UIBank
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
