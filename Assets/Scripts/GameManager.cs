@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
     GameInputHandler inputHandler;
     [SerializeField] private GameObject InventoryUI;
 
+    public EventReference pauseEnterSound;
+    public EventReference journalEnterSound;
+
+    public SanityManager sanityManager;
+
     //Game states affect player's controls
     public enum State
     {
@@ -70,6 +75,7 @@ public class GameManager : MonoBehaviour
 
     public void ProceedEsc()
     {
+        RuntimeManager.PlayOneShot(pauseEnterSound);
         Debug.Log("Proceeding Esc");
         if (state == State.Game)
         {
@@ -107,6 +113,7 @@ public class GameManager : MonoBehaviour
         {
             state = State.Journal;
             //Open the journal
+            RuntimeManager.PlayOneShot(journalEnterSound);
         }
         switchControlSystem();
     }

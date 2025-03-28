@@ -13,6 +13,7 @@ TagManager:
   - Lock
   - Pickable
   - Lightswitch
+  - Glitch
   layers:
   - Default
   - TransparentFX
