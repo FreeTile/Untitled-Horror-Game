@@ -93,7 +93,8 @@ public class GameManager : MonoBehaviour
     {
         if (state == State.Inventory)
         {
-            state = State.Game;
+            state = State.Game;            
+            InventoryUI.SetActive(false);
         }
         else if (state != State.Esc)
         {

@@ -417,12 +417,12 @@ GameObject:
   - component: {fileID: 7980472547694863673}
   - component: {fileID: 8062864552782199975}
   m_Layer: 5
-  m_Name: InGameUI
+  m_Name: PlayerInventoryUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2676593267907020784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -521,16 +521,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryInfo: {fileID: 0}
-  ItemNodePrefab: {fileID: 4545063397382014458, guid: fd992efd99676ed43919662a025bec67, type: 3}
+  ItemNodePrefab: {fileID: 238001203859082653, guid: fd992efd99676ed43919662a025bec67, type: 3}
   Items: []
   _PillsCount: 0
   _BatteryCount: 0
   _HasKey1: 0
   _HasKey2: 0
-  InventoryContainer: {fileID: 0}
-  ItemName: {fileID: 0}
-  ItemDescription: {fileID: 0}
-  ItemIcon: {fileID: 0}
+  InventoryContainer: {fileID: 6428728191806524805}
+  ItemName: {fileID: 8745908999429916505}
+  ItemDescription: {fileID: 5372457081753463031}
+  ItemIcon: {fileID: 7393469119200159640}
 --- !u!1 &5297325467254956608
 GameObject:
   m_ObjectHideFlags: 0

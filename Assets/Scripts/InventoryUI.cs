@@ -8,76 +8,159 @@ using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Android;
+using UnityEngine.EventSystems;
+using System.Linq;
+using Krearthur.Utils;
+using Unity.VisualScripting;
 
 public class InventoryUI : MonoBehaviour
 {
     //Item Inventory information
     public PlayerInventory InventoryInfo;
-    public GameObject ItemNodePrefab;
+    public Button ItemNodePrefab;
     public List<ItemSO> Items;
+    public Dictionary<ItemSO.Items, Itemnodescript> Nodes=  new Dictionary<ItemSO.Items, Itemnodescript>();
     public int _PillsCount;
     public int _BatteryCount;
-    public int _HasKey1;
-    public int _HasKey2;
+    public bool _HasKey1;
+    public bool _HasKey2;
+
 
     [Space] // UI
     public GameObject InventoryContainer;
-    public TMP_Text ItemName;
-    public TMP_Text ItemDescription;
-    public Sprite ItemIcon;
+    public TextMeshProUGUI ItemName;
+    public TextMeshProUGUI ItemDescription;
+    public Image ItemIcon;
 
     public void Add(ItemSO item)
     {
         Items.Add(item);
+        Initialized(item);
     }
 
     public void Remove(ItemSO item)
     {
         Items.Remove(item);
     }
-
-    public void AddInventoryNodes()
+    public void NodeInstantiate(ItemSO item, int amount)
     {
-        // todo 0 : move this to it's own function and call here ( and in the on click later)
-        foreach (var item in Items)
+        var itemNode = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
+        itemNode.GetComponent<Itemnodescript>().Init(item);
+        
+        if(item.consumable == true)
         {
-            // var itemNode = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);   
-            //TODo 1
-            // instanriate new prefab instancwe
-            // get the compooinenbt for nww itemnode script
-            // call init on that script and pass in as param this which will give it a reference back to the inventory screen to update selected item.
-            //  init 2ill also take in it's own SO data
+            itemNode.GetComponent<Itemnodescript>().GetItemCount(amount);
+        }
 
-            // todo 3 
-            // in the neqw ItemNode Script it qill have:
-            // publlic init ( gamwobjwect parwent, itemSO dta)
-            // here you will use the sodata to set the image of the button and 
-            // SPRITE = SODATA.ICON
-            
-            //todo 4
-            // ON CLICK()
-             // inventorymNgwe.clickedbtn(sodataa)
+        Nodes.Add(item.Type, itemNode.GetComponent<Itemnodescript>());
+    }
+
+
+    //Add note and add items to the Ui
+    private void Initialized(ItemSO item)
+    {
+        switch (item.Type)
+        {
+            case ItemSO.Items.Pills:
+                if(Nodes.ContainsKey(item.Type) && item.Type == ItemSO.Items.Pills)
+                {
+                    _PillsCount++;
+                    foreach (var node in Nodes)
+                    {
+                        if(node.Key == ItemSO.Items.Pills)  
+                        {
+                            node.Value.GetItemCount(_PillsCount);  
+                        }
+                    }
+                }
+                else 
+                {
+                    _PillsCount++;
+                    NodeInstantiate(item, _PillsCount);
+                }
+                break;
+            case ItemSO.Items.batteris:
+                if(Nodes.ContainsKey(item.Type) && item.Type == ItemSO.Items.batteris)
+                {
+                    _BatteryCount++;
+                    foreach (var node in Nodes)
+                    {
+                        if (node.Key == ItemSO.Items.batteris)
+                        {
+                            node.Value.GetItemCount(_BatteryCount); 
+                        }
+                    }
+                }
+                else
+                {
+                    _BatteryCount++;
+                    NodeInstantiate(item, _BatteryCount);
+                }
+                break;
+            case ItemSO.Items.Chapter1Keys:
+                _HasKey1= true;
+
+                var keyNode1 = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
+                keyNode1.GetComponent<Itemnodescript>().Init(item);
+                break;
+            case ItemSO.Items.Chapter2Keys:
+                _HasKey2= true;
+
+                var keyNode2 = Instantiate(ItemNodePrefab, InventoryContainer.transform.position, InventoryContainer.transform.rotation, InventoryContainer.transform);
+                keyNode2.GetComponent<Itemnodescript>().Init(item);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    //When player consume item removes items from list and updates the count 
+    public void ConsumeItem(ItemSO item)
+    {
+        if (item.consumable == true)
+        {
+            switch (item.Type)
+            {
+                case ItemSO.Items.Pills:
+                    Remove(item);
+                    _PillsCount--;
+                    // Add sanity ++
+                    foreach (var node in Nodes)
+                    {
+                        if (node.Key == ItemSO.Items.Pills)
+                        {
+                            node.Value.GetItemCount(_PillsCount);
+                        }
+                    }
+                    break;
+                case ItemSO.Items.batteris:
+                    Remove(item);
+                    _BatteryCount--;
+                    FlashLight.IncreaseCharge(10);
+
+                    foreach (var node in Nodes)
+                    {
+                        if (node.Key == ItemSO.Items.batteris)
+                        {
+                            node.Value.GetItemCount(_BatteryCount);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+
+            }
         }
     }
 
-    //todo 2
-    // in this invewntory script crEATE A SEET SELECTED FUNCTION( INT ID)
-    // this will set an id of selected item, and also populate the data on the right with info from thw SOdaata.
-       // only show use btn if consumable
-
-    // todo 5
-    // we need an onclick for use.
-       // remove one from inventory count, update displayed list 
-
-    // Start is called before the first frame update
     void Start()
     {
-        AddInventoryNodes();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _BatteryCount = 0;
+        _PillsCount = 0;    
+        foreach (var item in Items)
+        {
+            Initialized(item);
+        }
     }
 }
