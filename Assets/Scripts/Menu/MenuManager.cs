@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public EventReference ValueChange;
+    public EventReference BackSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,15 @@ public class MenuManager : MonoBehaviour
         {
             Debug.LogWarning("GlitchFeature instance is not available.");
         }
+    }
+    
+    public void PlaySoundBackButton()
+    {
+        RuntimeManager.PlayOneShot(BackSound);
+    }
+    public void PlaySoundValueChange()
+    {
+        RuntimeManager.PlayOneShot(ValueChange);
     }
 
 }

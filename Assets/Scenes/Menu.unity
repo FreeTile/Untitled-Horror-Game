@@ -2111,6 +2111,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488ad569d33e3bb44b8b65eed32d0a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ValueChange:
+    Guid:
+      Data1: -1293726840
+      Data2: 1103180824
+      Data3: 1533458331
+      Data4: -1287755686
+    Path: event:/UI/ValueChange
+  BackSound:
+    Guid:
+      Data1: -1309677048
+      Data2: 1328958977
+      Data3: 36244642
+      Data4: -1079951903
+    Path: event:/UI/UI Select
 --- !u!1 &437934782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,6 +2418,7 @@ GameObject:
   - component: {fileID: 481407644}
   - component: {fileID: 481407643}
   - component: {fileID: 481407642}
+  - component: {fileID: 481407645}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -2474,19 +2489,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 481407643}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 418229258}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: ToggleGlitch
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &481407643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2525,6 +2528,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481407640}
   m_CullTransparentMesh: 1
+--- !u!114 &481407645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481407640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84a012ab74082840851d20319203472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0, g: 1, b: 0, a: 1}
+  UISelect:
+    Guid:
+      Data1: -1309677048
+      Data2: 1328958977
+      Data3: 36244642
+      Data4: -1079951903
+    Path: event:/UI/UI Select
 --- !u!1 &497538006
 GameObject:
   m_ObjectHideFlags: 0
@@ -4729,6 +4753,7 @@ GameObject:
   - component: {fileID: 1019098451}
   - component: {fileID: 1019098450}
   - component: {fileID: 1019098449}
+  - component: {fileID: 1019098452}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -4802,6 +4827,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 418229258}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: PlaySoundValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 418229258}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -4850,6 +4887,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019098447}
   m_CullTransparentMesh: 1
+--- !u!114 &1019098452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019098447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84a012ab74082840851d20319203472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0, g: 1, b: 0, a: 1}
+  UISelect:
+    Guid:
+      Data1: -1309677048
+      Data2: 1328958977
+      Data3: 36244642
+      Data4: -1079951903
+    Path: event:/UI/UI Select
 --- !u!1 &1031823202
 GameObject:
   m_ObjectHideFlags: 0
@@ -5727,6 +5785,7 @@ GameObject:
   - component: {fileID: 1261140078}
   - component: {fileID: 1261140077}
   - component: {fileID: 1261140076}
+  - component: {fileID: 1261140079}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -5798,6 +5857,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 418229258}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: PlaySoundValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1521782310}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -5860,6 +5931,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261140074}
   m_CullTransparentMesh: 1
+--- !u!114 &1261140079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261140074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84a012ab74082840851d20319203472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0, g: 1, b: 0, a: 1}
+  UISelect:
+    Guid:
+      Data1: -1309677048
+      Data2: 1328958977
+      Data3: 36244642
+      Data4: -1079951903
+    Path: event:/UI/UI Select
 --- !u!1 &1290750663
 GameObject:
   m_ObjectHideFlags: 0
@@ -9443,6 +9535,7 @@ GameObject:
   - component: {fileID: 2118378785}
   - component: {fileID: 2118378784}
   - component: {fileID: 2118378783}
+  - component: {fileID: 2118378786}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -9516,6 +9609,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 418229258}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: PlaySoundValueChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 418229258}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: ToggleGlitch
         m_Mode: 1
         m_Arguments:
@@ -9576,6 +9681,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118378781}
   m_CullTransparentMesh: 1
+--- !u!114 &2118378786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118378781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84a012ab74082840851d20319203472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0, g: 1, b: 0, a: 1}
+  UISelect:
+    Guid:
+      Data1: -1309677048
+      Data2: 1328958977
+      Data3: 36244642
+      Data4: -1079951903
+    Path: event:/UI/UI Select
 --- !u!1 &2122089343
 GameObject:
   m_ObjectHideFlags: 0

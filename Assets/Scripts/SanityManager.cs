@@ -39,12 +39,13 @@ public class SanityManager : MonoBehaviour
 
     void Start()
     {
-        // Create and start the ambient event instance
-        FindObjectOfType<GlitchFeature>().glitchEnabled = false;
-        Debug.Log(FindObjectOfType<GlitchFeature>().glitchEnabled);
         ambientInstance = RuntimeManager.CreateInstance(ambientEvent);
         ambientInstance.start();
         UpdateSoundParameters();
+        // Create and start the ambient event instance
+        FindObjectOfType<GlitchFeature>().glitchEnabled = false;
+        Debug.Log(FindObjectOfType<GlitchFeature>().glitchEnabled);
+        
     }
 
     // Update FMOD parameters based on current sanity value
