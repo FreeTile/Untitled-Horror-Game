@@ -119,7 +119,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 4380364831848576895}
   - component: {fileID: 3302248851378420455}
   - component: {fileID: 85704833937799715}
+  - component: {fileID: 8285977765407290909}
   m_Layer: 15
   m_Name: Player
   m_TagString: Player
@@ -500,6 +501,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 3446018375543181461, guid: bd35e9d2edfc3424aa154f47a9a5afaf, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446018375543181461, guid: bd35e9d2edfc3424aa154f47a9a5afaf, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446018375543181461, guid: bd35e9d2edfc3424aa154f47a9a5afaf, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 4271792816723437547, guid: bd35e9d2edfc3424aa154f47a9a5afaf, type: 3}
       propertyPath: m_Layer
       value: 15
@@ -584,6 +597,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5010668901010766369, guid: bd35e9d2edfc3424aa154f47a9a5afaf, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 5055094015207146136}
     - target: {fileID: 5246372794034091397, guid: bd35e9d2edfc3424aa154f47a9a5afaf, type: 3}
       propertyPath: m_Layer
       value: 15
