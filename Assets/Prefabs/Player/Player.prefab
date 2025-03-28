@@ -167,7 +167,7 @@ MonoBehaviour:
   m_House: 0
   m_Grass: 0
   m_Debug: 0
-  animator: {fileID: 3346527733285454825}
+  animator: {fileID: 0}
 --- !u!114 &197265348606539947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
     m_Bits: 1024
   breakDistance: 1
   ThrowForce: 20
-  animator: {fileID: 3346527733285454825}
+  animator: {fileID: 0}
 --- !u!114 &4380364831848576895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
   MaxAngle: 75
   maxIntensity: 10
   minIntensity: 1
-  batteryFillImage: {fileID: 3945011462975139908}
+  batteryFillImage: {fileID: 0}
   flashlightDeadPopupText: {fileID: 0}
   m_EventPath:
     Guid:
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24be685041f946240aa5f41933ea9672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthImage: {fileID: 7572529105508066655}
+  healthImage: {fileID: 0}
   fullHealthSprite: {fileID: 21300000, guid: 606d85b8b23dd974a88ab445173a6bcd, type: 3}
   mediumHealthSprite: {fileID: 21300000, guid: 67bdb3fd42d4efd42929bfdce6a61ac8, type: 3}
   lowHealthSprite: {fileID: 21300000, guid: 211820b61e7ac354685970fb3189456a, type: 3}
