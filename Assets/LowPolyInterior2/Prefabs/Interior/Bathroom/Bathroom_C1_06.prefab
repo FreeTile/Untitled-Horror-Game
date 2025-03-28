@@ -295,7 +295,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!59 &4585031832883524055
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -482,7 +482,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!59 &614644490917789663
 HingeJoint:
   m_ObjectHideFlags: 0
