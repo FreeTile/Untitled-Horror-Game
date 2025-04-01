@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3507099714055176967}
-  - component: {fileID: 3796723867653293651}
-  m_Layer: 0
+  - component: {fileID: 7574775093100590759}
+  - component: {fileID: 2575432607745527467}
+  m_Layer: 10
   m_Name: Battery
   m_TagString: Pickable
   m_Icon: {fileID: 0}
@@ -27,13 +28,35 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.654, y: 0.5, z: 4.268096}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4097022945626370655}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3796723867653293651
+--- !u!64 &7574775093100590759
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314563029838748093}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: a6c5ed515b9527b4080830a01203a4f5, type: 3}
+--- !u!114 &2575432607745527467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2600a83bc9b464e9f874168365e177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  ItemInfo: {fileID: 11400000, guid: 33feee0d32d4bc04fbb5ff617cf1c786, type: 2}
 --- !u!1 &5074892499390112100
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +80,7 @@ GameObject:
   - component: {fileID: 4097022945626370655}
   - component: {fileID: 1156479477619690261}
   - component: {fileID: 2389469476479184769}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +97,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3507099714055176967}

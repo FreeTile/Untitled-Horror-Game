@@ -27,6 +27,7 @@ public class LDoor : MonoBehaviour
             rb = gameObject.AddComponent<Rigidbody>();
         }
         rb.drag = 0.5f;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
 
         Rigidbody parentRb = transform.parent.GetComponent<Rigidbody>();
         if (parentRb == null)

@@ -39517,6 +39517,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3796723867653293651, guid: 1672bc081506e0d44b96948fb1906833, type: 3}
+      propertyPath: ItemInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 33feee0d32d4bc04fbb5ff617cf1c786, type: 2}
     - target: {fileID: 4314563029838748093, guid: 1672bc081506e0d44b96948fb1906833, type: 3}
       propertyPath: m_Name
       value: Battery

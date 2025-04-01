@@ -527,7 +527,7 @@ MonoBehaviour:
   HasSourceProject: 0
   HasPlatforms: 0
   sourceProjectPath: ../../AudioFMOD/AudioHorrorFMOD.fspro
-  sourceBankPath: Assets/StreamingAssets
+  sourceBankPath: Assets/Plugins/StreamingAssets
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -549,10 +549,11 @@ MonoBehaviour:
   RealChannelSettings: []
   Plugins: []
   MasterBanks:
-  - Master
+  - MasterBank
   Banks:
-  - Chapter1
-  - SFX
+  - CharacterBank
+  - MusicBank
+  - UIBank
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

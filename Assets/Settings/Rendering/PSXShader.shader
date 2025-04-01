@@ -44,7 +44,7 @@ Shader "Hidden/PSXEffect"
             {
                 float2 pixelUV = floor(i.uv * _Pixelate) / _Pixelate;
                 float4 col = tex2D(_MainTex, pixelUV);
-                col.rgb = Quantize(col.rgb, 50);
+                col.rgb = Quantize(col.rgb, 150);
                 return col;
             }
             ENDCG
