@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     glitchMaterial: {fileID: 2100000, guid: 56c86196ac3a73b4999d9ebfeb5669be, type: 2}
-  glitchEnabled: 0
+  glitchEnabled: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a05c7e3246719c469e1a74dcbe0ea19, type: 3}
   m_Name: PSX
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
-    psxMaterial: {fileID: 0}
+    psxMaterial: {fileID: 2100000, guid: 7454811a049a9cf4c97510b7020fc3d7, type: 2}

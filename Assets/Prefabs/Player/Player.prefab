@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 4380364831848576895}
   - component: {fileID: 3302248851378420455}
   - component: {fileID: 85704833937799715}
+  - component: {fileID: 3161863021651374784}
   m_Layer: 15
   m_Name: Player
   m_TagString: Player
@@ -406,6 +407,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 3220845423719238557}
+--- !u!114 &3161863021651374784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5553044814881422271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28665f45dbc9b2a44adf094b7c25025e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sanity: 70
+  ambientEvent: event:/Ambient/Ambient
+  lowParameterName: Low
+  mediumParameterName: Medium
+  highParameterName: High
+  screamerDuration: 0.5
+  screamerImpactMultiplier: 0.05
+  sanityBrain: {fileID: 2291641856546906023}
+  highSanitySprite: {fileID: 21300000, guid: 35a4c58476b2e3a40bb5cd7fcd756850, type: 3}
+  mediumSanitySprite: {fileID: 21300000, guid: a5df227f1bee3994bbef23ed99ff9ae4, type: 3}
+  lowSanitySprite: {fileID: 21300000, guid: b6f9c82ced3b9514b9ff5b728dd26f96, type: 3}
 --- !u!1 &5622391733956466670
 GameObject:
   m_ObjectHideFlags: 0
@@ -5449,6 +5473,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4308246201134249175, guid: bd35e9d2edfc3424aa154f47a9a5afaf, type: 3}
   m_PrefabInstance: {fileID: 4361514015054591174}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2291641856546906023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2543049187139939169, guid: bd35e9d2edfc3424aa154f47a9a5afaf, type: 3}
+  m_PrefabInstance: {fileID: 4361514015054591174}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &3346527733285454825 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1366408030753552175, guid: bd35e9d2edfc3424aa154f47a9a5afaf, type: 3}
