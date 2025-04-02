@@ -19,6 +19,13 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Text brightnessValueText;
     public TMP_Text gammaValueText;
 
+    public Slider masterSlider;
+    public Slider musicSlider;
+    public Slider sfxSlider;
+    public TMP_Text masterValueText;
+    public TMP_Text musicValueText;
+    public TMP_Text sfxValueText;
+
     Resolution[] AllResolutions;
     int SelectedResolution;
     List<Resolution> SelectedResolutionList = new List<Resolution>();
@@ -101,6 +108,27 @@ public class SettingsMenu : MonoBehaviour
         }
     }
 
+    public void SetMasterVolume(float value)
+    {
+        PlayerPrefs.SetFloat("MasterVolume", value);
+        if (masterValueText != null)
+            masterValueText.text = Mathf.RoundToInt(value * 100f).ToString();
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        PlayerPrefs.SetFloat("MusicVolume", value);
+        if (musicValueText != null)
+            musicValueText.text = Mathf.RoundToInt(value * 100f).ToString();
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        PlayerPrefs.SetFloat("SFXVolume", value);
+        if (sfxValueText != null)
+            sfxValueText.text = Mathf.RoundToInt(value * 100f).ToString();
+    }
+
     void LoadSettings()
     {
         // Resolution
@@ -144,5 +172,18 @@ public class SettingsMenu : MonoBehaviour
             if (colorAdjust != null) colorAdjust.contrast.value = gamma;
             if (gammaValueText != null) gammaValueText.text = gamma.ToString("F0");
         }
+
+        // Audio Volumes
+        float master = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        masterSlider.value = master;
+        musicSlider.value = music;
+        sfxSlider.value = sfx;
+
+        if (masterValueText != null) masterValueText.text = Mathf.RoundToInt(master * 100f).ToString();
+        if (musicValueText != null) musicValueText.text = Mathf.RoundToInt(music * 100f).ToString();
+        if (sfxValueText != null) sfxValueText.text = Mathf.RoundToInt(sfx * 100f).ToString();
     }
 }
