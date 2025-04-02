@@ -87,4 +87,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    psxMaterial: {fileID: 0}
+    psxMaterial: {fileID: 2100000, guid: 7454811a049a9cf4c97510b7020fc3d7, type: 2}
