@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
 
     public TextMeshProUGUI versionText;
     public EventReference ClickSound;
-    public EventReference BackSound;
+    public EventReference UISelected;
     public EventReference MainMenuMusic;
     // Start is called before the first frame update
     void Start()
@@ -49,9 +49,9 @@ public class MenuManager : MonoBehaviour
    
 
     //Sound stuff goes here
-    public void PlaySoundBackButton()
+    public void PlaySoundButtonSelected()
     {
-        RuntimeManager.PlayOneShot(BackSound);
+        RuntimeManager.PlayOneShot(UISelected);
     }
     public void PlaySoundClick()
     {

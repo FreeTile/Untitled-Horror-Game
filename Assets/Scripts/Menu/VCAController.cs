@@ -9,16 +9,20 @@ public class VCAController : MonoBehaviour
     private FMOD.Studio.VCA VcaController;
     public string VcaName;
 
+    [SerializeField] private float vcaVolume;
+
     private Slider slider;
     void Start()
     {
         VcaController = FMODUnity.RuntimeManager.GetVCA("vca:/" + VcaName);
         slider = GetComponent<Slider>();
+        VcaController.getVolume(out vcaVolume);
     }
 
     public void SetVolume(float volume)
     {
         VcaController.setVolume(volume);
+        VcaController.getVolume(out vcaVolume);
     }
 
 }

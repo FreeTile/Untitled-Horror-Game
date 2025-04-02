@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity; 
+using FMODUnity;
+using FMOD.Studio;
 
 [RequireComponent(typeof(GameInputHandler))]
 [RequireComponent(typeof(MainInputHandler))]
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public EventReference pauseEnterSound;
     public EventReference journalEnterSound;
+    private EventInstance pauseSound;
+    private EventInstance journalSound;
 
     public SanityManager sanityManager;
 
@@ -38,6 +41,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        pauseSound = RuntimeManager.CreateInstance(pauseEnterSound);
+        journalSound = RuntimeManager.CreateInstance(journalEnterSound);
 
         inputHandler = GetComponent<GameInputHandler>();
 
@@ -75,16 +80,20 @@ public class GameManager : MonoBehaviour
 
     public void ProceedEsc()
     {
-        RuntimeManager.PlayOneShot(pauseEnterSound);
         Debug.Log("Proceeding Esc");
         if (state == State.Game)
         {
             state = State.Esc;
             //Turn on Menu on canvas
+            pauseSound.start();
+            SanityManager.ambientInstance.setVolume(0.2f);
+
         }
         else
         {
+            pauseSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             state = State.Game;
+            SanityManager.ambientInstance.setVolume(1f);
         }
         switchControlSystem();
     }
@@ -93,11 +102,14 @@ public class GameManager : MonoBehaviour
     {
         if (state == State.Inventory)
         {
+            SanityManager.ambientInstance.setVolume(1f);
             state = State.Game;            
             InventoryUI.SetActive(false);
+
         }
         else if (state != State.Esc)
         {
+            SanityManager.ambientInstance.setVolume(0.2f);
             state = State.Inventory;
             InventoryUI.SetActive(true);
         }
@@ -108,12 +120,14 @@ public class GameManager : MonoBehaviour
     {
         if (state == State.Journal)
         {
+            SanityManager.ambientInstance.setVolume(1f);
             state = State.Game;
         }
         else if (state != State.Esc)
         {
             state = State.Journal;
             //Open the journal
+            SanityManager.ambientInstance.setVolume(0.2f);
             RuntimeManager.PlayOneShot(journalEnterSound);
         }
         switchControlSystem();
