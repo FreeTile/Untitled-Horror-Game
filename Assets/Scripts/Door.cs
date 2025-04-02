@@ -3,6 +3,8 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(HingeJoint))]
 public class Door : MonoBehaviour
 {
     [Header("FMOD Events")]
@@ -26,6 +28,11 @@ public class Door : MonoBehaviour
     private const float angleThreshold = 1f;
 
     private bool isInitialized = false;
+
+    private void OnValidate()
+    {
+        GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+    }
 
     private void Start()
     {
