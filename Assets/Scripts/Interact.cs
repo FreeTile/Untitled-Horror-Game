@@ -1,5 +1,4 @@
 using Unity.VisualScripting;
-//using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.Shapes;
@@ -15,8 +14,10 @@ public class Interact : MonoBehaviour
     [SerializeField] private float interactDistance = 1.5f;
 
     [SerializeField] private Transform holdPosition;
-    GameObject dragPointGameobject;
-    private int leftDoor = 0;
+    [SerializeField] private float positionSpring = 100f;
+    [SerializeField] private float positionDamper = 50f;
+    [SerializeField] private float angularSpring = 100f;
+    [SerializeField] private float angularDamper = 20f;
     [SerializeField] private Camera MCamera;
     [SerializeField] private LayerMask mask;
 
@@ -156,25 +157,41 @@ public class Interact : MonoBehaviour
         currentÑJoint.anchor = localHitPoint;
         currentÑJoint.connectedAnchor = Vector3.zero;
 
-        currentÑJoint.angularXMotion = ConfigurableJointMotion.Locked;
-        currentÑJoint.angularYMotion = ConfigurableJointMotion.Locked;
-        currentÑJoint.angularZMotion = ConfigurableJointMotion.Locked;
+        currentÑJoint.angularXMotion = ConfigurableJointMotion.Limited;
+        currentÑJoint.angularYMotion = ConfigurableJointMotion.Limited;
+        currentÑJoint.angularZMotion = ConfigurableJointMotion.Limited;
 
-        currentÑJoint.xMotion = ConfigurableJointMotion.Free;
-        currentÑJoint.yMotion = ConfigurableJointMotion.Free;
-        currentÑJoint.zMotion = ConfigurableJointMotion.Free;
+        currentÑJoint.xMotion = ConfigurableJointMotion.Limited;
+        currentÑJoint.yMotion = ConfigurableJointMotion.Limited;
+        currentÑJoint.zMotion = ConfigurableJointMotion.Limited;
 
         SoftJointLimit linearLimit = new SoftJointLimit();
         linearLimit.limit = 0.1f;
         currentÑJoint.linearLimit = linearLimit;
 
         JointDrive drive = new JointDrive();
-        drive.positionSpring = 1000f;
-        drive.positionDamper = 50f;
+        drive.positionSpring = positionSpring;
+        drive.positionDamper = positionDamper;
         drive.maximumForce = 1000f;
         currentÑJoint.xDrive = drive;
         currentÑJoint.yDrive = drive;
         currentÑJoint.zDrive = drive;
+
+        SoftJointLimit angularLimit = new SoftJointLimit();
+        angularLimit.limit = 180f;
+
+        currentÑJoint.lowAngularXLimit = angularLimit;
+        currentÑJoint.highAngularXLimit = angularLimit;
+        currentÑJoint.angularYLimit = angularLimit;
+        currentÑJoint.angularZLimit = angularLimit;
+
+        JointDrive angularDrive = new JointDrive();
+        angularDrive.positionSpring = angularSpring;
+        angularDrive.positionDamper = angularDamper;
+        angularDrive.maximumForce = 1000f;
+
+        currentÑJoint.angularXDrive = angularDrive;
+        currentÑJoint.angularYZDrive = angularDrive;
 
         currentÑJoint.projectionMode = JointProjectionMode.PositionAndRotation;
         currentÑJoint.projectionDistance = 0.1f;
