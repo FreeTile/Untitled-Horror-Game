@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
@@ -11,44 +10,50 @@ public class Door : MonoBehaviour
     public EventReference doorCloseEvent;
     public EventReference doorLockedEvent;
 
-
     private bool isHeld = false;
     public bool isLocked = false;
 
     private Coroutine playSoundCoroutine = null;
-
     private HingeJoint hinge;
     private JointLimits limits;
 
     public float velocityThreshold = 0.1f;
     public float stopDelayDuration = 2f;
-
     [SerializeField]
     private float initialAngle;
 
+    private float initialDoorAngle;
+    private const float angleThreshold = 1f;
+
+    private bool isInitialized = false;
+
     private void Start()
     {
-        
         hinge = GetComponent<HingeJoint>();
         hinge.useLimits = true;
         limits.min = -1;
         limits.max = -0.1f;
         hinge.limits = limits;
+
+        initialDoorAngle = transform.localEulerAngles.y;
+
+        StartCoroutine(DelayedInitialization());
     }
 
-    void Update()
+    private IEnumerator DelayedInitialization()
     {
-        
+        yield return new WaitForSeconds(1f);
+        isInitialized = true;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        ProcessMove();
+        if (isInitialized)
+            ProcessMove();
     }
 
     public void Open()
     {
-        
         if (limits.min == -1)
         {
             RuntimeManager.PlayOneShot(doorOpenEvent, transform.position);
@@ -76,7 +81,6 @@ public class Door : MonoBehaviour
             RuntimeManager.PlayOneShot(doorLockedEvent, transform.position);
             return;
         }
-        //if (isLocked) return;
         Debug.Log("Proceeded through lock");
         isHeld = true;
         Open();
@@ -98,46 +102,25 @@ public class Door : MonoBehaviour
 
     IEnumerator Move()
     {
-        //Debug.Log("Coroutine Sound() Started.");
-        //doorCreakInstance = RuntimeManager.CreateInstance(doorCreakLoopEvent);
-        //RuntimeManager.AttachInstanceToGameObject(doorCreakInstance, transform, GetComponent<Rigidbody>());
-        //doorCreakInstance.start();
-
-        //float stopDelay = stopDelayDuration;
         while (true)
         {
-            float velocity = GetComponent<Rigidbody>().velocity.magnitude;
-
-            float angle = transform.localEulerAngles.y;
-
-            if (angle > 359f && !isHeld)
+            if (!isInitialized)
             {
-                Debug.Log(angle);
+                yield return null;
+                continue;
+            }
+
+            float velocity = GetComponent<Rigidbody>().velocity.magnitude;
+            float currentAngle = transform.localEulerAngles.y;
+
+            if (currentAngle > 359f && !isHeld && Mathf.Abs(currentAngle - initialDoorAngle) > angleThreshold)
+            {
                 Close();
                 break;
             }
-
-            //if (velocity >= velocityThreshold)
-            //{
-            //    doorCreakInstance.setParameterByName("Speed", velocity);
-            //    stopDelay = stopDelayDuration;
-            //}
-            //else
-            //{
-            //    doorCreakInstance.setParameterByName("Speed", 0f);
-            //    stopDelay -= Time.deltaTime;
-            //    if (stopDelay <= 0f)
-            //    {
-            //        break;
-            //    }
-            //}
-            hinge.limits = limits;
             yield return null;
         }
 
-        //Debug.Log("Stopping Sound");
-        //doorCreakInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        //doorCreakInstance.release();
         playSoundCoroutine = null;
     }
 }

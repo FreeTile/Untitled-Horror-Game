@@ -877,7 +877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8167711006913001536, guid: 655fb2ef99e61b94485e3b142cce335a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 123.01
+      value: 127.03
       objectReference: {fileID: 0}
     - target: {fileID: 8167711006913001536, guid: 655fb2ef99e61b94485e3b142cce335a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7344,6 +7344,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.95
       objectReference: {fileID: 0}
+    - target: {fileID: 1263531053769674779, guid: d2a555ee719720e4baef2a2d8758e83b, type: 3}
+      propertyPath: m_EnablePreprocessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1264008596685043715, guid: d2a555ee719720e4baef2a2d8758e83b, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -9288,6 +9292,46 @@ PrefabInstance:
       propertyPath: InventoryUI
       value: 
       objectReference: {fileID: 641454258}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: pauseEnterSound.Path
+      value: event:/UI/PauseEnter
+      objectReference: {fileID: 0}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: journalEnterSound.Path
+      value: event:/UI/JournalEnter
+      objectReference: {fileID: 0}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: pauseEnterSound.Guid.Data1
+      value: 1123234587
+      objectReference: {fileID: 0}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: pauseEnterSound.Guid.Data2
+      value: 1285452585
+      objectReference: {fileID: 0}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: pauseEnterSound.Guid.Data3
+      value: -1723709799
+      objectReference: {fileID: 0}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: pauseEnterSound.Guid.Data4
+      value: 1015948385
+      objectReference: {fileID: 0}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: journalEnterSound.Guid.Data1
+      value: 1639051197
+      objectReference: {fileID: 0}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: journalEnterSound.Guid.Data2
+      value: 1190578246
+      objectReference: {fileID: 0}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: journalEnterSound.Guid.Data3
+      value: -572343370
+      objectReference: {fileID: 0}
+    - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
+      propertyPath: journalEnterSound.Guid.Data4
+      value: 1341639369
+      objectReference: {fileID: 0}
     - target: {fileID: 913108874944949264, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
       propertyPath: weight
       value: 1
