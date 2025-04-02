@@ -4,6 +4,8 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(HingeJoint))]
 public class Door : MonoBehaviour
 {
     [Header("FMOD Events")]
@@ -26,9 +28,12 @@ public class Door : MonoBehaviour
     [SerializeField]
     private float initialAngle;
 
+    private void OnValidate()
+    {
+        GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+    }
     private void Start()
     {
-        
         hinge = GetComponent<HingeJoint>();
         hinge.useLimits = true;
         limits.min = -1;
