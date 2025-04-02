@@ -1,29 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using FMODUnity;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public EventReference ValueChange;
-    public EventReference BackSound;
+    [SerializeField] private string musicBusPath = "bus:/Music";
+    [SerializeField] private string SFXBusPath = "bus:/SFX";
+
+    public TextMeshProUGUI versionText;
+    public EventReference ClickSound;
+    public EventReference UISelected;
+    public EventReference MainMenuMusic;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        versionText.text = "Version: " + Application.version;
+        RuntimeManager.PlayOneShot(MainMenuMusic);
     }
 
     public void GoToGame()
     {
         //Load GameScene
-        SceneManager.LoadScene("Ambient");
+        SceneManager.LoadScene("Game");
 
     }
 
@@ -44,13 +46,32 @@ public class MenuManager : MonoBehaviour
         }
     }
     
-    public void PlaySoundBackButton()
+   
+
+    //Sound stuff goes here
+    public void PlaySoundButtonSelected()
     {
-        RuntimeManager.PlayOneShot(BackSound);
+        RuntimeManager.PlayOneShot(UISelected);
     }
-    public void PlaySoundValueChange()
+    public void PlaySoundClick()
     {
-        RuntimeManager.PlayOneShot(ValueChange);
+        RuntimeManager.PlayOneShot(ClickSound);
     }
 
+    public void StopMusic()
+    {
+        Bus musicBus = RuntimeManager.GetBus(musicBusPath);
+        musicBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
+
+    private void OnSceneUnloaded(Scene scene)
+    {
+        Bus SFXBus = RuntimeManager.GetBus(SFXBusPath);
+        SFXBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
 }

@@ -67,7 +67,7 @@ public class GlitchFeature : ScriptableRendererFeature
         Instance = this;
         glitchPass = new GlitchPass(settings.glitchMaterial)
         {
-            renderPassEvent = RenderPassEvent.AfterRendering
+            renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing
         };
     }
 
