@@ -10,7 +10,7 @@ using static UnityEngine.GraphicsBuffer;
 public class MonsterAI : MonoBehaviour
 {
     [SerializeField]
-    public GameObject Player;
+    public CapsuleCollider Player;
     [SerializeField]
     public float atkDistance;
     [SerializeField]
@@ -44,16 +44,18 @@ public class MonsterAI : MonoBehaviour
         switch (state)
         {
             case MonsterSates.WONDER: // Wonder state
+                Debug.Log("Wonder");
                 if(seePlayer)
                     state = MonsterSates.PERSU;
 
                 break;
             case MonsterSates.PERSU: // Persu state
+                Debug.Log("Persu");
                 if (seePlayer)
-                    PersuPlayer(Player.transform.position);
+                    SetDestinationAgent(Player.transform.position);
                 else if (!seePlayer)
                 {
-                    PersuPlayer(lastPosition);
+                    SetDestinationAgent(lastPosition);
                     state = MonsterSates.WONDER;
                 }
                 
@@ -62,6 +64,8 @@ public class MonsterAI : MonoBehaviour
 
                 break;
             case MonsterSates.ATTACK: // Attack state
+                Debug.Log("Attack");
+                if (seePlayer)
                 attackPlayer();
 
                 if(!seePlayer)
@@ -74,7 +78,7 @@ public class MonsterAI : MonoBehaviour
     }
 
     //Sets the destination for the monster agent 
-    void PersuPlayer(Vector3 location)
+    public void SetDestinationAgent(Vector3 location)
     {
         agent.SetDestination(location);
     }
@@ -97,7 +101,7 @@ public class MonsterAI : MonoBehaviour
     //Coroutine that updates every 0.2 seconds an executes the check for the line of sight
     private IEnumerator FOVRoutine()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f); //<------- Change if needed
+        WaitForSeconds wait = new WaitForSeconds(0.1f); //<------- Change if needed
 
         while (true)
         {

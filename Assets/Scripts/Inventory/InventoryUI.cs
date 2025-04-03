@@ -1,17 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.IO;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Android;
-using UnityEngine.EventSystems;
-using System.Linq;
-using Krearthur.Utils;
-using Unity.VisualScripting;
+
 
 public class InventoryUI : MonoBehaviour
 {
