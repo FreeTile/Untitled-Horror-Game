@@ -13,7 +13,7 @@ public class Puzzle3 : MonoBehaviour
     [SerializeField]
     public Button[] wendyButtons;
     [SerializeField]
-    public GameObject BasementDoor;
+    public Door BasementDoor;
 
     public string correctOliver = "OLIVER";
     public string correctWendy = "WENDY";
@@ -136,15 +136,7 @@ public class Puzzle3 : MonoBehaviour
 
         if (currentOliver == correctOliver && currentWendy == correctWendy)
         {
-
-            Rigidbody rb = BasementDoor.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                if (rb.mass == 900)
-                {
-                    rb.mass = 1;
-                }
-            }
+            BasementDoor.isLocked = false;
         }
     }
 }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc623e13decf484782f0eaa4bf62749, type: 3}
   m_Name: Puzzle2PieceCube
   m_EditorClassIdentifier: 
-  position: {x: 0.1513062, y: -0.2209001, z: 1.954399}
+  position: {x: 105.53, y: 2.7619, z: 126.595}
   rotation: {x: 0, y: 0, z: 0, w: 0}
