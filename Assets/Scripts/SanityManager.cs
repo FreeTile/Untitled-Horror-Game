@@ -35,7 +35,7 @@ public class SanityManager : MonoBehaviour
     public Sprite mediumSanitySprite;
     public Sprite lowSanitySprite;
 
-    private EventInstance ambientInstance;
+    public static EventInstance ambientInstance;
 
     void Start()
     {
@@ -43,8 +43,8 @@ public class SanityManager : MonoBehaviour
         ambientInstance.start();
         UpdateSoundParameters();
         // Create and start the ambient event instance
-        FindObjectOfType<GlitchFeature>().glitchEnabled = false;
-        Debug.Log(FindObjectOfType<GlitchFeature>().glitchEnabled);
+        //FindObjectOfType<GlitchFeature>().glitchEnabled = false;
+        //Debug.Log(FindObjectOfType<GlitchFeature>().glitchEnabled);
         
     }
 
