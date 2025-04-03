@@ -28,6 +28,12 @@ public class MonsterAI : MonoBehaviour
     private float lastDistance;
     private Vector3 lastPosition;
 
+    [SerializeField] Transform[] WayPoints;
+    private Vector3 nearestWp;
+    private float nearest = 100000;
+    private float distance;
+    private int pointIndex = 0;
+
     //Monster Ai machine states 
     enum MonsterSates
     {
@@ -45,7 +51,8 @@ public class MonsterAI : MonoBehaviour
         {
             case MonsterSates.WONDER: // Wonder state
                 Debug.Log("Wonder");
-                if(seePlayer)
+                FollowWP();
+                if (seePlayer)
                     state = MonsterSates.PERSU;
 
                 break;
@@ -81,6 +88,47 @@ public class MonsterAI : MonoBehaviour
     public void SetDestinationAgent(Vector3 location)
     {
         agent.SetDestination(location);
+    }
+
+
+
+    /*Todo List 
+     * 1) Make list of waypoints 
+     * 2) sicle trough them and check which is the closes to the player 
+     * 3) set the distanation to that waypoint
+     * 4) make the mosnter follow the next waypoitn 
+     * 5) make the monster follow the waypoints back      
+     */
+    public void GetNearestWp()
+    {
+        pointIndex = 0;
+        foreach (var Wp in WayPoints)
+        {
+            distance = Vector3.Distance(transform.position, Wp.position);
+            if (distance < nearest)
+            {
+                nearestWp = Wp.position;
+                nearest = distance;
+            }
+            pointIndex++;
+        }
+        SetDestinationAgent(nearestWp);
+    }
+
+
+    //Waypoints 
+    public void FollowWP()
+    {
+        if (pointIndex <= WayPoints.Length -1)
+        {
+            agent.SetDestination(WayPoints[pointIndex].transform.position);
+
+            if (transform.position == WayPoints[pointIndex].transform.position)
+            {
+                pointIndex++;
+                Debug.Log(pointIndex);
+            }
+        }
     }
 
     //attack fucntion
