@@ -13,7 +13,7 @@ public class Puzzle3 : MonoBehaviour
     [SerializeField]
     public Button[] wendyButtons;
     [SerializeField]
-    public GameObject BasementDoor;
+    public Door BasementDoor;
 
     public string correctOliver = "OLIVER";
     public string correctWendy = "WENDY";
@@ -157,19 +157,7 @@ public class Puzzle3 : MonoBehaviour
         {
             Debug.Log("Puzzle Solved!");
 
-            Rigidbody rb = BasementDoor.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                if (rb.mass == 900)
-                {
-                    rb.mass = 1;
-                    Debug.Log("BasementDoor weight changed to 1.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("BasementDoor does not have a Rigidbody component.");
-            }
+            BasementDoor.isLocked = false;
         }
     }
 }

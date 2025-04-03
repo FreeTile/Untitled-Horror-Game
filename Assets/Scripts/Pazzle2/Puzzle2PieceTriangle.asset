@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc623e13decf484782f0eaa4bf62749, type: 3}
   m_Name: Puzzle2PieceTriangle
   m_EditorClassIdentifier: 
-  position: {x: 0.4676056, y: -0.22, z: 1.956993}
-  rotation: {x: 0, y: 0, z: 0, w: 0}
+  position: {x: 105.8456, y: 2.7631, z: 126.599}
+  rotation: {x: 0, y: 0, z: 0, w: 1}
