@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc623e13decf484782f0eaa4bf62749, type: 3}
   m_Name: Puzzle2PieceRhombus
   m_EditorClassIdentifier: 
-  position: {x: 0.3132019, y: -0.2193, z: 1.9543}
+  position: {x: 105.694, y: 2.764, z: 126.5975}
   rotation: {x: 0, y: 0, z: 0, w: 0}
