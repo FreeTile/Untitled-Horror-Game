@@ -134,13 +134,10 @@ public class Puzzle3 : MonoBehaviour
         string currentOliver = GetConcatenatedText(oliverButtons);
         string currentWendy = GetConcatenatedText(wendyButtons);
 
-        Debug.Log("Oliver Row: " + currentOliver);
-        Debug.Log("Wendy Row: " + currentWendy);
 
 
         if (currentOliver == correctOliver && currentWendy == correctWendy)
         {
-            Debug.Log("Attempting to open door");
             BasementDoor.isLocked = false;
         }
     }
