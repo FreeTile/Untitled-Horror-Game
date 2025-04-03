@@ -16750,6 +16750,10 @@ PrefabInstance:
       propertyPath: m_Limits.min
       value: -135
       objectReference: {fileID: 0}
+    - target: {fileID: 4312333058261629302, guid: aff3715a361b0e147bfee7dbe60cc811, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29132,6 +29136,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8815511929811567990}
     m_Modifications:
+    - target: {fileID: 962832430604616926, guid: 6791d22c248310246bd1d73485d9e94f, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3663406163219713061, guid: 6791d22c248310246bd1d73485d9e94f, type: 3}
       propertyPath: m_Name
       value: Door4_C1
@@ -34070,6 +34078,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7961197567560095607, guid: d0174449cfdc89c4e8db73212a925d4a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35291,6 +35303,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8815511929811567990}
     m_Modifications:
+    - target: {fileID: 2455205725363081448, guid: 2f8da69b3321f78468727b020fd9b35d, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4515546074969647201, guid: 2f8da69b3321f78468727b020fd9b35d, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -63907,6 +63923,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.611
       objectReference: {fileID: 0}
+    - target: {fileID: 1397716104604930184, guid: 4eff292370c24e543bfbf994225a3a9c, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -79019,6 +79039,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8815511929811567990}
     m_Modifications:
+    - target: {fileID: 962832430604616926, guid: 6791d22c248310246bd1d73485d9e94f, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3663406163219713061, guid: 6791d22c248310246bd1d73485d9e94f, type: 3}
       propertyPath: m_Name
       value: Door4_C1 (1)
@@ -79333,6 +79357,10 @@ PrefabInstance:
     - target: {fileID: 1204488837791333254, guid: 44f56b7061e47ce4fa88e474d0461838, type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2865260795659910302, guid: 44f56b7061e47ce4fa88e474d0461838, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3148576211309465562, guid: 44f56b7061e47ce4fa88e474d0461838, type: 3}
       propertyPath: m_Limits.max
@@ -124031,6 +124059,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8815511929811567990}
     m_Modifications:
+    - target: {fileID: 4688198128190587624, guid: 0efdfa7cfb5f7f64aa15c4938088b425, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4703232461385781460, guid: 0efdfa7cfb5f7f64aa15c4938088b425, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -129395,6 +129427,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8815511929811567990}
     m_Modifications:
+    - target: {fileID: 962832430604616926, guid: 6791d22c248310246bd1d73485d9e94f, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3663406163219713061, guid: 6791d22c248310246bd1d73485d9e94f, type: 3}
       propertyPath: m_Name
       value: Door4_C1 (2)
@@ -132997,6 +133033,10 @@ PrefabInstance:
     - target: {fileID: 4397005923860790041, guid: 56d0355fd82be5f47b709bd7c922a82c, type: 3}
       propertyPath: m_Limits.max
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924323849436812225, guid: 56d0355fd82be5f47b709bd7c922a82c, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7151812691213983835, guid: 56d0355fd82be5f47b709bd7c922a82c, type: 3}
       propertyPath: m_Name
@@ -161031,6 +161071,10 @@ PrefabInstance:
     - target: {fileID: 1204488837242607655, guid: 44f56b7061e47ce4fa88e474d0461838, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2865260795659910302, guid: 44f56b7061e47ce4fa88e474d0461838, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3148576211309465562, guid: 44f56b7061e47ce4fa88e474d0461838, type: 3}
       propertyPath: m_Limits.max
