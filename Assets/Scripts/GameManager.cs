@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     GameInputHandler inputHandler;
     [SerializeField] private GameObject InventoryUI;
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject settingsMenuUI;
+    [SerializeField] private GameObject hudUI;
+
+
 
     public EventReference pauseEnterSound;
     public EventReference journalEnterSound;
@@ -35,7 +40,8 @@ public class GameManager : MonoBehaviour
         if (Instance == null) //Creating singleton instance at the beginning 
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
+
         }
         else
         {
@@ -47,6 +53,8 @@ public class GameManager : MonoBehaviour
         inputHandler = GetComponent<GameInputHandler>();
 
         GameStart();
+
+
     }
 
     //Switching controls between UI and main game control systems
@@ -84,19 +92,23 @@ public class GameManager : MonoBehaviour
         if (state == State.Game)
         {
             state = State.Esc;
-            //Turn on Menu on canvas
             pauseSound.start();
             SanityManager.ambientInstance.setVolume(0.2f);
-
+            pauseMenuUI.SetActive(true);
+            hudUI.SetActive(false); // Hide HUD
         }
         else
         {
             pauseSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             state = State.Game;
             SanityManager.ambientInstance.setVolume(1f);
+            pauseMenuUI.SetActive(false);
+            settingsMenuUI.SetActive(false);
+            hudUI.SetActive(true); // Show HUD again
         }
         switchControlSystem();
     }
+
 
     public void OpenInventory()
     {

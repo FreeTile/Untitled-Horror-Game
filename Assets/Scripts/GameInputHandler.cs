@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class GameInputHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset playerControls;
+    private static bool isSubscribed = false;
 
     //Names for action map and actions from the action asset
     [SerializeField] private string actionMapName = "PlayerGame";
@@ -45,7 +46,7 @@ public class GameInputHandler : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
