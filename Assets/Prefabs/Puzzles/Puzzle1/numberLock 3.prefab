@@ -131,6 +131,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 6aaaeac38c9841048bd426527c337c4c, type: 2}
   - {fileID: 2100000, guid: 5c60eb831e7060044ba03d98433d7004, type: 2}
   - {fileID: 2100000, guid: 559b2381e89b2294c86d99722aaddea4, type: 2}
+  currentIndex: 0
+  puzzleScript: {fileID: 0}
 --- !u!1 &1224550680273333408
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +467,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 6aaaeac38c9841048bd426527c337c4c, type: 2}
   - {fileID: 2100000, guid: 5c60eb831e7060044ba03d98433d7004, type: 2}
   - {fileID: 2100000, guid: 559b2381e89b2294c86d99722aaddea4, type: 2}
+  currentIndex: 0
+  puzzleScript: {fileID: 0}
 --- !u!1 &1983473446363639955
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,7 +919,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 1337.7058, y: 0, z: 1182.1769}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5196264493393766579}
@@ -940,6 +944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8feaae7e377968a46bf1439382b546a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedDoor: {fileID: 0}
+  buttons: []
 --- !u!1 &8016978778297068754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,6 +1162,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 6aaaeac38c9841048bd426527c337c4c, type: 2}
   - {fileID: 2100000, guid: 5c60eb831e7060044ba03d98433d7004, type: 2}
   - {fileID: 2100000, guid: 559b2381e89b2294c86d99722aaddea4, type: 2}
+  currentIndex: 0
+  puzzleScript: {fileID: 0}
 --- !u!1001 &2852263743833931190
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,23 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccb5a3fdb08bf584383ace6784368d93, type: 3}
-  m_Name: 3- Picture Note
+  m_Name: 3- Basement Note
   m_EditorClassIdentifier: 
   noteID: 3
-  noteName: Picture Note
-  noteIcon: {fileID: 21300000, guid: d93f70bf9c6bc8b4d88e320fd881deef, type: 3}
+  noteName: Basement Note
+  noteIcon: {fileID: 21300000, guid: e87ed72bc9e17874eb74d180dc8ef2ff, type: 3}
   addToInventory: 1
   pageImages:
-  - {fileID: 21300000, guid: 2b35fa63f2c005443811b9cd553ef016, type: 3}
+  - {fileID: 21300000, guid: 0b237a76239a03d42b2fa931dab43c86, type: 3}
   pageScale: {x: 900, y: 900}
-  showTextOnMainPage: 0
+  showTextOnMainPage: 1
   showNavigationButtons: 0
   pageText:
-  - Text
-  mainTextAreaScale: {x: 0, y: 0}
-  mainTextSize: 0
-  mainFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  mainFontColor: {r: 0, g: 0, b: 0, a: 0}
+  - Jessie keeps asking me where Dusty went. What am I supposed to tell her? We already
+    told her that he didn't want to move to the new house, and so he stayed behind,
+    but now she's asking me to go back and get him. Am I supposed to tell her he's
+    dead? How do I even begin to explain that to her? Do we just get a new dog and
+    pretend? I don't know what to do about it, Oliver.
+  mainTextAreaScale: {x: 500, y: 700}
+  mainTextSize: 42
+  mainFontAsset: {fileID: 11400000, guid: f95bbeeba6b5fbc41881b718e3d76872, type: 2}
+  mainFontColor: {r: 0, g: 0, b: 0, a: 1}
   enableOverlayText: 0
   showOverlayOnOpen: 0
   overlayBGColor: {r: 0, g: 0, b: 0, a: 0}

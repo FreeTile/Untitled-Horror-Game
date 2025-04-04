@@ -29,7 +29,7 @@ MonoBehaviour:
     gonna have to earn it."
   mainTextAreaScale: {x: 500, y: 700}
   mainTextSize: 45
-  mainFontAsset: {fileID: 0}
+  mainFontAsset: {fileID: 11400000, guid: f95bbeeba6b5fbc41881b718e3d76872, type: 2}
   mainFontColor: {r: 0, g: 0, b: 0, a: 1}
   enableOverlayText: 0
   showOverlayOnOpen: 0
