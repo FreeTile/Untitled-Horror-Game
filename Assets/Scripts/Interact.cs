@@ -19,6 +19,7 @@ public class Interact : MonoBehaviour
     [SerializeField] private float angularSpring = 100f;
     [SerializeField] private float angularDamper = 20f;
     [SerializeField] private Camera MCamera;
+    [SerializeField] private GameObject CameraPivot;
     [SerializeField] private LayerMask mask;
 
     private GameInputHandler input;
@@ -37,7 +38,7 @@ public class Interact : MonoBehaviour
         initialHoldPos = holdPosition.transform.localPosition;
     }
 
-       private void Update()
+    private void Update()
     {
         HandleInteraction();
         CheckDistance();
@@ -94,7 +95,6 @@ public class Interact : MonoBehaviour
         }
         else if (interactedObject != null) //throw an object
         {
-
             if (input.ThrowDown)
             {
                 ThrowObject();
