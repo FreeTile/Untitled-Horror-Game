@@ -44,27 +44,30 @@ public class MainInputHandler : MonoBehaviour
         inventoryAction = ActionMap.FindAction(inventory);
         journalAction = ActionMap.FindAction(journal);
         menuAction = ActionMap.FindAction(menu);
-        RegisterInputActions();
     }
 
     void RegisterInputActions()
     {
-        inventoryAction.performed += context =>
-        {
-            InventoryDown = true;
-            GameManager.Instance.OpenInventory();
-        };
-        journalAction.performed += context =>
-        {
-            JournalDown = true;
-            GameManager.Instance.OpenJournal();
-        };
-        menuAction.performed += context =>
-        {
-            MenuDown = true;
-            GameManager.Instance.ProceedEsc();
-        };
+        inventoryAction.performed += OnInventoryPerformed;
+        journalAction.performed += OnJournalPerformed;
+        menuAction.performed += OnMenuPerformed;
     }
+    private void OnInventoryPerformed(InputAction.CallbackContext context)
+    {
+        InventoryDown = true;
+        GameManager.Instance.OpenInventory();
+    }
+    private void OnJournalPerformed(InputAction.CallbackContext context)
+    {
+        JournalDown = true;
+        GameManager.Instance.OpenJournal();
+    }
+    private void OnMenuPerformed(InputAction.CallbackContext context)
+    {
+        MenuDown = true;
+        GameManager.Instance.ProceedEsc();
+    }
+
     private void LateUpdate()
     {
         MenuDown = false;
@@ -74,6 +77,7 @@ public class MainInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        RegisterInputActions();
         inventoryAction.Enable();
         journalAction.Enable();
         menuAction.Enable();
@@ -81,8 +85,16 @@ public class MainInputHandler : MonoBehaviour
 
     private void OnDisable()
     {
+        UnregisterInputActions();
         inventoryAction.Disable();
         journalAction.Disable();
         menuAction.Disable();
+    }
+
+    void UnregisterInputActions()
+    {
+        inventoryAction.performed -= OnInventoryPerformed;
+        journalAction.performed -= OnJournalPerformed;
+        menuAction.performed -= OnMenuPerformed;
     }
 }
