@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +11,8 @@ using static UnityEngine.GraphicsBuffer;
 public class MonsterAI : MonoBehaviour
 {
     [SerializeField]
+    public HealthManager healthManager;
+    [SerializeField]
     public CapsuleCollider Player;
     [SerializeField]
     public float atkDistance;
@@ -17,9 +20,13 @@ public class MonsterAI : MonoBehaviour
     public Collider atkColider;
 
 
+
     public bool seePlayer = false;
     public float angle;
-    public float radius; 
+    public float radius;
+
+    public float rotationSpeed;
+    public float rotationAngle;
 
 
     NavMeshAgent agent;
@@ -28,11 +35,14 @@ public class MonsterAI : MonoBehaviour
     private float lastDistance;
     private Vector3 lastPosition;
 
+    //Navigation System
     [SerializeField] Transform[] WayPoints;
     private Vector3 nearestWp;
     private float nearest = 100000;
     private float distance;
     private int pointIndex = 0;
+    private bool finishedWp;
+    private bool followingWp = true;
 
     //Monster Ai machine states 
     enum MonsterSates
@@ -53,31 +63,36 @@ public class MonsterAI : MonoBehaviour
                 Debug.Log("Wonder");
                 FollowWP();
                 if (seePlayer)
+                {
                     state = MonsterSates.PERSU;
-
+                    followingWp = false;
+                }                   
                 break;
+
             case MonsterSates.PERSU: // Persu state
                 Debug.Log("Persu");
                 if (seePlayer)
+                {
                     SetDestinationAgent(Player.transform.position);
+                    Debug.Log(Vector3.Distance(transform.position, Player.transform.position));
+                    if (Vector3.Distance(transform.position, Player.transform.position) <= atkDistance) 
+                        state = MonsterSates.ATTACK;
+                }
                 else if (!seePlayer)
                 {
                     SetDestinationAgent(lastPosition);
                     state = MonsterSates.WONDER;
-                }
-                
-                if (atkDistance <= lastDistance) 
-                    state = MonsterSates.ATTACK;
+                    Debug.Log("Yes it did");
 
+                }
                 break;
             case MonsterSates.ATTACK: // Attack state
                 Debug.Log("Attack");
-                if (seePlayer)
-                attackPlayer();
-
-                if(!seePlayer)
+                if(!seePlayer || Vector3.Distance(Player.transform.position, transform.position) >= atkDistance)
+                {
                     state = MonsterSates.PERSU;
-
+                    break;
+                }
                 break;
             default:
                 break;
@@ -90,15 +105,7 @@ public class MonsterAI : MonoBehaviour
         agent.SetDestination(location);
     }
 
-
-
-    /*Todo List 
-     * 1) Make list of waypoints 
-     * 2) sicle trough them and check which is the closes to the player 
-     * 3) set the distanation to that waypoint
-     * 4) make the mosnter follow the next waypoitn 
-     * 5) make the monster follow the waypoints back      
-     */
+   
     public void GetNearestWp()
     {
         pointIndex = 0;
@@ -108,33 +115,50 @@ public class MonsterAI : MonoBehaviour
             if (distance < nearest)
             {
                 nearestWp = Wp.position;
-                nearest = distance;
             }
             pointIndex++;
         }
         SetDestinationAgent(nearestWp);
+        followingWp = true;
     }
 
 
     //Waypoints 
     public void FollowWP()
     {
-        if (pointIndex <= WayPoints.Length -1)
+        /*if(transform.position == WayPoints[pointIndex].transform.position)
         {
-            agent.SetDestination(WayPoints[pointIndex].transform.position);
-
-            if (transform.position == WayPoints[pointIndex].transform.position)
-            {
-                pointIndex++;
-                Debug.Log(pointIndex);
-            }
+            MoveToWp = false;
+            StartCoroutine(LookAround());
         }
-    }
+        */
+        if (followingWp)
+        {
+            if (pointIndex <= WayPoints.Length - 1)
+            {
+                agent.updateRotation = true;
+                agent.SetDestination(WayPoints[pointIndex].transform.position);
 
-    //attack fucntion
-    private void attackPlayer()
-    {
-       //Applicable for animations or states only
+                if (transform.position == WayPoints[pointIndex].transform.position && finishedWp == false)
+                {
+                    pointIndex++;
+                    if (pointIndex == WayPoints.Length - 1)
+                    {
+                        finishedWp = true;
+                    }
+                }
+                else if (transform.position == WayPoints[pointIndex].transform.position && finishedWp == true)
+                {
+                    pointIndex--;
+                    if (pointIndex == 0)
+                    {
+                        finishedWp = false;
+                    }
+                }
+
+            }
+            Debug.Log(pointIndex);
+        }
     }
 
     void Start()
@@ -188,4 +212,48 @@ public class MonsterAI : MonoBehaviour
         else if (seePlayer)
             seePlayer = false;
     }
+
+    //Looks around from right to left and goes back to original rotation
+    private IEnumerator LookAround()
+    {
+        Quaternion InitialRotation = transform.rotation;
+        float startRotation = transform.rotation.eulerAngles.y;
+        float targetRotation = startRotation + rotationAngle; // Rotate right 
+            
+        float timeElapsed = 0f;
+
+        while (timeElapsed < 1f)
+        {
+            timeElapsed += Time.deltaTime * rotationSpeed / 360f; // Adjust for smooth rotation
+            float currentAngle = Mathf.LerpAngle(startRotation, targetRotation, timeElapsed);
+            transform.rotation = Quaternion.Euler(0f, currentAngle, 0f);
+            Debug.Log(currentAngle);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        startRotation = transform.rotation.eulerAngles.y;
+        targetRotation = startRotation - rotationAngle; // rotates left 
+
+        timeElapsed = 0f;
+
+        while (timeElapsed < 1f)
+        {
+            timeElapsed += Time.deltaTime * rotationSpeed / 360f; 
+            float currentAngle2 = Mathf.LerpAngle(startRotation, targetRotation, timeElapsed);
+            transform.rotation = Quaternion.Euler(0f, currentAngle2, 0f);
+            Debug.Log(currentAngle2);
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        //Not working yet need to set the rotation back to normal and make it so that it only rotates with the path given 
+        transform.LookAt(WayPoints[pointIndex +1], Vector3.up);
+
+
+        yield return new WaitForSeconds(1f);
+
+        followingWp = true;
+    }
 }
+ 
