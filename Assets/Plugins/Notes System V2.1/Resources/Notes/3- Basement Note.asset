@@ -22,13 +22,13 @@ MonoBehaviour:
   showTextOnMainPage: 1
   showNavigationButtons: 0
   pageText:
-  - 'Jessie keeps asking me where Dusty went. What am I supposed to tell her? We
-    already told her that he didn''t want to move to the new house, and so he stayed
-    behind, but now she''s asking me to go back and get him. Am I supposed to tell
-    her he''s dead? How do I even begin to explain that to her? Do we just get a
-    new dog and pretend? I don''t know what to do about it, Oliver. '
+  - Jessie keeps asking me where Dusty went. What am I supposed to tell her? We already
+    told her that he didn't want to move to the new house, and so he stayed behind,
+    but now she's asking me to go back and get him. Am I supposed to tell her he's
+    dead? How do I even begin to explain that to her? Do we just get a new dog and
+    pretend? I don't know what to do about it, Oliver.
   mainTextAreaScale: {x: 500, y: 700}
-  mainTextSize: 43
+  mainTextSize: 42
   mainFontAsset: {fileID: 11400000, guid: f95bbeeba6b5fbc41881b718e3d76872, type: 2}
   mainFontColor: {r: 0, g: 0, b: 0, a: 1}
   enableOverlayText: 0

@@ -50,6 +50,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryUI: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
+  settingsMenuUI: {fileID: 0}
+  hudUI: {fileID: 0}
+  pauseEnterSound:
+    Guid:
+      Data1: 1123234587
+      Data2: 1285452585
+      Data3: -1723709799
+      Data4: 1015948385
+    Path: event:/UI/PauseEnter
+  journalEnterSound:
+    Guid:
+      Data1: 1639051197
+      Data2: 1190578246
+      Data3: -572343370
+      Data4: 1341639369
+    Path: event:/UI/JournalEnter
+  sanityManager: {fileID: 0}
   state: 0
 --- !u!114 &3529627218893740439
 MonoBehaviour:
@@ -142,7 +160,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3815337924186384301}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 

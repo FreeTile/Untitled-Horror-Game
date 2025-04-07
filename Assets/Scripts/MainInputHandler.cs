@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class MainInputHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset playerControls;
+    private static bool isSubscribed = false;
 
     [SerializeField] private string actionMapName = "PlayerGame";
     private InputActionMap ActionMap;
@@ -32,7 +33,7 @@ public class MainInputHandler : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -48,19 +49,26 @@ public class MainInputHandler : MonoBehaviour
 
     void RegisterInputActions()
     {
-        inventoryAction.performed += OnInventoryPerformed;
-        journalAction.performed += OnJournalPerformed;
-        menuAction.performed += OnMenuPerformed;
-    }
-    private void OnInventoryPerformed(InputAction.CallbackContext context)
-    {
-        InventoryDown = true;
-        GameManager.Instance.OpenInventory();
-    }
-    private void OnJournalPerformed(InputAction.CallbackContext context)
-    {
-        JournalDown = true;
-        GameManager.Instance.OpenJournal();
+        if (isSubscribed)
+            { return;  }
+        Debug.Log("Register Actions");
+        inventoryAction.performed += context =>
+        {
+            InventoryDown = true;
+            GameManager.Instance.OpenInventory();
+        };
+        journalAction.performed += context =>
+        {
+            JournalDown = true;
+            GameManager.Instance.OpenJournal();
+        };
+        menuAction.performed += context =>
+        {
+            MenuDown = true;
+            GameManager.Instance.ProceedEsc();
+        };
+
+        isSubscribed = true;
     }
     private void OnMenuPerformed(InputAction.CallbackContext context)
     {
@@ -77,7 +85,6 @@ public class MainInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        RegisterInputActions();
         inventoryAction.Enable();
         journalAction.Enable();
         menuAction.Enable();
@@ -85,16 +92,9 @@ public class MainInputHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        UnregisterInputActions();
         inventoryAction.Disable();
         journalAction.Disable();
         menuAction.Disable();
     }
 
-    void UnregisterInputActions()
-    {
-        inventoryAction.performed -= OnInventoryPerformed;
-        journalAction.performed -= OnJournalPerformed;
-        menuAction.performed -= OnMenuPerformed;
-    }
 }

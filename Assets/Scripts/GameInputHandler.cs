@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class GameInputHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset playerControls;
+    private static bool isSubscribed = false;
 
     private static bool isSubscribed = false;
 
@@ -47,7 +48,7 @@ public class GameInputHandler : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
