@@ -35,6 +35,8 @@ public class HeadBobFootsteps : MonoBehaviour
     private GameInputHandler input;
     [SerializeField] private Animator animator;
 
+    [SerializeField] private float CrouchSpeedMulti = 0.5f;
+
     void Start()
     {
         initialLocalPos = transform.localPosition;
@@ -113,7 +115,14 @@ public class HeadBobFootsteps : MonoBehaviour
 
         if (isMoving)
         {
-            frequency = walkingFrequency * (input.SprintInput ? sprintMultiplier : 1f); //The breathing rate depends on whether the player is running or not
+            if (input.isCrouching)
+            {
+                frequency = walkingFrequency * CrouchSpeedMulti;
+            }
+            else
+            {
+                frequency = walkingFrequency * (input.SprintInput ? sprintMultiplier : 1f); //The breathing rate depends on whether the player is running or not
+            }
         }
         else
         {

@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class MainInputHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset playerControls;
+    private static bool isSubscribed = false;
 
     [SerializeField] private string actionMapName = "PlayerGame";
     private InputActionMap ActionMap;
@@ -32,7 +33,7 @@ public class MainInputHandler : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -44,11 +45,13 @@ public class MainInputHandler : MonoBehaviour
         inventoryAction = ActionMap.FindAction(inventory);
         journalAction = ActionMap.FindAction(journal);
         menuAction = ActionMap.FindAction(menu);
-        RegisterInputActions();
     }
 
     void RegisterInputActions()
     {
+        if (isSubscribed)
+            { return;  }
+        Debug.Log("Register Actions");
         inventoryAction.performed += context =>
         {
             InventoryDown = true;
@@ -64,7 +67,15 @@ public class MainInputHandler : MonoBehaviour
             MenuDown = true;
             GameManager.Instance.ProceedEsc();
         };
+
+        isSubscribed = true;
     }
+    private void OnMenuPerformed(InputAction.CallbackContext context)
+    {
+        MenuDown = true;
+        GameManager.Instance.ProceedEsc();
+    }
+
     private void LateUpdate()
     {
         MenuDown = false;
@@ -85,4 +96,5 @@ public class MainInputHandler : MonoBehaviour
         journalAction.Disable();
         menuAction.Disable();
     }
+
 }

@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        versionText.text = "Version: " + Application.version;
+        //versionText.text = "Version: " + Application.version;
         RuntimeManager.PlayOneShot(MainMenuMusic);
     }
 
