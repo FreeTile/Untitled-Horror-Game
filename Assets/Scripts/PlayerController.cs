@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,15 +17,30 @@ public class PlayerController : MonoBehaviour
 
     private GameInputHandler input;
 
+    [SerializeField] private float crouchHeight = 1f;
+    [SerializeField] private float standHeight = 2f;
+    [SerializeField] private float crouchDuration = 0.2f;
+    [SerializeField] private float crouchCameraOffset = -0.5f;
+    [SerializeField] private float CrouchSpeedMulti = 0.5f;
+
+    private Tweener heightTween;
+    private Tweener cameraTween;
+    private float initialCameraY;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         input = GameInputHandler.Instance;
+        initialCameraY = MCameraPivot.localPosition.y;
     }
 
     private void Update()
     {
         RotateCamera();
+        if (input.CrouchDown)
+        {
+            ChangeState();
+        }
     }
 
     private void FixedUpdate()
@@ -37,11 +53,21 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = (transform.right * input.MoveInput.x + transform.forward * input.MoveInput.y).normalized;
         float sprintMult = input.SprintInput ? 2f : 1f;
 
-        Vector3 horizontalVelocity = moveDirection * MovementSpeed * sprintMult;
+        float Speed = MovementSpeed;
+        if (input.isCrouching)
+        {
+            Speed = MovementSpeed * CrouchSpeedMulti;
+        }
+        else
+        {
+            Speed = MovementSpeed * sprintMult;
+        }
+
+        Vector3 horizontalVelocity = moveDirection * Speed;
 
         if (controller.isGrounded)
         {
-            verticalVelocity.y = -5f;
+            verticalVelocity.y = gravity;
         }
         else
         {
@@ -53,7 +79,28 @@ public class PlayerController : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
     }
-    
+
+    void ChangeState()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(MCameraPivot.transform.position, Vector3.up, standHeight - crouchHeight)) { return; }
+        input.isCrouching = !input.isCrouching;
+        float targetHeight = input.isCrouching ? crouchHeight : standHeight;
+        float targetCameraY = input.isCrouching ? initialCameraY + crouchCameraOffset : initialCameraY;
+
+        heightTween?.Kill();
+        cameraTween?.Kill();
+
+        heightTween = DOTween.To(
+            () => controller.height,
+            x => controller.height = x,
+            targetHeight,
+            crouchDuration
+        );
+
+        cameraTween = MCameraPivot.DOLocalMoveY(targetCameraY, crouchDuration);
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody hitRigidbody = hit.collider.attachedRigidbody;
