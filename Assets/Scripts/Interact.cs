@@ -29,6 +29,8 @@ public class Interact : MonoBehaviour
 
     private Door door = null;
 
+    public FlashLight flashlight;
+
     private void Start()
     {
         input = GameInputHandler.Instance;
@@ -76,6 +78,13 @@ public class Interact : MonoBehaviour
                         {
                             animator.SetBool("Holded", true);
                             PickUpItem(hit.transform.gameObject);
+                        }
+                        break;
+                    case "StaticItem": //Flashlight and quest Items like keys maybe
+                        if(input.InteractDown)
+                        {
+                            animator.SetBool("Holded", true);
+                            PickUpStaticItem(hit.transform.gameObject);
                         }
                         break;
                     case "Readable": //Notes
@@ -272,6 +281,11 @@ public class Interact : MonoBehaviour
     {
         item = obj.GetComponent<ItemType>().ItemInfo;
         inventory.AddToInventory(item);
+        Destroy(obj);
+    }
+    private void PickUpStaticItem(GameObject obj)
+    {
+        flashlight.isPickedUp = true;
         Destroy(obj);
     }
 

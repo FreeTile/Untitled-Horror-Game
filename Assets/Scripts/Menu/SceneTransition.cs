@@ -21,6 +21,8 @@ public class SceneTransition : MonoBehaviour
         instance.loadingSceneOperation.allowSceneActivation = false;
 
         instance.LoadingProgressBar.fillAmount = 0;
+
+        Debug.Log("Switched to " + sceneName);
     }
 
     private void Start()
@@ -52,5 +54,7 @@ public class SceneTransition : MonoBehaviour
         shouldPlayOpeningAnimation = true;
 
         loadingSceneOperation.allowSceneActivation = true;
+
+        Debug.Log("Animation Over");
     }
 }

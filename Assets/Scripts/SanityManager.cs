@@ -37,6 +37,11 @@ public class SanityManager : MonoBehaviour
 
     public static EventInstance ambientInstance;
 
+    //Underwater effect
+    private FMOD.DSP lowpassDSP;
+    private FMOD.Studio.Bus masterBus;
+    private FMOD.ChannelGroup channelGroup;
+
     void Start()
     {
         ambientInstance = RuntimeManager.CreateInstance(ambientEvent);
@@ -45,7 +50,11 @@ public class SanityManager : MonoBehaviour
         // Create and start the ambient event instance
         //FindObjectOfType<GlitchFeature>().glitchEnabled = false;
         //Debug.Log(FindObjectOfType<GlitchFeature>().glitchEnabled);
-        
+        //UnderWater effect
+        masterBus = RuntimeManager.GetBus("bus:/");
+        masterBus.getChannelGroup(out channelGroup);
+        RuntimeManager.CoreSystem.createDSPByType(FMOD.DSP_TYPE.LOWPASS, out lowpassDSP);
+
     }
 
     // Update FMOD parameters based on current sanity value
@@ -58,6 +67,7 @@ public class SanityManager : MonoBehaviour
             ambientInstance.setParameterByName(lowParameterName, 1.0f);
             ambientInstance.setParameterByName(mediumParameterName, 0.0f);
             ambientInstance.setParameterByName(highParameterName, 0.0f);
+            ApplyUnderwaterEffect(true);
             Debug.Log("State set to Low");
         }
         else if (sanity <= 69)
@@ -66,6 +76,7 @@ public class SanityManager : MonoBehaviour
             ambientInstance.setParameterByName(lowParameterName, 0.0f);
             ambientInstance.setParameterByName(mediumParameterName, 1.0f);
             ambientInstance.setParameterByName(highParameterName, 0.0f);
+            ApplyUnderwaterEffect(true);
             Debug.Log("State set to Medium");
         }
         else
@@ -74,20 +85,37 @@ public class SanityManager : MonoBehaviour
             ambientInstance.setParameterByName(lowParameterName, 0.0f);
             ambientInstance.setParameterByName(mediumParameterName, 0.0f);
             ambientInstance.setParameterByName(highParameterName, 1.0f);
+            ApplyUnderwaterEffect(false);
             Debug.Log("State set to High");
         }
     }
 
-    // Method to trigger the screamer event
-    public void TriggerScreamer()
+    public void ApplyUnderwaterEffect(bool apply)
     {
-        StartCoroutine(MeasureMouseJerk());
+        if (apply)
+        {
+            lowpassDSP.setParameterFloat((int)FMOD.DSP_LOWPASS.CUTOFF, 500f);
+
+            channelGroup.addDSP(0, lowpassDSP);
+            Debug.Log("Applied underwater effect");
+        }
+        else
+        {
+            channelGroup.removeDSP(lowpassDSP);
+        }
+    }
+
+    // Method to trigger the screamer event
+    public void TriggerScreamer(int sanityLoss)
+    {
+        StartCoroutine(MeasureMouseJerk(sanityLoss));
     }
 
     // Coroutine that measures total mouse movement during the screamer duration,
     // calculates the reduction in sanity, and updates the FMOD parameters accordingly.
-    IEnumerator MeasureMouseJerk()
+    IEnumerator MeasureMouseJerk(int sanityLoss)
     {
+        
         float elapsed = 0f;
         float totalMouseDelta = 0f;
         Vector3 lastMousePosition = Input.mousePosition;
@@ -102,6 +130,7 @@ public class SanityManager : MonoBehaviour
         }
 
         int sanityReduction = Mathf.RoundToInt(totalMouseDelta * screamerImpactMultiplier);
+        sanityReduction += sanityLoss;
         sanity -= sanityReduction;
         Debug.Log("Sanity reduction is: " + sanityReduction);
         sanity = Mathf.Clamp(sanity, 0, 100);

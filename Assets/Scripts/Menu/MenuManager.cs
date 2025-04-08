@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour
     public void GoToGame()
     {
         //Load GameScene
-        SceneManager.LoadScene("Game");
+        SceneTransition.SwitchToScene("Game");
 
     }
 

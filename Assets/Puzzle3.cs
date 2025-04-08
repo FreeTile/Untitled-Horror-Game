@@ -114,7 +114,7 @@ public class Puzzle3 : MonoBehaviour
 
     private string GetConcatenatedText(Button[] buttons)
     {
-        var sortedButtons = buttons.OrderBy(b => b.GetComponent<RectTransform>().position.x).ToArray();
+        var sortedButtons = buttons.OrderBy(b => b.transform.GetSiblingIndex()).ToArray();
 
         string result = "";
         foreach(Button btn in sortedButtons)
@@ -132,10 +132,12 @@ public class Puzzle3 : MonoBehaviour
     {
         string currentOliver = GetConcatenatedText(oliverButtons);
         string currentWendy = GetConcatenatedText(wendyButtons);
+        Debug.Log("Checking PuzzleSolved..." + currentOliver + currentWendy);
 
 
         if (currentOliver == correctOliver && currentWendy == correctWendy)
         {
+            Debug.Log("Solved Puzzle3");
             BasementDoor.isLocked = false;
         }
     }

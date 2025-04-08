@@ -26,6 +26,8 @@ public class FlashLight : MonoBehaviour
     private bool isOn = false;
     private bool popupShown = false;
 
+    public bool isPickedUp = false;
+
     [Header("(FMOD) path Settings")]
     public FMODUnity.EventReference m_EventPath;
 
@@ -65,30 +67,33 @@ public class FlashLight : MonoBehaviour
 
     private void TurnOnOffLight()
     {
-        if (input.FlashlightDown)
+        if (isPickedUp)
         {
-            if (Charge > 0f)
+            if (input.FlashlightDown)
             {
-                if (!isOn)
+                if (Charge > 0f)
                 {
-                    lightSource.enabled = true;
-                    anim.SetBool("IsOn", true);
-                    isOn = true;
-                    PlaySound();
+                    if (!isOn)
+                    {
+                        lightSource.enabled = true;
+                        anim.SetBool("IsOn", true);
+                        isOn = true;
+                        PlaySound();
+                    }
+                    else
+                    {
+                        lightSource.enabled = false;
+                        anim.SetBool("IsOn", false);
+                        isOn = false;
+                        PlaySound();
+                    }
                 }
                 else
                 {
                     lightSource.enabled = false;
                     anim.SetBool("IsOn", false);
                     isOn = false;
-                    PlaySound();
                 }
-            }
-            else
-            {
-                lightSource.enabled = false;
-                anim.SetBool("IsOn", false);
-                isOn = false;
             }
         }
     }
