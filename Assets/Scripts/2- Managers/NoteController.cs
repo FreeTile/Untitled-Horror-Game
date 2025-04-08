@@ -61,6 +61,7 @@ namespace NoteSystem
         public void ShowNote(Note newNoteData)
         {
             NoteUIManager.instance.noteController = gameObject.GetComponent<NoteController>();
+            GameManager.Instance.PauseGameplay();
             noteUIController = NoteUIManager.instance;
 
             noteData = newNoteData;
@@ -187,6 +188,7 @@ namespace NoteSystem
             {
                 EnableTrigger(true);
             }
+            GameManager.Instance.ResumeGameplay();
         }
 
         public void ToggleOverlay()
