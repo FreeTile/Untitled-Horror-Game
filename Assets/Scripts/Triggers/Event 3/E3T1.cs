@@ -1,34 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
 public class E3T1 : EventHandler
 {
-
     public float explosionForce = 20f;
     public float explosionRadius = 5f;
     public float upwardModifier = 1f;
 
     public Transform explosionCenter;
-
     public GameObject BathroomDoor;
-    
     public Door door;
 
     public GameObject plateDroppedSound;
     public GameObject[] kitchenProps;
 
+    // Новые поля для эффектов
+    public ParticleSystem bloodParticles;          // Эффект крови (ParticleSystem)
+    public Material bathroomWallMaterial;            // Материал, который хотим перекрасить (например, стены туалета)
+    public Color targetRedColor = Color.red;         // Желаемый красный цвет (можно задать нужный оттенок)
+    public float colorTransitionDuration = 1.0f;       // Время перехода цвета
+    public float effectDuration = 20.0f;                // Длительность эффекта (3-5 секунд)
+
+    private Color originalColor;                     // Для сохранения исходного цвета материала
+
     public override IEnumerator Event()
     {
+        // Сохраняем исходный цвет материала
+        if (bathroomWallMaterial != null)
+            originalColor = bathroomWallMaterial.color;
+
+        // Работа с дверью
         door = BathroomDoor.GetComponent<Door>();
         door.ProcessMove();
         BathroomDoor.transform.DOLocalRotate(new Vector3(0, 0, 0), 0.2f);
-        
         door.isLocked = true;
-        //Lock bathroom door, start scary sounds and flickering light 
 
-        yield return new WaitForSeconds(2);
+        // Запуск страшных звуков
+        //if (scaryAudioSource != null)
+        //{
+        //    scaryAudioSource.Play();
+        //}
+
+        // Изменение цвета стен на кроваво-красный
+        if (bathroomWallMaterial != null)
+        {
+            bathroomWallMaterial.DOColor(targetRedColor, colorTransitionDuration);
+        }
+
+        // Включаем эффекты крови
+        if (bloodParticles != null)
+        {
+            bloodParticles.Play();
+        }
+
+        // Эффект длится effectDuration секунд
+        yield return new WaitForSeconds(effectDuration);
+
+        // Возвращаем исходный цвет
+        if (bathroomWallMaterial != null)
+        {
+            bathroomWallMaterial.DOColor(originalColor, colorTransitionDuration);
+        }
+
+        // Останавливаем эффекты крови
+        if (bloodParticles != null)
+        {
+            bloodParticles.Stop();
+        }
+
+        // Останавливаем страшные звуки (при необходимости)
+        //if (scaryAudioSource != null)
+        //{
+        //    scaryAudioSource.Stop();
+        //}
+
+        // Далее выполняются действия в кухне (например, взрыв предметов)
         foreach (GameObject prop in kitchenProps)
         {
             Rigidbody rb = prop.GetComponent<Rigidbody>();
@@ -37,11 +84,11 @@ public class E3T1 : EventHandler
                 rb.AddExplosionForce(explosionForce, explosionCenter.position, explosionRadius, upwardModifier, ForceMode.Impulse);
             }
         }
-        //playing sound
+
+        // Выключаем звук падения тарелки
         plateDroppedSound.SetActive(false);
-        //Something happened in the kitchen
+
         door.isLocked = false;
         yield return base.Event();
-
     }
 }

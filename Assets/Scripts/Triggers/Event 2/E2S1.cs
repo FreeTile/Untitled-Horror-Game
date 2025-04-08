@@ -16,7 +16,8 @@ public class E2S1 : EventHandler
 
     public override IEnumerator Event()
     {
-        while (true) {
+        while (true)
+        {
             RaycastHit hit;
             Physics.Raycast(PlayerCam.transform.position, (transform.position - PlayerCam.transform.position).normalized, out hit, 30f, mask);
             Debug.DrawRay(PlayerCam.transform.position, (transform.position - PlayerCam.transform.position).normalized, Color.green);
@@ -38,7 +39,7 @@ public class E2S1 : EventHandler
 
         this.transform.parent.gameObject.SetActive(false);
         int sanityLoss = Random.Range(minSanityLoss, maxSanityLoss);
-        GameManager.Instance.sanityManager.TriggerScreamer();
+        GameManager.Instance.sanityManager.TriggerScreamer(sanityLoss);
         if (lightBulb != null)
         {
             lightBulb.SetActive(false);

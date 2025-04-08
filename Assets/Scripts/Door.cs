@@ -116,7 +116,7 @@ public class Door : MonoBehaviour
                 yield return null;
                 continue;
             }
-
+            
             float velocity = GetComponent<Rigidbody>().velocity.magnitude;
             float currentAngle = transform.localEulerAngles.y;
 
