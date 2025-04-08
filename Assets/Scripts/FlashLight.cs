@@ -21,7 +21,7 @@ public class FlashLight : MonoBehaviour
     [SerializeField] private float minIntensity = 2f;
     [SerializeField] private Image batteryFillImage;
     [SerializeField] private TMP_Text flashlightDeadPopupText;
-    private static float Charge = 30f; //120f was
+    private static float Charge = 180f;
     private Animator anim;
     private bool isOn = false;
     private bool popupShown = false;

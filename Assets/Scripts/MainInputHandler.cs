@@ -45,7 +45,6 @@ public class MainInputHandler : MonoBehaviour
         inventoryAction = ActionMap.FindAction(inventory);
         journalAction = ActionMap.FindAction(journal);
         menuAction = ActionMap.FindAction(menu);
-        RegisterInputActions();
     }
 
     void RegisterInputActions()
@@ -71,6 +70,12 @@ public class MainInputHandler : MonoBehaviour
 
         isSubscribed = true;
     }
+    private void OnMenuPerformed(InputAction.CallbackContext context)
+    {
+        MenuDown = true;
+        GameManager.Instance.ProceedEsc();
+    }
+
     private void LateUpdate()
     {
         MenuDown = false;
@@ -91,4 +96,5 @@ public class MainInputHandler : MonoBehaviour
         journalAction.Disable();
         menuAction.Disable();
     }
+
 }

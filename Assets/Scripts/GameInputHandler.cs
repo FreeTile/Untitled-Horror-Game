@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class GameInputHandler : MonoBehaviour
 {
     [SerializeField] private InputActionAsset playerControls;
+    
     private static bool isSubscribed = false;
+
     public bool isCrouching;
     //Names for action map and actions from the action asset
     [SerializeField] private string actionMapName = "PlayerGame";
@@ -74,6 +76,7 @@ public class GameInputHandler : MonoBehaviour
     //.performed when key pressed, .canceled when key released
     void RegisterInputActions()
     {
+        if (isSubscribed) return;
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
         lookAction.performed += context => LookInput = context.ReadValue<Vector2>();
 
@@ -95,6 +98,8 @@ public class GameInputHandler : MonoBehaviour
 
         interactAction.canceled += context => InteractHold = false;
         sprintAction.canceled += context => SprintInput = false;
+
+        isSubscribed = true;
     }
     private void LateUpdate()
     {
