@@ -45,6 +45,7 @@ public class MainInputHandler : MonoBehaviour
         inventoryAction = ActionMap.FindAction(inventory);
         journalAction = ActionMap.FindAction(journal);
         menuAction = ActionMap.FindAction(menu);
+        RegisterInputActions();
     }
 
     void RegisterInputActions()
@@ -59,6 +60,7 @@ public class MainInputHandler : MonoBehaviour
         };
         journalAction.performed += context =>
         {
+            Debug.Log("Being called");
             JournalDown = true;
             GameManager.Instance.OpenJournal();
         };

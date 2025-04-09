@@ -80,6 +80,24 @@ public class GameManager : MonoBehaviour
         switchControlSystem();
     }
 
+    public void PauseGameplay()
+    {
+        if (state == State.Game)
+        {
+            state = State.Esc;
+            switchControlSystem();
+        }
+    }
+
+    public void ResumeGameplay()
+    {
+        if (state == State.Esc)
+        {
+            state = State.Game;
+            switchControlSystem();
+        }
+    }
+
     public void GameOver()
     {
         Time.timeScale = 0f;
