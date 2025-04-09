@@ -37,8 +37,8 @@ public class SettingsMenu : MonoBehaviour
             // ready to use
         }
 
-        AllResolutions = Screen.resolutions;
 
+        AllResolutions = Screen.resolutions;
         List<string> resolutionsStringList = new List<string>();
         string newRes;
         foreach (Resolution res in AllResolutions)
@@ -50,9 +50,14 @@ public class SettingsMenu : MonoBehaviour
                 SelectedResolutionList.Add(res);
             }
         }
-
         ResDropDown.ClearOptions();
         ResDropDown.AddOptions(resolutionsStringList);
+
+
+        List<string> qualities = new List<string>(QualitySettings.names);
+        qualityDropdown.ClearOptions();
+        qualityDropdown.AddOptions(qualities);
+
 
         LoadSettings();
     }
