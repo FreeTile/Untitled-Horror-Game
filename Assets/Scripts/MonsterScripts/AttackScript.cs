@@ -6,13 +6,17 @@ public class AttackScript : MonoBehaviour
 {
     [SerializeField] 
     private HealthManager healthManager;
+    [SerializeField]
+    public MonsterAI monsterAI;
+
     private bool invulnerable = false;
-    private float damageDelay = 1f;
+    private float damageDelay = 4f;
     void OnTriggerEnter(Collider other)
     {
         if (invulnerable) return;
         if (other.gameObject.tag == "Player" && invulnerable == false)
         {
+            monsterAI.playerDamaged = true;
             attackPlayer();
             invulnerable = true;
 
@@ -32,5 +36,6 @@ public class AttackScript : MonoBehaviour
 
         // Set the invulnerable flag to false
         invulnerable = false;
+        monsterAI.playerDamaged = false;
     }
 }
