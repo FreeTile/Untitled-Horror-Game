@@ -277,6 +277,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7007950251730992658, guid: 70308c1ea6880a44593a2b26459a7e86, type: 3}
   m_PrefabInstance: {fileID: 1938883689598108821}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &75530315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6450099266038026358, guid: 1829163a718f9904789db8efa53b2e0c, type: 3}
+  m_PrefabInstance: {fileID: 4631574652850201284}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488ad569d33e3bb44b8b65eed32d0a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &79694787 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4663349274510763870, guid: 67436e07bec9ab9438a6ce709c055ce6, type: 3}
@@ -106863,6 +106874,14 @@ PrefabInstance:
     - target: {fileID: 5990969193815752081, guid: 1829163a718f9904789db8efa53b2e0c, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280053641598621763, guid: 1829163a718f9904789db8efa53b2e0c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 75530315}
+    - target: {fileID: 6280053641598621763, guid: 1829163a718f9904789db8efa53b2e0c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 7259317836785047095, guid: 1829163a718f9904789db8efa53b2e0c, type: 3}
       propertyPath: m_AnchorMax.y
