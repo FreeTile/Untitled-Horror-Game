@@ -10,7 +10,7 @@ public class E2S1 : EventHandler
     public int minSanityLoss = 50;
     public int maxSanityLoss = 80;
     [SerializeField] private Camera PlayerCam;
-    [SerializeField] private GameObject Monster;
+    //[SerializeField] private GameObject Monster;
     [SerializeField] private LayerMask mask;
     //private string E2S1BulbBreakSound = "event:/BulbSound";
 
@@ -30,6 +30,7 @@ public class E2S1 : EventHandler
                 yield return null;
             }
         }
+        yield return new WaitForSeconds(0.3f);
 
         Debug.Log("DemDalsh");
 
