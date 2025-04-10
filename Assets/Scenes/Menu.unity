@@ -7035,7 +7035,7 @@ Transform:
   m_GameObject: {fileID: 993477661}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4458274, y: -0.39030865, z: -0.5306172, w: -0.60608786}
-  m_LocalPosition: {x: -140.22812, y: -24.32176, z: 124.85392}
+  m_LocalPosition: {x: -0, y: 11.66, z: 3.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -166026,6 +166026,10 @@ PrefabInstance:
     - target: {fileID: 1204488837242607655, guid: 44f56b7061e47ce4fa88e474d0461838, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204488837791333254, guid: 44f56b7061e47ce4fa88e474d0461838, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3148576211309465562, guid: 44f56b7061e47ce4fa88e474d0461838, type: 3}
       propertyPath: m_Limits.max
