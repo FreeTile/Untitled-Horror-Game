@@ -21,6 +21,7 @@ public class E2S1 : EventHandler
             RaycastHit hit;
             Physics.Raycast(PlayerCam.transform.position, (transform.position - PlayerCam.transform.position).normalized, out hit, 30f, mask);
             Debug.DrawRay(PlayerCam.transform.position, (transform.position - PlayerCam.transform.position).normalized, Color.green);
+            Debug.Log(hit.collider);
             if (IsInCameraFrustum() && hit.collider != null && hit.transform.gameObject == transform.gameObject)
             {
                 break;
