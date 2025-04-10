@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity; 
+using FMODUnity;
+using FMOD.Studio;
 
 [RequireComponent(typeof(GameInputHandler))]
 [RequireComponent(typeof(MainInputHandler))]
@@ -10,9 +11,16 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     GameInputHandler inputHandler;
     [SerializeField] private GameObject InventoryUI;
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject settingsMenuUI;
+    [SerializeField] private GameObject hudUI;
+
+
 
     public EventReference pauseEnterSound;
     public EventReference journalEnterSound;
+    private EventInstance pauseSound;
+    private EventInstance journalSound;
 
     public SanityManager sanityManager;
 
@@ -32,16 +40,21 @@ public class GameManager : MonoBehaviour
         if (Instance == null) //Creating singleton instance at the beginning 
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
+
         }
         else
         {
             Destroy(gameObject);
         }
+        pauseSound = RuntimeManager.CreateInstance(pauseEnterSound);
+        journalSound = RuntimeManager.CreateInstance(journalEnterSound);
 
         inputHandler = GetComponent<GameInputHandler>();
 
         GameStart();
+
+
     }
 
     //Switching controls between UI and main game control systems
@@ -67,6 +80,24 @@ public class GameManager : MonoBehaviour
         switchControlSystem();
     }
 
+    public void PauseGameplay()
+    {
+        if (state == State.Game)
+        {
+            state = State.Esc;
+            switchControlSystem();
+        }
+    }
+
+    public void ResumeGameplay()
+    {
+        if (state == State.Esc)
+        {
+            state = State.Game;
+            switchControlSystem();
+        }
+    }
+
     public void GameOver()
     {
         Time.timeScale = 0f;
@@ -75,29 +106,40 @@ public class GameManager : MonoBehaviour
 
     public void ProceedEsc()
     {
-        RuntimeManager.PlayOneShot(pauseEnterSound);
         Debug.Log("Proceeding Esc");
         if (state == State.Game)
         {
             state = State.Esc;
-            //Turn on Menu on canvas
+            pauseSound.start();
+            SanityManager.ambientInstance.setVolume(0.2f);
+            pauseMenuUI.SetActive(true);
+            hudUI.SetActive(false); // Hide HUD
         }
         else
         {
+            pauseSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             state = State.Game;
+            SanityManager.ambientInstance.setVolume(1f);
+            pauseMenuUI.SetActive(false);
+            settingsMenuUI.SetActive(false);
+            hudUI.SetActive(true); // Show HUD again
         }
         switchControlSystem();
     }
+
 
     public void OpenInventory()
     {
         if (state == State.Inventory)
         {
+            SanityManager.ambientInstance.setVolume(1f);
             state = State.Game;            
             InventoryUI.SetActive(false);
+
         }
         else if (state != State.Esc)
         {
+            SanityManager.ambientInstance.setVolume(0.2f);
             state = State.Inventory;
             InventoryUI.SetActive(true);
         }
@@ -108,12 +150,14 @@ public class GameManager : MonoBehaviour
     {
         if (state == State.Journal)
         {
+            SanityManager.ambientInstance.setVolume(1f);
             state = State.Game;
         }
         else if (state != State.Esc)
         {
             state = State.Journal;
             //Open the journal
+            SanityManager.ambientInstance.setVolume(0.2f);
             RuntimeManager.PlayOneShot(journalEnterSound);
         }
         switchControlSystem();

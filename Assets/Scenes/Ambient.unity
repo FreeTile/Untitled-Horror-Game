@@ -5178,11 +5178,11 @@ PrefabInstance:
       objectReference: {fileID: 910398204}
     - target: {fileID: 5760563421439369818, guid: 1c983adad7ff4ef498db3e85bdf7b762, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 105.55
+      value: 105.97
       objectReference: {fileID: 0}
     - target: {fileID: 5760563421439369818, guid: 1c983adad7ff4ef498db3e85bdf7b762, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.11
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 5760563421439369818, guid: 1c983adad7ff4ef498db3e85bdf7b762, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7952,7 +7952,7 @@ PrefabInstance:
     - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
       propertyPath: sanityManager
       value: 
-      objectReference: {fileID: 1912395551}
+      objectReference: {fileID: 1806439254}
     - target: {fileID: 798308680002019183, guid: b4b1c9fe5164b3b4192ff946c88e779b, type: 3}
       propertyPath: pauseSound.Path
       value: event:/UI/PauseEnter
@@ -9407,6 +9407,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1806439254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3161863021651374784, guid: 655fb2ef99e61b94485e3b142cce335a, type: 3}
+  m_PrefabInstance: {fileID: 1462652499}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28665f45dbc9b2a44adf094b7c25025e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1811096656
 Mesh:
   m_ObjectHideFlags: 0
@@ -9577,17 +9588,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5558173442150489684, guid: d2a555ee719720e4baef2a2d8758e83b, type: 3}
   m_PrefabInstance: {fileID: 636822333}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1912395551 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8285977765407290909, guid: 655fb2ef99e61b94485e3b142cce335a, type: 3}
-  m_PrefabInstance: {fileID: 1462652499}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28665f45dbc9b2a44adf094b7c25025e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1952778695
 Mesh:
   m_ObjectHideFlags: 0

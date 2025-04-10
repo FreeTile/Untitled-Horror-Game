@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc623e13decf484782f0eaa4bf62749, type: 3}
   m_Name: Puzzle2PieceCircle
   m_EditorClassIdentifier: 
-  position: {x: 0.4773026, y: -0.2188001, z: 1.956894}
+  position: {x: 105.857, y: 2.767, z: 126.601}
   rotation: {x: 0, y: 0, z: 0, w: 0}

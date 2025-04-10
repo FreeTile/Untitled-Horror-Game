@@ -13,7 +13,7 @@ public class Puzzle3 : MonoBehaviour
     [SerializeField]
     public Button[] wendyButtons;
     [SerializeField]
-    public GameObject BasementDoor;
+    public Door BasementDoor;
 
     public string correctOliver = "OLIVER";
     public string correctWendy = "WENDY";
@@ -22,8 +22,6 @@ public class Puzzle3 : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Oliver Buttons Count: " + oliverButtons.Length);
-        Debug.Log("Wendy Buttons Count: " + wendyButtons.Length);
 
         foreach (Button button in oliverButtons)
         {
@@ -37,19 +35,14 @@ public class Puzzle3 : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Accessing Update");
         var cameraRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width/2, Screen.height/2));
         Debug.DrawRay(cameraRay.origin, cameraRay.direction * 10000, Color.magenta);
 
         RaycastHit hit;
         if (Physics.Raycast(cameraRay, out hit, 10000f))
         {
-            Debug.Log("Raycast hit UI");
-            Debug.Log("Game Object hit: " + hit.transform.gameObject.name);
-
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("GameObject clicked");
                 Button btn = hit.transform.gameObject.GetComponent<Button>();
                 if (btn != null)
                 {
@@ -61,7 +54,6 @@ public class Puzzle3 : MonoBehaviour
 
     public void OnButtonClicked(Button button)
     {
-        Debug.Log($"Button clicked: {button.name}");
 
         if (selectedButton == null)
         {
@@ -80,6 +72,7 @@ public class Puzzle3 : MonoBehaviour
                 if (IsSameRow(button, selectedButton))
                 {
                     SwapLetters(button, selectedButton);
+
                     CheckPuzzleSolved();
                     selectedButton.GetComponent<Image>().color = Color.white;
                     button.GetComponent<Image>().color = Color.white;
@@ -117,17 +110,12 @@ public class Puzzle3 : MonoBehaviour
             text1.text = text2.text;
             text2.text = temp;
 
-            Debug.Log($"Swapped letters: {text1.text} with {text2.text}");
-        }
-        else
-        {
-            Debug.LogWarning("One or both buttons do not have TextMeshProUGUI components");
         }
     }
 
     private string GetConcatenatedText(Button[] buttons)
     {
-        var sortedButtons = buttons.OrderBy(b => b.GetComponent<RectTransform>().position.x).ToArray();
+        var sortedButtons = buttons.OrderBy(b => b.transform.GetSiblingIndex()).ToArray();
 
         string result = "";
         foreach(Button btn in sortedButtons)
@@ -137,10 +125,6 @@ public class Puzzle3 : MonoBehaviour
             {
                 result += textComp.text;
             }
-            else
-            {
-                Debug.LogWarning($"Button {btn.name} is missing a TextMeshProUGUI component");
-            }
         }
         return result;
     }
@@ -149,27 +133,14 @@ public class Puzzle3 : MonoBehaviour
     {
         string currentOliver = GetConcatenatedText(oliverButtons);
         string currentWendy = GetConcatenatedText(wendyButtons);
+        Debug.Log("Checking PuzzleSolved..." + currentOliver + currentWendy);
 
-        Debug.Log("Oliver Row: " + currentOliver);
-        Debug.Log("Wendy Row: " + currentWendy);
+
 
         if (currentOliver == correctOliver && currentWendy == correctWendy)
         {
-            Debug.Log("Puzzle Solved!");
-
-            Rigidbody rb = BasementDoor.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                if (rb.mass == 900)
-                {
-                    rb.mass = 1;
-                    Debug.Log("BasementDoor weight changed to 1.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("BasementDoor does not have a Rigidbody component.");
-            }
+            Debug.Log("Solved Puzzle3");
+            BasementDoor.isLocked = false;
         }
     }
 }
