@@ -8,6 +8,8 @@ public class AttackScript : MonoBehaviour
     private HealthManager healthManager;
     [SerializeField]
     public MonsterAI monsterAI;
+    [SerializeField]
+    private Animator animator;
 
     private bool invulnerable = false;
     private float damageDelay = 4f;
@@ -19,9 +21,9 @@ public class AttackScript : MonoBehaviour
             monsterAI.playerDamaged = true;
             attackPlayer();
             invulnerable = true;
-
+            StartCoroutine(DamageDelay());
         }
-        StartCoroutine(DamageDelay());
+
     }
 
     //attack fucntion
@@ -31,6 +33,8 @@ public class AttackScript : MonoBehaviour
     }
     private IEnumerator DamageDelay()
     {
+        //Put animation to play here 
+        animator.Play("Attack");
         // Wait for the specified amount of time
         yield return new WaitForSeconds(damageDelay);
 
