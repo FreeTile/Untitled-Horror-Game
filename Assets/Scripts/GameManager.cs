@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using System;
 
 [RequireComponent(typeof(GameInputHandler))]
 [RequireComponent(typeof(MainInputHandler))]
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject settingsMenuUI;
     [SerializeField] private GameObject hudUI;
 
+    [SerializeField] private GameObject backScreen;
 
 
     public EventReference pauseEnterSound;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     public enum State
     {
         Esc,
+        Settings,
         Game,
         Inventory,
         Journal
@@ -107,24 +109,46 @@ public class GameManager : MonoBehaviour
     public void ProceedEsc()
     {
         Debug.Log("Proceeding Esc");
-        if (state == State.Game)
+        switch (state)
         {
-            state = State.Esc;
-            pauseSound.start();
-            SanityManager.ambientInstance.setVolume(0.2f);
-            pauseMenuUI.SetActive(true);
-            hudUI.SetActive(false); // Hide HUD
+            case State.Game:
+                backScreen.SetActive(true);
+                state = State.Esc;
+                pauseSound.start();
+                SanityManager.ambientInstance.setVolume(0.2f);
+                pauseMenuUI.SetActive(true);
+                hudUI.SetActive(false);
+                switchControlSystem();
+                break;
+
+            case State.Esc:
+                pauseSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                state = State.Game;
+                SanityManager.ambientInstance.setVolume(1f);
+                pauseMenuUI.SetActive(false);
+                settingsMenuUI.SetActive(false);
+                hudUI.SetActive(true); // Show HUD again
+                backScreen.SetActive(false);
+                switchControlSystem();
+                break;
+
+            case State.Settings:
+                pauseMenuUI.SetActive(true);
+                settingsMenuUI.SetActive(false);
+                state = State.Esc;
+                break;
+
+            case State.Inventory:
+                InventoryUI.SetActive(false);
+                backScreen.SetActive(false);
+                state = State.Game;
+                hudUI.SetActive(true);
+                switchControlSystem();
+                break;
+
+            case State.Journal:
+                break;
         }
-        else
-        {
-            pauseSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            state = State.Game;
-            SanityManager.ambientInstance.setVolume(1f);
-            pauseMenuUI.SetActive(false);
-            settingsMenuUI.SetActive(false);
-            hudUI.SetActive(true); // Show HUD again
-        }
-        switchControlSystem();
     }
 
 
@@ -133,8 +157,9 @@ public class GameManager : MonoBehaviour
         if (state == State.Inventory)
         {
             SanityManager.ambientInstance.setVolume(1f);
-            state = State.Game;            
+            state = State.Game;
             InventoryUI.SetActive(false);
+            backScreen.SetActive(false);
 
         }
         else if (state != State.Esc)
@@ -142,6 +167,8 @@ public class GameManager : MonoBehaviour
             SanityManager.ambientInstance.setVolume(0.2f);
             state = State.Inventory;
             InventoryUI.SetActive(true);
+            backScreen.SetActive(true);
+            hudUI.SetActive(false);
         }
         switchControlSystem();
     }
@@ -159,6 +186,7 @@ public class GameManager : MonoBehaviour
             //Open the journal
             SanityManager.ambientInstance.setVolume(0.2f);
             RuntimeManager.PlayOneShot(journalEnterSound);
+            hudUI.SetActive(false);
         }
         switchControlSystem();
     }
@@ -189,11 +217,19 @@ public class GameManager : MonoBehaviour
         //Camera shake
         while (elapsed < duration)
         {
-            cam.transform.localPosition = originalPos + Random.insideUnitSphere * magnitude;
+            cam.transform.localPosition = originalPos + UnityEngine.Random.insideUnitSphere * magnitude;
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         cam.transform.localPosition = originalPos;
+    }
+
+    public void ChangeState(string newState)
+    {
+        if (Enum.TryParse(newState, true, out State parsedState))
+        {
+            state = parsedState;
+        }
     }
 }

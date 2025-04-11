@@ -12,55 +12,55 @@ public class E3T1 : EventHandler
     public GameObject BathroomDoor;
     public Door door;
 
+    // Свет в туалете
+    public Light bathroomLight;
+    // Целевой цвет - красный
+    public Color targetLightColor = Color.red;
+    // Время, за которое происходит переход цвета
+    public float colorTransitionDuration = 1.0f;
+    // Длительность эффекта (сколько времени будет свет красным)
+    public float effectDuration = 20.0f;
+
+    // Сохранение исходного цвета света
+    private Color originalLightColor;
+
     public GameObject plateDroppedSound;
     public GameObject[] kitchenProps;
-
-    // Новые поля для эффектов
-    public ParticleSystem bloodParticles;          // Эффект крови (ParticleSystem)
-    public Material bathroomWallMaterial;            // Материал, который хотим перекрасить (например, стены туалета)
-    public Color targetRedColor = Color.red;         // Желаемый красный цвет (можно задать нужный оттенок)
-    public float colorTransitionDuration = 1.0f;       // Время перехода цвета
-    public float effectDuration = 20.0f;                // Длительность эффекта (3-5 секунд)
-
-    private Color originalColor;                     // Для сохранения исходного цвета материала
+    public ParticleSystem bloodParticles;
 
     public override IEnumerator Event()
     {
-        // Сохраняем исходный цвет материала
-        if (bathroomWallMaterial != null)
-            originalColor = bathroomWallMaterial.color;
+        // Сохраняем исходный цвет света
+        if (bathroomLight != null)
+        {
+            originalLightColor = bathroomLight.color;
+        }
 
-        // Работа с дверью
+        // Обработка двери
         door = BathroomDoor.GetComponent<Door>();
         door.ProcessMove();
         BathroomDoor.transform.DOLocalRotate(new Vector3(0, 0, 0), 0.2f);
         door.isLocked = true;
 
-        // Запуск страшных звуков
-        //if (scaryAudioSource != null)
-        //{
-        //    scaryAudioSource.Play();
-        //}
-
-        // Изменение цвета стен на кроваво-красный
-        if (bathroomWallMaterial != null)
+        // Изменяем цвет света в туалете на красный
+        if (bathroomLight != null)
         {
-            bathroomWallMaterial.DOColor(targetRedColor, colorTransitionDuration);
+            bathroomLight.DOColor(targetLightColor, colorTransitionDuration);
         }
 
-        // Включаем эффекты крови
+        // Запускаем эффекты, если есть (например, эффекты крови)
         if (bloodParticles != null)
         {
             bloodParticles.Play();
         }
 
-        // Эффект длится effectDuration секунд
+        // Ждем, пока эффект длится effectDuration секунд
         yield return new WaitForSeconds(effectDuration);
 
-        // Возвращаем исходный цвет
-        if (bathroomWallMaterial != null)
+        // Возвращаем исходный цвет света
+        if (bathroomLight != null)
         {
-            bathroomWallMaterial.DOColor(originalColor, colorTransitionDuration);
+            bathroomLight.DOColor(originalLightColor, colorTransitionDuration);
         }
 
         // Останавливаем эффекты крови
@@ -69,13 +69,7 @@ public class E3T1 : EventHandler
             bloodParticles.Stop();
         }
 
-        // Останавливаем страшные звуки (при необходимости)
-        //if (scaryAudioSource != null)
-        //{
-        //    scaryAudioSource.Stop();
-        //}
-
-        // Далее выполняются действия в кухне (например, взрыв предметов)
+        // Действия на кухне (например, взрыв предметов)
         foreach (GameObject prop in kitchenProps)
         {
             Rigidbody rb = prop.GetComponent<Rigidbody>();

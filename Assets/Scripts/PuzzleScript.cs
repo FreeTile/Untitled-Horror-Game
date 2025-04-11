@@ -24,6 +24,7 @@ public class PuzzleScript : MonoBehaviour
                 unlockDoor = false;
                 break;
             }
+            Debug.Log(button.GetCurrentIndex());
         }
         if(lockedDoor != null && unlockDoor == true)
         {
