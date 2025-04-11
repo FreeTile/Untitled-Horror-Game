@@ -128232,10 +128232,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4684ab27cc132e74c9ae27db9ff32264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicBusPath: bus:/Music
   Basement: {fileID: 3526375016539179122}
   LongBasement: {fileID: 489536591223036674}
   Player: {fileID: 0}
   Shelf: {fileID: 306659503146935989}
+  Monster: {fileID: 0}
+  EventGameOver: {fileID: 0}
 --- !u!54 &7844212003146635014
 Rigidbody:
   m_ObjectHideFlags: 0
