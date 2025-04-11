@@ -81,8 +81,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 2.273463, y: 0.3, z: -1.4958687}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 172394318571026965}
   - {fileID: 5327091754719026831}
@@ -123,11 +123,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  atkDistance: 1
-  atkColider: {fileID: 1668451536320823002}
-  seePlayer: 0
+  playerDamaged: 0
   angle: 90
   radius: 5
+  seePlayer: 0
+  rotationSpeed: 0
+  rotationAngle: 0
   WayPoints:
   - {fileID: 0}
   - {fileID: 0}

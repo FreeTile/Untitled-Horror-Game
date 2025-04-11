@@ -1,4 +1,5 @@
 using FMOD;
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class Puzzle2 : MonoBehaviour
     private List<PuzzlePiece> pieces;
     [SerializeField]
     private List<GameObject> piecesObj;
+
+    public EventReference DoorUnlocked;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,6 +30,7 @@ public class Puzzle2 : MonoBehaviour
 
             if (piecesObj.Count == 0)
             {
+                RuntimeManager.PlayOneShot(DoorUnlocked);
                 door.isLocked = false;
             }
         }
