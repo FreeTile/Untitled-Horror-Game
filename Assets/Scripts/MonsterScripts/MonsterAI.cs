@@ -16,7 +16,9 @@ public class MonsterAI : MonoBehaviour
 
     [Header("Look around Values")]
     public float rotationSpeed;
-    public float rotationAngle;
+    public float rotationAngle;    
+    [SerializeField]
+    private Animator animator;
 
     [Space]
     [SerializeField] 
@@ -34,6 +36,7 @@ public class MonsterAI : MonoBehaviour
     private int pointIndex = 0;
     private bool finishedWp;
     private bool followingWp = true;
+
 
     //Monster Ai machine states 
     enum MonsterSates
@@ -65,6 +68,7 @@ public class MonsterAI : MonoBehaviour
             switch (state)
             {
                 case MonsterSates.WONDER: // Wonder state
+                    animator.Play("Idle_001");
                     FollowWP();
                     if (seePlayer)
                     {
@@ -75,8 +79,8 @@ public class MonsterAI : MonoBehaviour
                 case MonsterSates.PERSU: // Persu state
                     if (seePlayer)
                     {
-                        Vector3 ddajkfe = new Vector3(0.2f, 0, 0.2f);
-                        SetDestinationAgent(Player.transform.position - ddajkfe);
+                        Vector3 ofset = new Vector3(0.3f, 0, 0.3f);
+                        SetDestinationAgent(Player.transform.position - ofset);
                     }
                     else if (!seePlayer)
                     {
@@ -138,7 +142,7 @@ public class MonsterAI : MonoBehaviour
     public void FollowWP()
     {
         //sets a random range to make the monster LookAround for the player 
-        if(Random.Range(0,4) == 1 && transform.position == WayPoints[pointIndex].transform.position)
+        if (Random.Range(0,4) == 1 && transform.position == WayPoints[pointIndex].transform.position)
         {
             if (state != MonsterSates.LOOK)
             {
