@@ -169,6 +169,7 @@ MonoBehaviour:
   seePlayer: 0
   rotationSpeed: 100
   rotationAngle: 80
+  animator: {fileID: 7143432101152953303}
   WayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -239,6 +240,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a26a95f2f2ac4eb489b8ce9cef161927, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7143432101152953303}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a26a95f2f2ac4eb489b8ce9cef161927, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 480790437070929141}
   m_SourcePrefab: {fileID: 100100000, guid: a26a95f2f2ac4eb489b8ce9cef161927, type: 3}
 --- !u!4 &1718373985572509539 stripped
 Transform:
@@ -271,3 +275,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &480790437070929141
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059047340125326809}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 74665ca00b4a53447812a8ce0cb21f42, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

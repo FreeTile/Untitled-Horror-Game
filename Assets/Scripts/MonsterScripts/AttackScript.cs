@@ -12,7 +12,7 @@ public class AttackScript : MonoBehaviour
     private Animator animator;
 
     private bool invulnerable = false;
-    private float damageDelay = 4f;
+    private float damageDelay = 3f;
     void OnTriggerEnter(Collider other)
     {
         if (invulnerable) return;
