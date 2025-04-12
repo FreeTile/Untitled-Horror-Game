@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using FMODUnity;
+using FMOD.Studio;
 
 public class E3T1 : EventHandler
 {
@@ -22,9 +24,11 @@ public class E3T1 : EventHandler
     
     private Color originalLightColor;
 
-    public GameObject plateDroppedSound;
+    public GameObject platesDroppedCenter;
     public GameObject[] kitchenProps;
     public ParticleSystem bloodParticles;
+
+    public EventReference kitchenSounds;
 
     public override IEnumerator Event()
     {
@@ -70,7 +74,12 @@ public class E3T1 : EventHandler
             }
         }
 
-        plateDroppedSound.SetActive(false);
+        EventInstance kitchenSoundDrop = RuntimeManager.CreateInstance(kitchenSounds);
+
+        RuntimeManager.AttachInstanceToGameObject(kitchenSoundDrop, platesDroppedCenter.transform, (Rigidbody)null);
+
+        kitchenSoundDrop.start();
+        kitchenSoundDrop.release();
 
         FTUETriggerPuzzle2.SetActive(true);
         door.isLocked = false;

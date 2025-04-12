@@ -76,7 +76,7 @@ public class GameInputHandler : MonoBehaviour
     //.performed when key pressed, .canceled when key released
     void RegisterInputActions()
     {
-        if (isSubscribed) return;
+        //if (isSubscribed) return;
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
         lookAction.performed += context => LookInput = context.ReadValue<Vector2>();
 
@@ -139,10 +139,6 @@ public class GameInputHandler : MonoBehaviour
         lightangleAction.Disable();
         crouchAction.Disable();
     }
-    private void OnDestroy()
-    {
-        if (Instance == this)
-            Instance = null;
-    }
+    
 
 }

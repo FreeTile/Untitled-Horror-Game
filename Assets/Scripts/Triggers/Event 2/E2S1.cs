@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class E2S1 : EventHandler
 {
-    [Header("Объекты сцены")]
+    [Header("Scene Objects")]
     public GameObject lightBulb;
 
     public EventReference lightBulbSoundRef;

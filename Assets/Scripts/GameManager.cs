@@ -236,11 +236,6 @@ public class GameManager : MonoBehaviour
             state = parsedState;
         }
     }
-    private void OnDestroy()
-    {
-        if (Instance == this)
-            Instance = null;
-    }
-
+   
 
 }

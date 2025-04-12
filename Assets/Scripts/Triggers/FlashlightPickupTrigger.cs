@@ -4,7 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 using FMODUnity;
 using TMPro;
-using UnityEditor.VersionControl;
 
 
 public class FlashlightPickupTrigger : MonoBehaviour

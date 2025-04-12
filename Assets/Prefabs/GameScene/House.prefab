@@ -1316,7 +1316,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 3000
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 2.03e-43, z: 1.63068e-40, w: -7.2041503e-37}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -6836,7 +6836,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 2.76e-43, z: 1.55218e-40, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -7781,7 +7781,6 @@ GameObject:
   - component: {fileID: 4868106216193382220}
   - component: {fileID: 3617519508226569952}
   - component: {fileID: 3692681588727419595}
-  - component: {fileID: 1047554298520865490}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -7861,7 +7860,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 7.6e-44, z: 6.9338e-41, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -7889,37 +7888,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &1047554298520865490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8259099627280771189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1560563986
-      Data2: 1338551009
-      Data3: -822467709
-      Data4: -935305855
-    Path: event:/BulbSound
-  Event: 
-  EventPlayTrigger: 12
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 1
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &8283658428914298384
 GameObject:
   m_ObjectHideFlags: 0
@@ -14527,7 +14495,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2473
+  m_VersionIndex: 2485
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -15572,6 +15540,18 @@ PrefabInstance:
     - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.63e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.11773e-40
       objectReference: {fileID: 0}
     - target: {fileID: 5369818899478072997, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17419,7 +17399,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -19777,7 +19757,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -21740,7 +21720,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -22643,7 +22623,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -24299,7 +24279,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2464
+  m_VersionIndex: 2476
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -25078,7 +25058,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -29406,7 +29386,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -32739,7 +32719,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 775
+  m_VersionIndex: 787
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -36642,7 +36622,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -40082,7 +40062,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -45346,7 +45326,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -61381,7 +61361,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3335
+  m_VersionIndex: 3347
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -63538,7 +63518,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2482
+  m_VersionIndex: 2494
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -64477,6 +64457,18 @@ PrefabInstance:
     - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.43e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 2.11589e-40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67151,7 +67143,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -74949,7 +74941,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -75821,6 +75813,22 @@ PrefabInstance:
     - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -1.6663808e-33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.14e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 5.4924e-41
       objectReference: {fileID: 0}
     - target: {fileID: 5012364355212531915, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -77428,7 +77436,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -77576,6 +77584,22 @@ PrefabInstance:
     - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 2.1883e-41
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 6.2e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 2.2257e-41
       objectReference: {fileID: 0}
     - target: {fileID: 8183930076413479994, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_LocalPosition.x
@@ -79172,7 +79196,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.35e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.98575e-40
       objectReference: {fileID: 0}
     - target: {fileID: 8183930076413479994, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_LocalPosition.x
@@ -85801,7 +85837,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2491
+  m_VersionIndex: 2503
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -86799,12 +86835,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.28067e-40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 3e-45
+      value: 1.47e-43
       objectReference: {fileID: 0}
     - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.6e-44
+      value: 9.0506e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -88962,7 +89006,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -89484,6 +89528,22 @@ PrefabInstance:
     - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.27709e-40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 3.36e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761192692134884096, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 2.03773e-40
       objectReference: {fileID: 0}
     - target: {fileID: 5012364355212531915, guid: 4ae28da3f695dae46903e9abe639ba20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -92641,7 +92701,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -95955,7 +96015,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2473
+  m_VersionIndex: 2485
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -104499,7 +104559,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -105194,7 +105254,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -106289,11 +106349,20 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3803700361047549108, guid: 8a7383d1afeaf27438dfe5e873d0bef4, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 2.17e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803700361047549108, guid: 8a7383d1afeaf27438dfe5e873d0bef4, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.75578e-40
+      objectReference: {fileID: 0}
     - target: {fileID: 8391473083315857343, guid: 8a7383d1afeaf27438dfe5e873d0bef4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.098
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1434126374494829210, guid: 8a7383d1afeaf27438dfe5e873d0bef4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -110630,7 +110699,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -112231,7 +112300,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -113252,7 +113321,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -116128,7 +116197,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -117730,7 +117799,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -122833,7 +122902,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2473
+  m_VersionIndex: 2485
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -125840,7 +125909,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2497
+  m_VersionIndex: 2509
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -127846,7 +127915,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -128191,6 +128260,18 @@ PrefabInstance:
     - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.61e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.97625e-40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -128709,7 +128790,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2263
+  m_VersionIndex: 2275
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -130467,7 +130548,7 @@ MonoBehaviour:
       Data3: 1095282365
       Data4: 1117638816
     Path: event:/Doors/DoorSlam
-  isLocked: 0
+  isLocked: 1
   velocityThreshold: 0.1
   stopDelayDuration: 2
   initialAngle: 135
@@ -131380,7 +131461,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -132518,7 +132599,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -133189,7 +133270,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2461
+  m_VersionIndex: 2473
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -134219,6 +134300,22 @@ PrefabInstance:
     - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
       propertyPath: m_Shadows.m_Bias
       value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 2.7e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 2.2e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 2.4e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 2.5e-44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -139064,7 +139161,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2464
+  m_VersionIndex: 2476
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -139614,7 +139711,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -141253,7 +141350,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -147859,7 +147956,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2470
+  m_VersionIndex: 2482
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -149913,7 +150010,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -152847,7 +152944,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2473
+  m_VersionIndex: 2485
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -153212,7 +153309,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -153277,6 +153374,18 @@ PrefabInstance:
     - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
       propertyPath: m_Lightmapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 7e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566790310628869081, guid: a4f8136b5e0990946bd4f8464ebf7a69, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 7.7629e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -156161,6 +156270,22 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -1.6665219e-33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.43e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.62363e-40
+      objectReference: {fileID: 0}
     - target: {fileID: 5369818899478072997, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.001
@@ -156842,7 +156967,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2473
+  m_VersionIndex: 2485
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -162172,7 +162297,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2473
+  m_VersionIndex: 2485
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -165401,11 +165526,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: NaN
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
       objectReference: {fileID: 0}
     - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 8.1e-44
+      value: 8.8e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935478013960489156, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.48246e-40
       objectReference: {fileID: 0}
     - target: {fileID: 5369818899478072997, guid: db023afad3c7ab6449a37a2113bc9869, type: 3}
       propertyPath: m_LocalPosition.x
@@ -165960,7 +166093,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -167077,7 +167210,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -169679,7 +169812,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2467
+  m_VersionIndex: 2479
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

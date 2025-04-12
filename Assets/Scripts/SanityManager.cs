@@ -76,7 +76,7 @@ public class SanityManager : MonoBehaviour
             ambientInstance.setParameterByName(lowParameterName, 0.0f);
             ambientInstance.setParameterByName(mediumParameterName, 1.0f);
             ambientInstance.setParameterByName(highParameterName, 0.0f);
-            ApplyUnderwaterEffect(true);
+            ApplyUnderwaterEffect(false);
             Debug.Log("State set to Medium");
         }
         else
