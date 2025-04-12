@@ -11,6 +11,7 @@ public class Door : MonoBehaviour
     public EventReference doorOpenEvent;
     public EventReference doorCloseEvent;
     public EventReference doorLockedEvent;
+    public EventReference doorSlamEvent;
 
     private bool isHeld = false;
     public bool isLocked = false;
@@ -75,7 +76,16 @@ public class Door : MonoBehaviour
         limits.min = -1;
         limits.max = -0.1f;
         hinge.limits = limits;
-        RuntimeManager.PlayOneShot(doorCloseEvent, transform.position);
+        float angularSpeed = GetComponent<Rigidbody>().angularVelocity.magnitude;
+        Debug.Log("Angular speed: " + angularSpeed);
+        if (angularSpeed > 1.8f || angularSpeed < 0f)
+        {
+            RuntimeManager.PlayOneShot(doorSlamEvent, transform.position);
+        }
+        else
+        {
+            RuntimeManager.PlayOneShot(doorCloseEvent, transform.position);
+        }
     }
 
     public void Unlock() { isLocked = false; }

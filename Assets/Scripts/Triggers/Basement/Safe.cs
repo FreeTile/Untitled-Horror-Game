@@ -35,10 +35,10 @@ public class Safe : MonoBehaviour
         //Player pos + 47.5m
         CharacterController controller = Player.GetComponent<CharacterController>();
         controller.enabled = false;
-        Player.transform.position = Player.transform.position + new Vector3(0f, 0f, 47.5f);
+        Player.transform.position = Player.transform.position + new Vector3(0f, 0f, 45f);
         controller.enabled = true;
         //Safe pos + 47.5m
-        Shelf.transform.position = Shelf.transform.position + new Vector3(0f, 0f, 47.5f);
+        Shelf.transform.position = Shelf.transform.position + new Vector3(0f, 0f, 45f);
         gameObject.GetComponent<Safe>().enabled = false;
     }
 }

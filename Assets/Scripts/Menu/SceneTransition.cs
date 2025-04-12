@@ -14,6 +14,8 @@ public class SceneTransition : MonoBehaviour
 
     public static void SwitchToScene(string sceneName)
     {
+        
+
         instance.componentAnimator.SetTrigger("sceneClosing");
 
         instance.loadingSceneOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -57,4 +59,5 @@ public class SceneTransition : MonoBehaviour
 
         Debug.Log("Animation Over");
     }
+    
 }

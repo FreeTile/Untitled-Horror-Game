@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using FMODUnity;
+using TMPro;
+using UnityEditor.VersionControl;
 
 
 public class FlashlightPickupTrigger : MonoBehaviour
@@ -11,6 +13,8 @@ public class FlashlightPickupTrigger : MonoBehaviour
     public Door door;
     public GameObject KitchenDoor;
     public GameObject UIBatteryImage;
+    public TMP_Text Dialogue;
+    public FTUEPopUps ftuePopUps;
 
     [FMODUnity.EventRef]
     public string doorSoundEvent = "event:/triggers/E1FirstVariant";
@@ -26,6 +30,10 @@ public class FlashlightPickupTrigger : MonoBehaviour
             if (UIBatteryImage != null)
             {
                 UIBatteryImage.SetActive(true);
+            }
+            if(ftuePopUps != null)
+            {
+                ftuePopUps.DisplayTextManually(Dialogue, "Press F to use flashlight, You can collect batteries and use them in your inventory (TAB or I)");
             }
             door.isLocked = false;
             door = KitchenDoor.GetComponent<Door>();

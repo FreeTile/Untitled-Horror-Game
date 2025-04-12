@@ -28911,6 +28911,13 @@ MonoBehaviour:
       Data3: -1147559500
       Data4: 2035638046
     Path: event:/Doors/DoorIsLocked
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -29062,6 +29069,13 @@ MonoBehaviour:
       Data3: -1147559500
       Data4: 2035638046
     Path: event:/Doors/DoorIsLocked
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -41385,6 +41399,13 @@ MonoBehaviour:
       Data3: -1147559500
       Data4: 2035638046
     Path: event:/Doors/DoorIsLocked
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -67928,6 +67949,13 @@ MonoBehaviour:
       Data3: -1147559500
       Data4: 2035638046
     Path: event:/Doors/DoorIsLocked
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -94353,6 +94381,13 @@ MonoBehaviour:
       Data3: -1147559500
       Data4: 2035638046
     Path: event:/Doors/DoorIsLocked
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -101226,6 +101261,13 @@ MonoBehaviour:
       Data3: -1147559500
       Data4: 2035638046
     Path: event:/Doors/DoorIsLocked
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -101968,6 +102010,13 @@ MonoBehaviour:
       Data3: -1147559500
       Data4: 2035638046
     Path: event:/Doors/DoorIsLocked
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -137215,6 +137264,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -170920,6 +170976,13 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -173884,6 +173947,13 @@ MonoBehaviour:
       Data3: -1147559500
       Data4: 2035638046
     Path: event:/Doors/DoorIsLocked
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 1
   velocityThreshold: 0.1
   stopDelayDuration: 2
@@ -191401,6 +191471,13 @@ MonoBehaviour:
       Data3: -1147559500
       Data4: 2035638046
     Path: event:/Doors/DoorIsLocked
+  doorSlamEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   isLocked: 0
   velocityThreshold: 0.1
   stopDelayDuration: 2

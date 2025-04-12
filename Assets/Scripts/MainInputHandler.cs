@@ -98,5 +98,10 @@ public class MainInputHandler : MonoBehaviour
         journalAction.Disable();
         menuAction.Disable();
     }
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
+    }
 
 }

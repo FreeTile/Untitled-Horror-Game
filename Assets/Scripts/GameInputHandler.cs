@@ -113,6 +113,7 @@ public class GameInputHandler : MonoBehaviour
     //Enables input reading upon enabling component
     private void OnEnable()
     {
+        Debug.Log("Enabled");
         moveAction.Enable();
         lookAction.Enable();    
         flashlightAction.Enable();        
@@ -127,6 +128,8 @@ public class GameInputHandler : MonoBehaviour
     //Disables input reading upon enabling component
     private void OnDisable()
     {
+        Debug.Log("Disabled");
+
         moveAction.Disable(); 
         lookAction.Disable();
         flashlightAction.Disable();
@@ -136,4 +139,10 @@ public class GameInputHandler : MonoBehaviour
         lightangleAction.Disable();
         crouchAction.Disable();
     }
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
+    }
+
 }

@@ -11,17 +11,15 @@ public class E3T1 : EventHandler
     public Transform explosionCenter;
     public GameObject BathroomDoor;
     public Door door;
+    public GameObject FridgeDoor;
+    public GameObject FTUETriggerPuzzle2;
 
-    // Свет в туалете
     public Light bathroomLight;
-    // Целевой цвет - красный
     public Color targetLightColor = Color.red;
-    // Время, за которое происходит переход цвета
     public float colorTransitionDuration = 1.0f;
-    // Длительность эффекта (сколько времени будет свет красным)
     public float effectDuration = 20.0f;
 
-    // Сохранение исходного цвета света
+    
     private Color originalLightColor;
 
     public GameObject plateDroppedSound;
@@ -30,46 +28,39 @@ public class E3T1 : EventHandler
 
     public override IEnumerator Event()
     {
-        // Сохраняем исходный цвет света
         if (bathroomLight != null)
         {
             originalLightColor = bathroomLight.color;
         }
 
-        // Обработка двери
         door = BathroomDoor.GetComponent<Door>();
         door.ProcessMove();
         BathroomDoor.transform.DOLocalRotate(new Vector3(0, 0, 0), 0.2f);
+        FridgeDoor.transform.DOLocalRotate(new Vector3(0, -60, 0), 0.1f);
         door.isLocked = true;
 
-        // Изменяем цвет света в туалете на красный
         if (bathroomLight != null)
         {
             bathroomLight.DOColor(targetLightColor, colorTransitionDuration);
         }
 
-        // Запускаем эффекты, если есть (например, эффекты крови)
         if (bloodParticles != null)
         {
             bloodParticles.Play();
         }
 
-        // Ждем, пока эффект длится effectDuration секунд
         yield return new WaitForSeconds(effectDuration);
 
-        // Возвращаем исходный цвет света
         if (bathroomLight != null)
         {
             bathroomLight.DOColor(originalLightColor, colorTransitionDuration);
         }
 
-        // Останавливаем эффекты крови
         if (bloodParticles != null)
         {
             bloodParticles.Stop();
         }
 
-        // Действия на кухне (например, взрыв предметов)
         foreach (GameObject prop in kitchenProps)
         {
             Rigidbody rb = prop.GetComponent<Rigidbody>();
@@ -79,9 +70,9 @@ public class E3T1 : EventHandler
             }
         }
 
-        // Выключаем звук падения тарелки
         plateDroppedSound.SetActive(false);
 
+        FTUETriggerPuzzle2.SetActive(true);
         door.isLocked = false;
         yield return base.Event();
     }

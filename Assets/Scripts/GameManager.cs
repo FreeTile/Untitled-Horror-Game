@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
         Settings,
         Game,
         Inventory,
-        Journal
+        Journal,
+        GameOver
     }
 
     public State state;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
     //Switching controls between UI and main game control systems
     public void switchControlSystem()
     {
+        
         if (state != State.Game)
         {
             inputHandler.enabled = false;
@@ -80,6 +82,7 @@ public class GameManager : MonoBehaviour
     {
         state = State.Game;
         switchControlSystem();
+        Debug.Log("Started Game");
     }
 
     public void PauseGameplay()
@@ -115,7 +118,7 @@ public class GameManager : MonoBehaviour
                 backScreen.SetActive(true);
                 state = State.Esc;
                 pauseSound.start();
-                SanityManager.ambientInstance.setVolume(0.2f);
+                sanityManager.SetMusicVolume(0.2f);
                 pauseMenuUI.SetActive(true);
                 hudUI.SetActive(false);
                 switchControlSystem();
@@ -124,7 +127,7 @@ public class GameManager : MonoBehaviour
             case State.Esc:
                 pauseSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 state = State.Game;
-                SanityManager.ambientInstance.setVolume(1f);
+                sanityManager.SetMusicVolume(1f);
                 pauseMenuUI.SetActive(false);
                 settingsMenuUI.SetActive(false);
                 hudUI.SetActive(true); // Show HUD again
@@ -156,15 +159,15 @@ public class GameManager : MonoBehaviour
     {
         if (state == State.Inventory)
         {
-            SanityManager.ambientInstance.setVolume(1f);
+            sanityManager.SetMusicVolume(1f);
             state = State.Game;
             InventoryUI.SetActive(false);
             backScreen.SetActive(false);
-
+            hudUI.SetActive(true);
         }
         else if (state != State.Esc)
         {
-            SanityManager.ambientInstance.setVolume(0.2f);
+            sanityManager.SetMusicVolume(0.2f);
             state = State.Inventory;
             InventoryUI.SetActive(true);
             backScreen.SetActive(true);
@@ -177,14 +180,15 @@ public class GameManager : MonoBehaviour
     {
         if (state == State.Journal)
         {
-            SanityManager.ambientInstance.setVolume(1f);
+            sanityManager.SetMusicVolume(1f);
             state = State.Game;
+            hudUI.SetActive(true);
         }
         else if (state != State.Esc)
         {
             state = State.Journal;
             //Open the journal
-            SanityManager.ambientInstance.setVolume(0.2f);
+            sanityManager.SetMusicVolume(0.2f);
             RuntimeManager.PlayOneShot(journalEnterSound);
             hudUI.SetActive(false);
         }
@@ -232,4 +236,11 @@ public class GameManager : MonoBehaviour
             state = parsedState;
         }
     }
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
+    }
+
+
 }

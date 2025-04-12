@@ -1,45 +1,107 @@
-﻿using UnityEngine;
-
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 public class GameOverScreamer : MonoBehaviour
 {
-    // Ссылка на объект монстра, который хотим включить
+    [Header("Настройка монстра")]
     public GameObject monster;
+    public string attackAnimation = "Attack";
 
-    // Сюда сохраним ссылку на Animator
+    [Header("Настройка UI")]
+    public Image fadeImage;              // UI Image для затемнения экрана
+    public TMP_Text gameOverText;            // UI Text для вывода сообщения
+
     private Animator monsterAnimator;
 
     void Start()
     {
+        // Инициализация объекта монстра
         if (monster != null)
         {
-            // Берём компонент Animator на монстре
             monsterAnimator = monster.GetComponent<Animator>();
-            // На всякий случай отключаем монстра (если он неактивен в сцене)
             monster.SetActive(false);
         }
         else
         {
             Debug.LogWarning("Monster не задан в инспекторе!");
         }
+
+        // Инициализация UI: делаем картинку прозрачной и скрываем текст
+        if (fadeImage != null)
+        {
+            Color c = fadeImage.color;
+            c.a = 0f;
+            fadeImage.color = c;
+        }
+        else
+        {
+            Debug.LogWarning("Fade Image не задан в инспекторе!");
+        }
+
+        if (gameOverText != null)
+        {
+            gameOverText.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("Game Over Text не задан в инспекторе!");
+        }
     }
 
-    // Вызывается, когда объект с тегом "Player" заходит в триггер
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("COllided");
-
         if (other.CompareTag("Player"))
         {
-            Debug.Log("COllided");
-            // Активируем монстра
-            monster.SetActive(true);
+            GameManager.Instance.state = GameManager.State.GameOver;
+            GameManager.Instance.switchControlSystem();
+            // Отключаем ввод через GameInputHandler, чтобы игрок не мог нажимать кнопки
+            //if (GameInputHandler.Instance != null)
+            //{
+            //    Debug.Log("Zashel");
+            //    GameInputHandler.Instance.enabled = false;
+            //}
 
-            // Способ 1: Прямое воспроизведение анимации по имени состояния в Animator
-            // Убедитесь, что анимационное состояние в контроллере действительно называется "Attack"
-            monsterAnimator.Play("Attack");
-
-            // Или способ 2: если в Animator Controller есть параметр-триггер
-            // monsterAnimator.SetTrigger("AttackTrigger");
+            // Запускаем корутину для показа jumpscare и перехода в меню
+            //StartCoroutine(PlayAttackAndGameOver());
+            //SceneTransition.SwitchToScene("Menu");
+            SceneManager.LoadScene("Menu");
         }
+    }
+
+    IEnumerator PlayAttackAndGameOver()
+    {
+        // Активируем монстра и проигрываем анимацию атаки
+        monster.SetActive(true);
+        monsterAnimator.Play(attackAnimation);
+
+        // Ожидаем окончания анимации (замените 2.0f на реальное время анимации или используйте Animation Event)
+        yield return new WaitForSeconds(2.0f);
+
+        // Эффект затемнения экрана
+        float fadeDuration = 1.0f;
+        float elapsedTime = 0f;
+        Color initialColor = fadeImage.color; // изначально alpha = 0
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            // Интерполируем alpha от 0 до 1
+            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+            Color newColor = initialColor;
+            newColor.a = alpha;
+            fadeImage.color = newColor;
+            yield return null;
+        }
+
+        // Показываем сообщение о завершении игры
+        gameOverText.text = "Demo is Over\r\nThanks for playing!";
+        gameOverText.gameObject.SetActive(true);
+
+        // Ожидаем 5 секунд перед переходом в меню
+        yield return new WaitForSeconds(5f);
+
+        // Используем вашу функцию для сцен транзишн, чтобы перейти в меню
+        SceneTransition.SwitchToScene("Menu");
     }
 }

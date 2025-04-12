@@ -35,6 +35,9 @@ public class SanityManager : MonoBehaviour
     public Sprite mediumSanitySprite;
     public Sprite lowSanitySprite;
 
+    [SerializeField] public string musicBusPath = "bus:/Music";
+    public FMOD.Studio.Bus musicBus;
+
     public static EventInstance ambientInstance;
 
     //Underwater effect
@@ -44,13 +47,10 @@ public class SanityManager : MonoBehaviour
 
     void Start()
     {
+        musicBus = RuntimeManager.GetBus(musicBusPath);
         ambientInstance = RuntimeManager.CreateInstance(ambientEvent);
         ambientInstance.start();
         UpdateSoundParameters();
-        // Create and start the ambient event instance
-        //FindObjectOfType<GlitchFeature>().glitchEnabled = false;
-        //Debug.Log(FindObjectOfType<GlitchFeature>().glitchEnabled);
-        //UnderWater effect
         masterBus = RuntimeManager.GetBus("bus:/");
         masterBus.getChannelGroup(out channelGroup);
         RuntimeManager.CoreSystem.createDSPByType(FMOD.DSP_TYPE.LOWPASS, out lowpassDSP);
@@ -144,6 +144,10 @@ public class SanityManager : MonoBehaviour
         sanity -= amount;
         sanity = Mathf.Clamp(sanity, 0, 100);
         UpdateSoundParameters();
+    }
+    public void SetMusicVolume(float volume)
+    {
+        musicBus.setVolume(volume);
     }
 
     // Stop and release the FMOD event instance when the object is destroyed

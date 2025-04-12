@@ -23,8 +23,9 @@ public class PauseMenu : MonoBehaviour
         if (!clickSound.IsNull)
             RuntimeManager.PlayOneShot(clickSound);
 
-        Time.timeScale = 1f; // Unpause game
-        SceneManager.LoadScene("Menu");
+        //Time.timeScale = 1f; // Unpause game
+        //Load GameScene
+        SceneTransition.SwitchToScene("Menu");
     }
 
     // Quit the game completely
@@ -35,5 +36,6 @@ public class PauseMenu : MonoBehaviour
 
         Application.Quit();
     }
+    
 
 }
