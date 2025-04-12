@@ -157,6 +157,13 @@ MonoBehaviour:
   - {fileID: 8979451269700643472}
   - {fileID: 8941823896238748660}
   - {fileID: 4836436416040853898}
+  DoorUnlocked:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &4836436416040853898
 GameObject:
   m_ObjectHideFlags: 0

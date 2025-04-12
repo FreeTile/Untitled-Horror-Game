@@ -1,3 +1,4 @@
+using FMODUnity;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ public class PuzzleScript : MonoBehaviour
     public ButtonSwapTexture[] buttons;
     private int targetValue = 5;
 
+    public EventReference DoorUnlocked;
+
     public void CheckCombination()
     {
         unlockDoor = true;
@@ -24,11 +27,13 @@ public class PuzzleScript : MonoBehaviour
                 unlockDoor = false;
                 break;
             }
+            Debug.Log(button.GetCurrentIndex());
         }
         if(lockedDoor != null && unlockDoor == true)
         {
             Debug.Log("Locked Door is not null");
             lockedDoor.isLocked = false;
+            RuntimeManager.PlayOneShot(DoorUnlocked);
         }
     }
 }

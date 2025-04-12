@@ -53,8 +53,11 @@ public class FlashLight : MonoBehaviour
     //so redusing speed is equal no matter how many frames per second the player has.
     private void FixedUpdate()
     {
-        DecreaseCharge();
-        if (batteryFillImage != null) batteryFillImage.fillAmount = Charge / 30f; //Flashlight max 
+        if (isPickedUp)
+        {
+            DecreaseCharge();
+            if (batteryFillImage != null) batteryFillImage.fillAmount = Charge / 180f; //Flashlight max 
+        }
     }
 
     private void LateUpdate()
