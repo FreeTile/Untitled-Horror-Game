@@ -76,7 +76,7 @@ public class GameInputHandler : MonoBehaviour
     //.performed when key pressed, .canceled when key released
     void RegisterInputActions()
     {
-        if (isSubscribed) return;
+        //if (isSubscribed) return;
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
         lookAction.performed += context => LookInput = context.ReadValue<Vector2>();
 
@@ -113,6 +113,7 @@ public class GameInputHandler : MonoBehaviour
     //Enables input reading upon enabling component
     private void OnEnable()
     {
+        Debug.Log("Enabled");
         moveAction.Enable();
         lookAction.Enable();    
         flashlightAction.Enable();        
@@ -127,6 +128,8 @@ public class GameInputHandler : MonoBehaviour
     //Disables input reading upon enabling component
     private void OnDisable()
     {
+        Debug.Log("Disabled");
+
         moveAction.Disable(); 
         lookAction.Disable();
         flashlightAction.Disable();
@@ -136,4 +139,6 @@ public class GameInputHandler : MonoBehaviour
         lightangleAction.Disable();
         crouchAction.Disable();
     }
+    
+
 }
