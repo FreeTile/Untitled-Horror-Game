@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using UnityEngine.Rendering;
+using FMODUnity;
 
 public class Puzzle3 : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class Puzzle3 : MonoBehaviour
     public Button[] wendyButtons;
     [SerializeField]
     public Door BasementDoor;
+    [SerializeField]
+    public GameObject ExtendedBasement;
+
+    public EventReference DoorUnlocked;
+
 
     public string correctOliver = "OLIVER";
     public string correctWendy = "WENDY";
@@ -141,6 +147,8 @@ public class Puzzle3 : MonoBehaviour
         {
             Debug.Log("Solved Puzzle3");
             BasementDoor.isLocked = false;
+            ExtendedBasement.SetActive(true);
+            RuntimeManager.PlayOneShot(DoorUnlocked);
         }
     }
 }

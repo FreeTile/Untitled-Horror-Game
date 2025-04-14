@@ -98,5 +98,6 @@ public class MainInputHandler : MonoBehaviour
         journalAction.Disable();
         menuAction.Disable();
     }
+   
 
 }
