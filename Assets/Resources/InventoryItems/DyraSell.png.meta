@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/InventoryItems/DyraSell.png.meta
 guid: 5f9c87003088b8c498e13ec400d4edec
+========
+guid: e3410a645c420d24c9be2ccf0cedd29f
+>>>>>>>> Dev:Assets/Resources/InventoryItems/AntiStress.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
