@@ -20,7 +20,6 @@ public class ButtonSwapTexture : MonoBehaviour
     public void Update()
     {
         var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(cameraRay.origin, cameraRay.direction * 10000, Color.magenta);
 
         RaycastHit hit;
         if (Physics.Raycast(cameraRay, out hit, 10000f, LayerMask.GetMask("UI")))
