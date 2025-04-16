@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +15,14 @@ public class DeathScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI deathScreenText;
     [SerializeField] private float typingSpeed = 0.05f;
     [SerializeField] private float eraseSpeed = 0.03f;
+    public EventReference typeSound;
+
+    [SerializeField] private string musicBusPath = "bus:/Music";
 
     public void Death()
     {
+        Bus musicBus = RuntimeManager.GetBus(musicBusPath);
+        musicBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
         StartCoroutine(DeathAnimation());
     }
     public IEnumerator DeathAnimation()
@@ -37,6 +44,7 @@ public class DeathScreen : MonoBehaviour
 
         foreach (char letter in message)
         {
+            RuntimeManager.PlayOneShot(typeSound);
             deathScreenText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }

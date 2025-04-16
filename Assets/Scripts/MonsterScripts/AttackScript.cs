@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 public class AttackScript : MonoBehaviour
@@ -10,6 +12,9 @@ public class AttackScript : MonoBehaviour
     public MonsterBasement monsterAI;
     [SerializeField]
     private Animator animator;
+    public EventReference attackReference;
+
+    public GameObject Monster;
 
     private bool invulnerable = false;
     private float damageDelay = 2.5f;
@@ -28,10 +33,17 @@ public class AttackScript : MonoBehaviour
     //attack fucntion
     private void attackPlayer()
     {
+        
         healthManager.DecreaseHealth();
     }
     private IEnumerator DamageDelay()
     {
+        EventInstance MonsterAttackSound = RuntimeManager.CreateInstance(attackReference);
+
+        RuntimeManager.AttachInstanceToGameObject(MonsterAttackSound, Monster.transform, (Rigidbody)null);
+
+        MonsterAttackSound.start();
+        MonsterAttackSound.release();
         //Put animation to play here 
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.2f);

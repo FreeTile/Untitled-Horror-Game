@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 public class GameOverScreamer : MonoBehaviour
 {
     [Header("Monster settings")]
@@ -15,6 +16,9 @@ public class GameOverScreamer : MonoBehaviour
     public TMP_Text gameOverText;
 
     private Animator monsterAnimator;
+
+    public EventReference typeSound;
+
 
     void Start()
     {
@@ -56,8 +60,8 @@ public class GameOverScreamer : MonoBehaviour
 
             GameManager.Instance.state = GameManager.State.GameOver;
             GameManager.Instance.TriggerJumpScare();
-            GameManager.Instance.switchControlSystem();
-            
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             StartCoroutine(PlayAttackAndGameOver());
             
         }
@@ -94,6 +98,7 @@ public class GameOverScreamer : MonoBehaviour
 
         foreach (char letter in message)
         {
+            RuntimeManager.PlayOneShot(typeSound);
             gameOverText.text += letter;
             yield return new WaitForSeconds(0.08f);
         }
