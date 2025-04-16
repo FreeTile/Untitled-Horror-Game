@@ -15,9 +15,13 @@ namespace NoteSystem
             _camera = GetComponent<Camera>();
         }
 
-        void Update()
+        void LateUpdate()
         {
-            if (Physics.Raycast(_camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f)), transform.forward, out RaycastHit hit, rayLength))
+
+            Vector3 origin = _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, _camera.nearClipPlane));
+            Ray ray = new Ray(origin, transform.forward);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, rayLength))
             {
                 var noteItem = hit.collider.GetComponent<NoteInteractable>();
                 if (noteItem != null)
