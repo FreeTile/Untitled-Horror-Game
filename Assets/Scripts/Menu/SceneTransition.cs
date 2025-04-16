@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,9 +14,17 @@ public class SceneTransition : MonoBehaviour
     private Animator componentAnimator;
     private AsyncOperation loadingSceneOperation;
 
+    [SerializeField] private static string musicBusPath = "bus:/Music";
+    [SerializeField] private static string sfxBusPath = "bus:/SFX";
+
     public static void SwitchToScene(string sceneName)
     {
-        
+        Time.timeScale = 1f;
+
+        Bus musicBus = RuntimeManager.GetBus(musicBusPath);
+        musicBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        Bus sfxBus = RuntimeManager.GetBus(sfxBusPath);
+        sfxBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
         instance.componentAnimator.SetTrigger("sceneClosing");
 
