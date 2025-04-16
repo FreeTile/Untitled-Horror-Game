@@ -128,7 +128,7 @@ public class InventoryUI : MonoBehaviour
                 case ItemSO.Items.batteris:
                     Remove(item);
                     _BatteryCount--;
-                    FlashLight.IncreaseCharge(10);
+                    FlashLight.IncreaseCharge(50);
 
                     foreach (var node in Nodes)
                     {
