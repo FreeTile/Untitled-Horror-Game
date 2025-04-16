@@ -13,7 +13,8 @@ namespace NoteSystem
         private bool isNoteBeingViewed;
         private NoteUIManager noteUIController;
         private GameObject triggerObject;
-
+        [SerializeField]
+        private MainInputHandler input;
         public enum NoteSource { None, Inventory, World }
 
         public NoteSource CurrentNoteSource { get; set; }
@@ -47,7 +48,7 @@ namespace NoteSystem
 
         private void Update()
         {
-            if (isNoteBeingViewed && canCloseNote && Input.GetKeyDown(NoteInputManager.instance.closeKey))
+            if (isNoteBeingViewed && input.MenuDown)
             {
                 CloseNote();
             }
@@ -60,8 +61,9 @@ namespace NoteSystem
 
         public void ShowNote(Note newNoteData)
         {
+            GameManager.Instance.ChangeState("Note");
+            GameManager.Instance.switchControlSystem();
             NoteUIManager.instance.noteController = gameObject.GetComponent<NoteController>();
-            GameManager.Instance.PauseGameplay();
             noteUIController = NoteUIManager.instance;
 
             noteData = newNoteData;
@@ -147,9 +149,15 @@ namespace NoteSystem
 
             switch (CurrentNoteSource)
             {
-                case NoteSource.Inventory: noteUIController.ToggleInventoryViewing();
+                case NoteSource.Inventory: 
+                    noteUIController.ToggleInventoryViewing();
+                    GameManager.Instance.ChangeState("Journal");
+                    GameManager.Instance.switchControlSystem();
                     break;
-                case NoteSource.World: NoteDisableManager.instance.DisablePlayer(false);
+                case NoteSource.World: 
+                    NoteDisableManager.instance.DisablePlayer(false);
+                    GameManager.Instance.ChangeState("Game");
+                    GameManager.Instance.switchControlSystem();
                     break;
             }
 

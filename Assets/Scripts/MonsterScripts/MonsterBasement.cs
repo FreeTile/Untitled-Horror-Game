@@ -40,7 +40,7 @@ public class MonsterBasement : MonoBehaviour
             switch (state)
             {
                 case MonsterSates.PERSU: // Persu state
-                    animator.Play("Idle_001");
+                    //animator.SetTrigger("Attack");
                     Vector3 ofset = new Vector3(0.3f, 0, 0.3f);
                     SetDestinationAgent(Player.transform.position + ofset);
                     break;

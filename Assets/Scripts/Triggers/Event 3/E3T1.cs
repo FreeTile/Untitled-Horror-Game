@@ -21,7 +21,9 @@ public class E3T1 : EventHandler
     public float colorTransitionDuration = 1.0f;
     public float effectDuration = 20.0f;
 
-    
+    public int minSanityLoss = 10;
+    public int maxSanityLoss = 20;
+
     private Color originalLightColor;
 
     public GameObject platesDroppedCenter;
@@ -32,6 +34,7 @@ public class E3T1 : EventHandler
 
     public override IEnumerator Event()
     {
+        GameManager.Instance.sanityManager.CheckFearLevel(minSanityLoss, maxSanityLoss, 10f);
         if (bathroomLight != null)
         {
             originalLightColor = bathroomLight.color;

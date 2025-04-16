@@ -3,6 +3,7 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using System;
+using NoteSystem;
 
 [RequireComponent(typeof(GameInputHandler))]
 [RequireComponent(typeof(MainInputHandler))]
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject settingsMenuUI;
     [SerializeField] private GameObject hudUI;
-
+    [SerializeField] private DeathScreen deathScreen;
     [SerializeField] private GameObject backScreen;
 
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         Game,
         Inventory,
         Journal,
+        Note,
         GameOver
     }
 
@@ -66,12 +68,14 @@ public class GameManager : MonoBehaviour
         
         if (state != State.Game)
         {
+            PauseGameplay();
             inputHandler.enabled = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
+            ResumeGameplay();
             inputHandler.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -87,26 +91,23 @@ public class GameManager : MonoBehaviour
 
     public void PauseGameplay()
     {
-        if (state == State.Game)
-        {
-            state = State.Esc;
-            switchControlSystem();
-        }
+       Time.timeScale = 0f;
     }
 
     public void ResumeGameplay()
     {
-        if (state == State.Esc)
-        {
-            state = State.Game;
-            switchControlSystem();
-        }
+        Time.timeScale = 1f;
     }
 
     public void GameOver()
     {
-        Time.timeScale = 0f;
-        Debug.Log("Game Over");
+        state = State.GameOver;
+        switchControlSystem();
+        hudUI.SetActive(false);
+        MainInputHandler.Instance.enabled = false;
+        GameInputHandler.Instance.enabled = false;
+        deathScreen.gameObject.SetActive(true);
+        deathScreen.Death();
     }
 
     public void ProceedEsc()
@@ -145,11 +146,16 @@ public class GameManager : MonoBehaviour
                 InventoryUI.SetActive(false);
                 backScreen.SetActive(false);
                 state = State.Game;
+                sanityManager.SetMusicVolume(1f);
                 hudUI.SetActive(true);
                 switchControlSystem();
                 break;
 
             case State.Journal:
+                NoteUIManager.instance.CloseInventory();
+                sanityManager.SetMusicVolume(1f);
+                state = State.Game;
+                switchControlSystem();
                 break;
         }
     }
@@ -165,10 +171,11 @@ public class GameManager : MonoBehaviour
             backScreen.SetActive(false);
             hudUI.SetActive(true);
         }
-        else if (state != State.Esc)
+        else if (state != State.Esc && state != State.Settings)
         {
             sanityManager.SetMusicVolume(0.2f);
             state = State.Inventory;
+            NoteUIManager.instance.CloseInventory();
             InventoryUI.SetActive(true);
             backScreen.SetActive(true);
             hudUI.SetActive(false);
@@ -184,12 +191,13 @@ public class GameManager : MonoBehaviour
             state = State.Game;
             hudUI.SetActive(true);
         }
-        else if (state != State.Esc)
+        else if (state != State.Esc && state != State.Settings)
         {
             state = State.Journal;
-            //Open the journal
             sanityManager.SetMusicVolume(0.2f);
             RuntimeManager.PlayOneShot(journalEnterSound);
+            InventoryUI.SetActive(false);
+            backScreen.SetActive(false);
             hudUI.SetActive(false);
         }
         switchControlSystem();
@@ -227,6 +235,7 @@ public class GameManager : MonoBehaviour
         }
 
         cam.transform.localPosition = originalPos;
+
     }
 
     public void ChangeState(string newState)
@@ -234,6 +243,7 @@ public class GameManager : MonoBehaviour
         if (Enum.TryParse(newState, true, out State parsedState))
         {
             state = parsedState;
+            switchControlSystem();
         }
     }
    

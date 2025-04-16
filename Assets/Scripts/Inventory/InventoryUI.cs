@@ -116,7 +116,7 @@ public class InventoryUI : MonoBehaviour
                 case ItemSO.Items.Pills:
                     Remove(item);
                     _PillsCount--;
-                    // Add sanity ++
+                    GameManager.Instance.sanityManager.DecreaseSanity(-30f);
                     foreach (var node in Nodes)
                     {
                         if (node.Key == ItemSO.Items.Pills)

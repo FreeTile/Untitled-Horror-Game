@@ -3,12 +3,13 @@ using System.Collections;
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class SanityManager : MonoBehaviour
 {
     [Header("Sanity Settings")]
     [Range(0, 100)]
-    public int sanity = 70; // Initial sanity value
+    public int sanity = 100; // Initial sanity value
 
     [Header("FMOD Ambient Event")]
     [Tooltip("FMOD event path for the Ambient track")]
@@ -45,6 +46,11 @@ public class SanityManager : MonoBehaviour
     private FMOD.Studio.Bus masterBus;
     private FMOD.ChannelGroup channelGroup;
 
+    private GameInputHandler input;
+    private float MouseSensitivity = 1f;
+    [SerializeField]
+    private float minDelta, maxDelta;
+
     void Start()
     {
         musicBus = RuntimeManager.GetBus(musicBusPath);
@@ -55,13 +61,15 @@ public class SanityManager : MonoBehaviour
         masterBus.getChannelGroup(out channelGroup);
         RuntimeManager.CoreSystem.createDSPByType(FMOD.DSP_TYPE.LOWPASS, out lowpassDSP);
 
+        input = GameInputHandler.Instance;
+        MouseSensitivity = this.GetComponent<PlayerController>().MouseSensitivity;
     }
 
     // Update FMOD parameters based on current sanity value
     void UpdateSoundParameters()
     {
         Debug.Log("Current Sanity is: " + sanity);
-        if (sanity <= 29)
+        if (sanity <= 33)
         {
             //sanityBrain.sprite = lowSanitySprite;
             ambientInstance.setParameterByName(lowParameterName, 1.0f);
@@ -70,7 +78,7 @@ public class SanityManager : MonoBehaviour
             ApplyUnderwaterEffect(true);
             Debug.Log("State set to Low");
         }
-        else if (sanity <= 69)
+        else if (sanity <= 66)
         {
             //sanityBrain.sprite = mediumSanitySprite;
             ambientInstance.setParameterByName(lowParameterName, 0.0f);
@@ -106,42 +114,43 @@ public class SanityManager : MonoBehaviour
     }
 
     // Method to trigger the screamer event
-    public void TriggerScreamer(int sanityLoss)
+    public void CheckFearLevel(int minSanityLoss, int maxSanityLoss, float duration)
     {
-        StartCoroutine(MeasureMouseJerk(sanityLoss));
+        StartCoroutine(MeasureMouseShake(minSanityLoss, maxSanityLoss, duration));
     }
 
-    // Coroutine that measures total mouse movement during the screamer duration,
-    // calculates the reduction in sanity, and updates the FMOD parameters accordingly.
-    IEnumerator MeasureMouseJerk(int sanityLoss)
+    private IEnumerator MeasureMouseShake(int minSanityLoss, int maxSanityLoss, float duration)
     {
-        
+        Debug.Log("Checking fear level");
         float elapsed = 0f;
-        float totalMouseDelta = 0f;
-        Vector3 lastMousePosition = Input.mousePosition;
+        float Delta = 0f;
 
-        while (elapsed < screamerDuration)
+        while (elapsed < duration)
         {
-            yield return null;
-            Vector3 currentMousePosition = Input.mousePosition;
-            totalMouseDelta += Vector3.Distance(currentMousePosition, lastMousePosition);
-            lastMousePosition = currentMousePosition;
+            if (input.LookInput.magnitude * MouseSensitivity > Delta)
+            {
+                Delta = input.LookInput.magnitude * MouseSensitivity;
+            }
+            
             elapsed += Time.deltaTime;
+            yield return null;
         }
 
-        int sanityReduction = Mathf.RoundToInt(totalMouseDelta * screamerImpactMultiplier);
-        sanityReduction += sanityLoss;
-        sanity -= sanityReduction;
-        Debug.Log("Sanity reduction is: " + sanityReduction);
-        sanity = Mathf.Clamp(sanity, 0, 100);
+        float clampedDelta = Mathf.Clamp(Delta, minDelta, maxDelta);
 
-        UpdateSoundParameters();
+        float t = (clampedDelta - minDelta) / (maxDelta - minDelta);
+
+        float finalSanityLoss = Mathf.Lerp(minSanityLoss, maxSanityLoss, t);
+
+        DecreaseSanity(finalSanityLoss);
+
+        Debug.Log("Decreased sanity by " + finalSanityLoss);
     }
 
     // Method to decrease sanity by a given amount and update parameters accordingly
-    public void DecreaseSanity(int amount)
+    public void DecreaseSanity(float amount)
     {
-        sanity -= amount;
+        sanity -= (int)amount;
         sanity = Mathf.Clamp(sanity, 0, 100);
         UpdateSoundParameters();
     }
