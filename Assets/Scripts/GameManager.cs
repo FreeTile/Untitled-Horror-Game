@@ -102,7 +102,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         state = State.GameOver;
-        switchControlSystem();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         hudUI.SetActive(false);
         MainInputHandler.Instance.enabled = false;
         GameInputHandler.Instance.enabled = false;
