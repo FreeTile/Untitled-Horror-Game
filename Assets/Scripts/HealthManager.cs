@@ -9,6 +9,7 @@ public class HealthManager : MonoBehaviour
     public Sprite fullHealthSprite;
     public Sprite mediumHealthSprite;
     public Sprite lowHealthSprite;
+    public Sprite DeadHealthSprite;
 
     public int health { get; private set; } = 3;
     
@@ -19,6 +20,7 @@ public class HealthManager : MonoBehaviour
         health -= 1;
         if (health <= 0)
         {
+            healthImage.sprite = DeadHealthSprite;
             GameManager.Instance.GameOver();
         }
         UpdateHealthSprite();
@@ -48,7 +50,6 @@ public class HealthManager : MonoBehaviour
                 healthImage.sprite = lowHealthSprite;
                 break;
             default:
-                healthImage.sprite = null;
                 break;
         }
     }
