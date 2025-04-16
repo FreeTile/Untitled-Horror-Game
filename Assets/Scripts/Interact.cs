@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,6 +32,8 @@ public class Interact : MonoBehaviour
     private Door door = null;
 
     public FlashLight flashlight;
+
+    public GameObject FrontDoor;
 
     private void Start()
     {
@@ -286,6 +289,9 @@ public class Interact : MonoBehaviour
     private void PickUpStaticItem(GameObject obj)
     {
         flashlight.isPickedUp = true;
+        FrontDoor.GetComponent<Door>().ProcessMove();
+        FrontDoor.transform.DOLocalRotate(new Vector3(0, 0, 0), 0.2f);
+        FrontDoor.GetComponent<Door>().isLocked = true;
         Destroy(obj);
     }
 

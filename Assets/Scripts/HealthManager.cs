@@ -11,6 +11,7 @@ public class HealthManager : MonoBehaviour
     public Sprite lowHealthSprite;
     public Sprite DeadHealthSprite;
 
+    private bool isDead = false;
     public int health { get; private set; } = 3;
     
 
@@ -18,8 +19,9 @@ public class HealthManager : MonoBehaviour
     {
         Debug.Log(health);
         health -= 1;
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
+            isDead = true;
             healthImage.sprite = DeadHealthSprite;
             GameManager.Instance.GameOver();
         }

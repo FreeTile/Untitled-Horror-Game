@@ -11,8 +11,8 @@ public class E2S1 : EventHandler
 
     public EventReference lightBulbSoundRef;
 
-    public int minSanityLoss = 50;
-    public int maxSanityLoss = 80;
+    public int minSanityLoss = 10;
+    public int maxSanityLoss = 20;
     [SerializeField] private Camera PlayerCam;
     [SerializeField] private GameObject Trigger1;
     [SerializeField] private LayerMask mask;
@@ -41,8 +41,7 @@ public class E2S1 : EventHandler
         Debug.Log("Screamer");
         GameManager.Instance.TriggerJumpScare();
 
-        int sanityLoss = Random.Range(minSanityLoss, maxSanityLoss);
-        GameManager.Instance.sanityManager.TriggerScreamer(sanityLoss);
+        GameManager.Instance.sanityManager.CheckFearLevel(minSanityLoss, maxSanityLoss, 0.5f);
 
         if (lightBulb != null)
         {

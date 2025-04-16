@@ -33,11 +33,11 @@ public class AttackScript : MonoBehaviour
     private IEnumerator DamageDelay()
     {
         //Put animation to play here 
-        animator.Play("Attack");            
+        animator.SetTrigger("Attack");
+        yield return new WaitForSeconds(0.2f);
         attackPlayer();
         // Wait for the specified amount of time
         yield return new WaitForSeconds(damageDelay);
-
         // Set the invulnerable flag to false
         invulnerable = false;
         monsterAI.playerDamaged = false;

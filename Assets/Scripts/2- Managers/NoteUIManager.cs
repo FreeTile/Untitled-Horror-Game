@@ -79,7 +79,7 @@ namespace NoteSystem
 
         void Update()
         {
-            if (Input.GetKeyDown(NoteInputManager.instance.openInventoryKey))
+            if (MainInputHandler.Instance.JournalDown)
             {
                 if (!NoteController.instance.IsNoteBeingViewed)
                 {
@@ -87,7 +87,13 @@ namespace NoteSystem
                 }
             }
         }
-
+        public void CloseInventory()
+        {
+            if (isOpen)
+            {
+                ToggleInventory();
+            }
+        }
         void ToggleInventory()
         {
             isOpen = !isOpen;

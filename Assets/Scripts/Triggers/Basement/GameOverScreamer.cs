@@ -5,11 +5,12 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class GameOverScreamer : MonoBehaviour
 {
-    [Header("Настройка монстра")]
+    [Header("Monster settings")]
     public GameObject monster;
+    public GameObject player;
     public string attackAnimation = "Attack";
 
-    [Header("Настройка UI")]
+    [Header("UI Settings")]
     public Image fadeImage;
     public TMP_Text gameOverText;
 
@@ -24,7 +25,7 @@ public class GameOverScreamer : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Monster не задан в инспекторе!");
+            Debug.LogWarning("Monster hasn't assign in inspector");
         }
 
         if (fadeImage != null)
@@ -35,7 +36,7 @@ public class GameOverScreamer : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Fade Image не задан в инспекторе!");
+            Debug.LogWarning("Fade Image hasn't assign in inspector");
         }
 
         if (gameOverText != null)
@@ -44,7 +45,7 @@ public class GameOverScreamer : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Game Over Text не задан в инспекторе!");
+            Debug.LogWarning("Game Over Text hasn't assign in inspector");
         }
     }
 
@@ -52,6 +53,7 @@ public class GameOverScreamer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+
             GameManager.Instance.state = GameManager.State.GameOver;
             GameManager.Instance.TriggerJumpScare();
             GameManager.Instance.switchControlSystem();
@@ -64,28 +66,36 @@ public class GameOverScreamer : MonoBehaviour
     IEnumerator PlayAttackAndGameOver()
     {
         monster.SetActive(true);
+        Vector3 direction = player.transform.position - monster.transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        monster.transform.rotation = lookRotation * Quaternion.Euler(0, 90f, 0);
         monsterAnimator.Play(attackAnimation);
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.2f);
 
-        float fadeDuration = 1.0f;
-        float elapsedTime = 0f;
+
         Color initialColor = fadeImage.color;
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
-            Color newColor = initialColor;
-            newColor.a = alpha;
-            fadeImage.color = newColor;
-            yield return null;
-        }
+        initialColor.a = 1f;
+        fadeImage.color = initialColor;
 
-        gameOverText.text = "Demo is Over\r\nThanks for playing!";
+        yield return new WaitForSeconds(2f);
+
         gameOverText.gameObject.SetActive(true);
+        yield return StartCoroutine(TypeText("Demo is Over\r\nThanks for playing!"));
 
         yield return new WaitForSeconds(5f);
 
         SceneTransition.SwitchToScene("Menu");
+    }
+
+    private IEnumerator TypeText(string message)
+    {
+        gameOverText.text = "";
+
+        foreach (char letter in message)
+        {
+            gameOverText.text += letter;
+            yield return new WaitForSeconds(0.08f);
+        }
     }
 }
