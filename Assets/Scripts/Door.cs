@@ -56,7 +56,7 @@ public class Door : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isInitialized)
+        if (isInitialized && collision.gameObject.CompareTag("Player"))
             ProcessMove();
     }
 

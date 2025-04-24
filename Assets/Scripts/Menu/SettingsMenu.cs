@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 public class SettingsMenu : MonoBehaviour
 {
+    public PlayerController playerController;
+
     public Volume postProcessingVolume;
     private ColorAdjustments colorAdjust;
 
@@ -25,6 +27,9 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Text masterValueText;
     public TMP_Text musicValueText;
     public TMP_Text sfxValueText;
+
+    public Slider sensSlider;
+    public TMP_Text sensValueText;
 
     Resolution[] AllResolutions;
     int SelectedResolution;
@@ -134,6 +139,18 @@ public class SettingsMenu : MonoBehaviour
             sfxValueText.text = Mathf.RoundToInt(value * 100f).ToString();
     }
 
+    public void SetSensitivity(float value)
+    {
+        PlayerPrefs.SetFloat("Sensitivity", value);
+        if (sensValueText != null)
+            sensValueText.text = Mathf.RoundToInt(value * 100f).ToString();
+
+        if (playerController != null)
+        {
+            playerController.MouseSensitivity = value;
+        }
+    }
+
     void LoadSettings()
     {
         // Resolution
@@ -149,6 +166,17 @@ public class SettingsMenu : MonoBehaviour
         bool isFullscreen = PlayerPrefs.GetInt("Fullscreen", Screen.fullScreen ? 1 : 0) == 1;
         Screen.fullScreen = isFullscreen;
         fullscreenToggle.isOn = isFullscreen;
+
+        //Sensitivity
+        if(PlayerPrefs.HasKey("Sensitivity"))
+        {
+            float sens = PlayerPrefs.GetFloat("Sensitivity");
+            sensSlider.value = sens;
+            if(playerController != null)
+            {
+                playerController.MouseSensitivity = sens;
+            }
+        }
 
         // VSync
         bool isVSync = PlayerPrefs.GetInt("VSync", 1) == 1;

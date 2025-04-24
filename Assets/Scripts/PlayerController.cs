@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         input = GameInputHandler.Instance;
         initialCameraY = MCameraPivot.localPosition.y;
+        MouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
     }
 
     private void Update()
